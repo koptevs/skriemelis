@@ -90,7 +90,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Layout({ children }) {
     const theme = useTheme();
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -101,7 +101,8 @@ export default function Layout({ children }) {
     };
 
     const handleDrawerToggle = () => {
-        setOpen(!open);
+        // setOpen(!open);
+        setOpen((prev) => !prev);
     };
 
     return (
