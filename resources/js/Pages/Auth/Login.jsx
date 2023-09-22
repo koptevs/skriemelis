@@ -1,31 +1,61 @@
 import { useEffect } from "react";
-import Checkbox from "@/Components/Checkbox";
+import {
+    Head,
+    Link,
+    router,
+    useForm as inertiaUseForm,
+} from "@inertiajs/react";
+
+// import Checkbox from "@/Components/Checkbox";
 import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
-import { Head, Link, useForm } from "@inertiajs/react";
+
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 
 export default function Login({ status, canResetPassword }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        email: "",
-        password: "",
-        remember: false,
+    // const { data, setData, post, processing, errors, reset } = inertiaUseForm({
+    //     email: "",
+    //     password: "",
+    //     remember: false,
+    // });
+
+    const form = useForm({
+        defaultValues: {
+            email: "",
+            password: "",
+            remember: false,
+        },
     });
 
-    useEffect(() => {
-        return () => {
-            reset("password");
-        };
-    }, []);
+    const { register, control, handleSubmit, formState } = form;
+    const { errors } = formState;
 
-    const submit = (e) => {
-        console.log(data);
-        e.preventDefault();
-
-        post(route("login"));
+    const onSubmit = (data) => {
+        console.log("Form submitted", data);
+        router.post(route("login"), data);
     };
+
+    // useEffect(() => {
+    //     return () => {
+    //         reset("password");
+    //     };
+    // }, []);
+
+    // const submit = (e) => {
+    //     e.preventDefault();
+
+    //     post(route("login"));
+    // };
 
     return (
         <GuestLayout>
@@ -33,11 +63,105 @@ export default function Login({ status, canResetPassword }) {
 
             {status && (
                 <div className="mb-4 font-medium text-sm text-green-600">
-                    {status}
+                    {status}erertertertert
                 </div>
             )}
 
-            <form onSubmit={submit}>
+            <Box
+                component="form"
+                sx={{
+                    py: 2,
+                    "& .MuiTextField-root": {
+                        // width: "25ch",
+                    },
+                }}
+                noValidate
+                onSubmit={handleSubmit(onSubmit)}
+                // autoComplete="off"
+                className="space-y-4"
+            >
+                <TextField
+                    size="small"
+                    label="Email"
+                    fullWidth
+                    autoComplete
+                    helperText={errors.email?.message}
+                    {...register("email", {
+                        required: {
+                            value: true,
+                            message: "Email is required.",
+                        },
+                        pattern: {
+                            value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                            message: "Invalid EMail",
+                        },
+                    })}
+                    sx={{
+                        "& .MuiFormHelperText-root": {
+                            color: "red",
+                        },
+                    }}
+                />
+
+                <TextField
+                    size="small"
+                    label="Password"
+                    fullWidth
+                    type="password"
+                    helperText={errors.password?.message}
+                    autoComplete="current-password"
+                    {...register("password", {
+                        required: {
+                            value: true,
+                            message: "Password is required.",
+                        },
+                    })}
+                    sx={{
+                        "& .MuiFormHelperText-root": {
+                            color: "red",
+                        },
+                    }}
+                />
+                <FormControlLabel
+                    disableTypography
+                    {...register("remember")}
+                    control={
+                        <Checkbox
+                            {...{
+                                inputProps: {
+                                    "aria-label": "Checkbox remember me",
+                                },
+                            }}
+                        />
+                    }
+                    label="Remember me"
+                />
+
+                <Stack direction="row" className="justify-between">
+                    {canResetPassword && (
+                        <div className="pt-4">
+                            <Link
+                                href={route("password.request")}
+                                className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                            >
+                                Forgot your password?
+                            </Link>
+                        </div>
+                    )}
+                    <Button
+                        type="submit"
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        className="mt-4 ml-2"
+                        // disabled={errors}
+                    >
+                        Login
+                    </Button>
+                </Stack>
+            </Box>
+
+            {/* <form onSubmit={submit}>
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
 
@@ -100,7 +224,7 @@ export default function Login({ status, canResetPassword }) {
                         Log in
                     </PrimaryButton>
                 </div>
-            </form>
+            </form> */}
         </GuestLayout>
     );
 }
