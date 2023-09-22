@@ -9,7 +9,6 @@ export default {
         "./resources/views/**/*.blade.php",
         "./resources/js/**/*.jsx",
     ],
-
     theme: {
         extend: {
             fontFamily: {
@@ -21,6 +20,9 @@ export default {
             },
         },
     },
-
+    important: "#app",
+    corePlugins: {
+        // preflight: false,
+    },
     plugins: [forms],
 };
