@@ -9,8 +9,6 @@ import {
 
 // import Checkbox from "@/Components/Checkbox";
 import GuestLayout from "@/Layouts/GuestLayout";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 
@@ -106,11 +104,14 @@ export default function Login({ status, canResetPassword }) {
                     }}
                 />
                 {inertiaErrors.email && (
-                    <div style={{ color: "red" }}>{inertiaErrors.email}</div>
+                    <p className={"text-sm text-red-600 dark:text-red-400"}>
+                        {inertiaErrors.email}
+                    </p>
                 )}
 
                 <FormControlLabel
                     disableTypography
+                    className="font-medium text-sm text-gray-700 dark:text-gray-300"
                     {...register("remember")}
                     control={
                         <Checkbox
