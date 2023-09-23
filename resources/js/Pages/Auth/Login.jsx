@@ -95,7 +95,7 @@ export default function Login({ status, canResetPassword }) {
                         },
                         pattern: {
                             value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                            message: "Invalid EMail",
+                            message: "Invalid EMail format",
                         },
                     })}
                     sx={{
@@ -158,14 +158,15 @@ export default function Login({ status, canResetPassword }) {
                         type="submit"
                         size="small"
                         variant="contained"
-                        color="primary"
+                        color="success"
                         className="mt-4 ml-2"
-                        // disabled={errors}
+                        disabled={!formState.isValid}
                     >
                         Login
                     </Button>
                 </Stack>
             </Box>
+            {/* <DevTool control={control} /> */}
 
             {/* <form onSubmit={submit}>
                 <div>
