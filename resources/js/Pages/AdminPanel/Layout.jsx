@@ -146,7 +146,11 @@ export default function Layout({ children }) {
                             icon: <InboxIcon />,
                         },
                     ].map((menuItem, index) => (
-                        <ListItem disablePadding sx={{ display: "block" }}>
+                        <ListItem
+                            disablePadding
+                            sx={{ display: "block" }}
+                            key={menuItem.href}
+                        >
                             <ListItemButton
                                 component={InertiaLink}
                                 href={menuItem.href}
