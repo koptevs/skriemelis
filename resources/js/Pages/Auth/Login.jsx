@@ -3,6 +3,7 @@ import {
     Head,
     Link,
     router,
+    usePage,
     useForm as inertiaUseForm,
 } from "@inertiajs/react";
 
@@ -39,9 +40,10 @@ export default function Login({ status, canResetPassword }) {
 
     const { register, control, handleSubmit, formState } = form;
     const { errors } = formState;
+    const { errors: inertiaErrors } = usePage().props;
 
     const onSubmit = (data) => {
-        console.log("Form submitted", data);
+        // console.log("Form submitted", data);
         router.post(route("login"), data);
     };
 
@@ -122,6 +124,10 @@ export default function Login({ status, canResetPassword }) {
                         },
                     }}
                 />
+                {inertiaErrors.email && (
+                    <div style={{ color: "red" }}>{inertiaErrors.email}</div>
+                )}
+
                 <FormControlLabel
                     disableTypography
                     {...register("remember")}
