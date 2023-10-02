@@ -1,21 +1,22 @@
-import React from "react";
-import Typography from "@mui/material/Typography";
+import React from 'react'
+import Typography from '@mui/material/Typography'
 
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
+import TextField from '@mui/material/TextField'
 
-import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
+import { useForm } from 'react-hook-form'
+import { DevTool } from '@hookform/devtools'
 
-import Layout from "./Layout";
+import Layout from './Layout'
+
 const Main = () => {
     const form = useForm({
         defaultValues: {
-            username: "",
-            email: "",
-            password: "",
+            username: '',
+            email: '',
+            password: '',
         },
         // tutorial lesson 12
         // defaultValues: async () => {
@@ -30,13 +31,13 @@ const Main = () => {
         //         password: "",
         //     };
         // },
-    });
-    const { register, control, handleSubmit, formState } = form;
-    const { errors } = formState;
+    })
+    const { register, control, handleSubmit, formState } = form
+    const { errors } = formState
 
     const onSubmit = (data) => {
-        console.log("Form submitted", data);
-    };
+        console.log('Form submitted', data)
+    }
 
     return (
         <>
@@ -46,7 +47,7 @@ const Main = () => {
                 <Box
                     component="form"
                     sx={{
-                        "& .MuiTextField-root": {
+                        '& .MuiTextField-root': {
                             m: 1,
                             // width: "25ch",
                         },
@@ -59,14 +60,15 @@ const Main = () => {
                         size="small"
                         label="Username"
                         type="text"
-                        {...register("username", {
+                        {...register('username', {
                             required: {
                                 value: true,
-                                message: "Username is required.",
+                                message: 'Username is required.',
                             },
                         })}
                     />
-                    <p style={{ color: "red" }}>{errors.username?.message}</p>
+                    <p style={{ color: 'red' }}>{errors.username?.message}</p>
+                    <div></div>
                     <TextField
                         size="small"
                         label="Email"
@@ -75,34 +77,34 @@ const Main = () => {
                         // fullWidth
                         // multiline
                         // rows={5}
-                        {...register("email", {
+                        {...register('email', {
                             pattern: {
                                 value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                                message: "Invalid EMail",
+                                message: 'Invalid EMail',
                             },
                             validate: {
                                 notAdmin: (fieldValue) => {
                                     return (
-                                        fieldValue !== "admin@example.com" ||
+                                        fieldValue !== 'admin@example.com' ||
                                         `${fieldValue} is reserved for inernal usage!`
-                                    );
+                                    )
                                 },
                                 notBlackListed: (fieldValue) => {
                                     return (
-                                        !fieldValue.endsWith("baddomain.com") ||
+                                        !fieldValue.endsWith('baddomain.com') ||
                                         `Sorry, but ${fieldValue} is in our blacklist.`
-                                    );
+                                    )
                                 },
                             },
                         })}
                     />
-                    <p style={{ color: "red" }}>{errors.email?.message}</p>
+                    <p style={{ color: 'red' }}>{errors.email?.message}</p>
                     <TextField
                         size="small"
                         label="Password"
                         type="password"
                         autoComplete="current-password"
-                        {...register("password")}
+                        {...register('password')}
                     />
                     <div>
                         <Button
@@ -134,12 +136,12 @@ const Main = () => {
                                 },
                             }}
                         /> */}
-                    <DevTool control={control} />
+                    <DevTool control={control}/>
                 </Box>
             </Layout>
             {/* <div>AdminPanel</div>; */}
         </>
-    );
-};
+    )
+}
 
-export default Main;
+export default Main

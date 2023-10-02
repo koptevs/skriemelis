@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LiftController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -51,9 +52,25 @@ Route::get(
 Route::middleware('auth')->group(
     function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     }
 );
+
+Route::get('/lifts', [LiftController::class, 'index'])->name('lift.index');
+
+Route::get('/lifts/{lift}', [LiftController::class, 'show'])->name('lift.show');
+
+Route::get('/lifts/create', [LiftController::class, 'create'])->name('lift.create');
+
+Route::get('/lifts/update', [LiftController::class, 'update'])->name('lift.update');
+
+Route::get('/lifts/destroy', [LiftController::class, 'destroy'])->name('lift.destroy');
+
+// Route::get('/lifts/show', [LiftController@show]);
+
+
 
 require __DIR__.'/auth.php';
