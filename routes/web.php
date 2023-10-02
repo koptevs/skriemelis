@@ -61,14 +61,13 @@ Route::middleware('auth')->group(
 
 Route::get('/lifts', [LiftController::class, 'index'])->name('lift.index');
 
-Route::get('/lifts/{lift}', [LiftController::class, 'show'])->name('lift.show');
-
 Route::get('/lifts/create', [LiftController::class, 'create'])->name('lift.create');
 
 Route::get('/lifts/update', [LiftController::class, 'update'])->name('lift.update');
 
 Route::get('/lifts/destroy', [LiftController::class, 'destroy'])->name('lift.destroy');
 
+Route::get('/lifts/{lift}', [LiftController::class, 'show'])->name('lift.show');
 // Route::get('/lifts/show', [LiftController@show]);
 
 
