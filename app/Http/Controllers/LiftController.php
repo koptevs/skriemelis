@@ -19,9 +19,9 @@ class LiftController extends Controller
                      ->when(Request::input('search'), function ($query, $search) { //Request::input('search') == $search
                          $query->where('reg_number', 'like', "%{$search}%");
                      })
-            ->when(Request::input('street'), function ($query, $search) { //Request::input('search') == $search
-                $query->where('address_street', 'like', "%{$search}%");
-            })
+                     ->when(Request::input('street'), function ($query, $search) { //Request::input('search') == $search
+                         $query->where('address_street', 'like', "%{$search}%");
+                     })
                      ->paginate(100)
                      ->withQueryString();
 //        dd($lifts);
@@ -42,6 +42,16 @@ class LiftController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
+    {
+        return Inertia::render(
+            'Lift/Create', []
+        );
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreLiftRequest $request)
     {
         $lift = [
             'reg_number'          => 'qwe',
@@ -68,16 +78,7 @@ class LiftController extends Controller
             'lift_manager_id'     => '12',
         ];
 
-        Lift::create($lift);
-
-        return 'LiftController-create';
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreLiftRequest $request)
-    {
+//        Lift::create($lift);
         return 'LiftController-store';
     }
 
