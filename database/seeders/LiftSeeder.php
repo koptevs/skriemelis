@@ -16,6 +16,21 @@ class LiftSeeder extends Seeder
         
         foreach ($this->lifti_source as $lifts) {
             // code...
+
+            $iela_or_bulvaris         = '';
+            $iela_array               = explode(' ', $lifts['lifts_adrese_iela']);
+            $last_word_in_adrese_iela = $iela_array[ count($iela_array) - 1 ];
+            if (( $last_word_in_adrese_iela !== 'bulvāris' ) && ( $last_word_in_adrese_iela !== 'bulvaris' ) && ( $last_word_in_adrese_iela !== 'gatve' ) && ( $last_word_in_adrese_iela !== 'prospekts' ) && ( $last_word_in_adrese_iela !== 'aleja' ) && ( $last_word_in_adrese_iela !== 'līnija' ) ) {
+                $iela_or_bulvaris = 'iela';
+            }
+
+
+            $address = $lifts['lifts_adrese_iela'] . " " . $iela_or_bulvaris;
+            $address = $address . " " . $lifts['lifts_adrese_maja'] ?? null;
+            $address = $lifts['lifts_adrese_kapnu_telpa'] ? $address . "-" .  $lifts['lifts_adrese_kapnu_telpa'] : $address;
+            $address = $address . $lifts['lifts_adrese_novads'] ?? null;
+            $address = $address . $lifts['lifts_adrese_pagasts'] ?? null;
+            $address = $address . ", " . $lifts['lifts_adrese_pilseta'];
             DB::table('lifts')->insert(
                 [
                     'reg_number' => $lifts['lifts_reg_nr'],
@@ -32,12 +47,16 @@ class LiftSeeder extends Seeder
                     'floors_total' => $lifts['stavu_skaits'] ?? null,
                     'floors_serviced' => $lifts['lifts_stavu_skaits'] ?? null,
                     'address_country' => $lifts['lifts_adree_valsts'] ?? 'Latvija',
-                    'address_novads' => $lifts['lifts_adrese_novads'] ?? null,
-                    'address_pagasts' => $lifts['lifts_adrese_pagasts'] ?? null,
-                    'address_city' => $lifts['lifts_adrese_pilseta'] ?? 'Rīga',
-                    'address_street' => $lifts['lifts_adrese_iela'],
-                    'address_building' => $lifts['lifts_adrese_maja'],
-                    'address_entrance' => $lifts['lifts_adrese_kapnu_telpa'],
+                    
+                    'address' => $address ,
+
+                    // 'address_novads' => $lifts['lifts_adrese_novads'] ?? null,
+                    // 'address_pagasts' => $lifts['lifts_adrese_pagasts'] ?? null,
+                    // 'address_city' => $lifts['lifts_adrese_pilseta'] ?? 'Rīga',
+                    // 'address_street' => $lifts['lifts_adrese_iela'],
+                    // 'address_building' => $lifts['lifts_adrese_maja'],
+                    // 'address_entrance' => $lifts['lifts_adrese_kapnu_telpa'],
+                    
                     'address_postal_code' => $lifts['lifts_adrese_indeks'],
                     'notes' => $lifts['lifts_piezimes'] ?? null,
                     'lift_manager_id' => $lifts['lifts_parvaldnieks'] ?? null,

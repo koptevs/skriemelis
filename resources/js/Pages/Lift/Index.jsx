@@ -80,12 +80,8 @@ const Index = ({ lifts, filters }) => {
                         </h2>
                     </Link>
                     <p className="text-xs py-0">
-                        {lift.address_street} {lift.address_building}
-                        {lift.address_entrance
-                            ? `-${lift.address_entrance}`
-                            : ""}
-                        <br />
-                        {lift.address_city}, {lift.address_postal_code}
+                        {lift.address}, {lift.address_postal_code},{" "}
+                        {lift.address_country}
                     </p>
                 </div>
             ))}
