@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(
             [
-            LiftSeeder::class,
-            UserSeeder::class,
-            // LiftManagerSeeder::class,
-            // InspectionSeeder::class,
+                LiftSeeder::class,
+                UserSeeder::class,
+                LiftManagerSeeder::class,
+                // InspectionSeeder::class,
             ]
         );
         // \App\Models\User::factory(10)->create();
