@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LiftController;
+use App\Http\Controllers\LiftManagerController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -56,22 +57,25 @@ Route::middleware('auth')->group(
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-        
+
 
         Route::get('/lifts', [LiftController::class, 'index'])->name('lifts.index');
-
         Route::get('/lifts/create', [LiftController::class, 'create'])->name('lifts.create');
-
         Route::post('/lifts', [LiftController::class, 'store'])->name('lifts.store');
-
         Route::get('/lifts/{lift}', [LiftController::class, 'show'])->name('lifts.show');
-
         Route::get('/lifts/{lift}/edit', [LiftController::class, 'edit'])->name('lifts.edit');
-
         Route::patch('/lifts/{lift}', [LiftController::class, 'update'])->name('lifts.update');
-
         Route::delete('/lifts/{lift}', [LiftController::class, 'destroy'])->name('lifts.destroy');
-// Route::get('/lifts/show', [LiftController@show]);
+
+        Route::get('/lift-managers', [LiftManagerController::class, 'index'])->name('lift-managers.index');
+        Route::get('/lift-managers/create', [LiftManagerController::class, 'create'])->name('lift-managers.create');
+        Route::post('/lift-managers', [LiftManagerController::class, 'store'])->name('lift-managers.store');
+        Route::get('/lift-managers/{lift}', [LiftManagerController::class, 'show'])->name('lift-managers.show');
+        Route::get('/lift-managers/{lift}/edit', [LiftManagerController::class, 'edit'])->name('lift-managers.edit');
+        Route::patch('/lift-managers/{lift}', [LiftManagerController::class, 'update'])->name('lift-managers.update');
+        Route::delete('/lift-managers/{lift}', [LiftManagerController::class, 'destroy'])->name('lift-managers.destroy');
+
+
     }
 );
 
