@@ -19,33 +19,33 @@ use Inertia\Inertia;
 
 Route::get(
     '/', function () {
-        return Inertia::render(
-            'Welcome', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
+    return Inertia::render(
+        'Welcome', [
+            'canLogin'       => Route::has('login'),
+            'canRegister'    => Route::has('register'),
             'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
-            ]
-        );
-    }
+            'phpVersion'     => PHP_VERSION,
+        ]
+    );
+}
 );
 
 Route::get(
     '/dashboard', function () {
-        return Inertia::render('Dashboard');
-    }
+    return Inertia::render('Dashboard');
+}
 )->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get(
     '/adminpanel', function () {
-        return Inertia::render('AdminPanel/Main');
-    }
+    return Inertia::render('AdminPanel/Main');
+}
 )->middleware(['auth', 'verified'])->name('adminpanel');
 
 Route::get(
     '/second', function () {
-        return Inertia::render('AdminPanel/Second');
-    }
+    return Inertia::render('AdminPanel/Second');
+}
 )->middleware(['auth', 'verified'])->name('second');
 
 
@@ -56,25 +56,23 @@ Route::middleware('auth')->group(
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+        Route::get('/lifts', [LiftController::class, 'index'])->name('lifts.index');
+
+        Route::get('/lifts/create', [LiftController::class, 'create'])->name('lifts.create');
+
+        Route::post('/lifts', [LiftController::class, 'store'])->name('lifts.store');
+
+        Route::get('/lifts/{lift}', [LiftController::class, 'show'])->name('lifts.show');
+
+        Route::get('/lifts/{lift}/edit', [LiftController::class, 'edit'])->name('lifts.edit');
+
+        Route::patch('/lifts/{lift}', [LiftController::class, 'update'])->name('lifts.update');
+
+        Route::delete('/lifts/{lift}', [LiftController::class, 'destroy'])->name('lifts.destroy');
+// Route::get('/lifts/show', [LiftController@show]);
     }
 );
-
-Route::get('/lifts', [LiftController::class, 'index'])->name('lifts.index');
-
-Route::get('/lifts/create', [LiftController::class, 'create'])->name('lifts.create');
-
-Route::post('/lifts', [LiftController::class, 'store'])->name('lifts.store');
-
-Route::get('/lifts/{lift}', [LiftController::class, 'show'])->name('lifts.show');
-
-Route::get('/lifts/{lift}/edit', [LiftController::class, 'edit'])->name('lifts.edit');
-
-Route::patch('/lifts/{lift}', [LiftController::class, 'update'])->name('lifts.update');
-
-Route::delete('/lifts/{lift}', [LiftController::class, 'destroy'])->name('lifts.destroy');
-
-// Route::get('/lifts/show', [LiftController@show]);
-
 
 
 require __DIR__.'/auth.php';
