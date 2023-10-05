@@ -59,15 +59,20 @@ Route::middleware('auth')->group(
     }
 );
 
-Route::get('/lifts', [LiftController::class, 'index'])->name('lift.index');
+Route::get('/lifts', [LiftController::class, 'index'])->name('lifts.index');
 
-Route::get('/lifts/create', [LiftController::class, 'create'])->name('lift.create');
+Route::get('/lifts/create', [LiftController::class, 'create'])->name('lifts.create');
 
-Route::get('/lifts/update', [LiftController::class, 'update'])->name('lift.update');
+Route::post('/lifts', [LiftController::class, 'store'])->name('lifts.store');
 
-Route::get('/lifts/destroy', [LiftController::class, 'destroy'])->name('lift.destroy');
+Route::get('/lifts/{lift}', [LiftController::class, 'show'])->name('lifts.show');
 
-Route::get('/lifts/{lift}', [LiftController::class, 'show'])->name('lift.show');
+Route::get('/lifts/{lift}/edit', [LiftController::class, 'edit'])->name('lifts.edit');
+
+Route::patch('/lifts/{lift}', [LiftController::class, 'update'])->name('lifts.update');
+
+Route::delete('/lifts/{lift}', [LiftController::class, 'destroy'])->name('lifts.destroy');
+
 // Route::get('/lifts/show', [LiftController@show]);
 
 

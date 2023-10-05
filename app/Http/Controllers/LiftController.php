@@ -16,18 +16,18 @@ class LiftController extends Controller
     public function index()
     {
         $lifts = Lift::query()
-            ->when(
-                Request::input('search'), function ($query, $search) {
-                            //Request::input('search') == $search
-                            $query->where('reg_number', 'like', "%{$search}%");
-                }
-            )
-                    ->when(
-                        Request::input('street'), function ($query, $search) {
-                            //Request::input('search') == $search
-                            $query->where('address', 'like', "%{$search}%");
-                        }
-                    )
+                     ->when(
+                         Request::input('search'), function ($query, $search) {
+                         //Request::input('search') == $search
+                         $query->where('reg_number', 'like', "%{$search}%");
+                     }
+                     )
+                     ->when(
+                         Request::input('street'), function ($query, $search) {
+                         //Request::input('search') == $search
+                         $query->where('address', 'like', "%{$search}%");
+                     }
+                     )
                      ->paginate(100)
                      ->withQueryString();
         //        dd($lifts);
@@ -40,7 +40,7 @@ class LiftController extends Controller
             'Lift/Index', [
             'lifts'   => $lifts,
             'filters' => Request::only(['search', "street"])
-            ],
+        ],
         );
     }
 
@@ -59,33 +59,34 @@ class LiftController extends Controller
      */
     public function store(StoreLiftRequest $request)
     {
+//        $data = \request()->all();
+        $data = $request->validated();
+
+
         $lift = [
-            'reg_number'          => 'qwe',
-            'lift_type'           => 'elektriskais',
-            'lift_category'       => 'CE',
-            'factory_number'      => '223322',
-            'model'               => 'Model',
-            'speed'               => '1.1',
-            'load'                => 650,
-            'manufacturer'        => 'KONE',
-            'installer'           => 'Sharazh',
-            'installation_year'   => '2023',
-            'floors_total'        => '7',
-            'floors_serviced'     => '7',
-            'address_country'     => 'Latvia',
-            'address_novads'      => '',
-            'address_pagasts'     => '',
-            'address_city'        => 'Rigas',
-            'address_street'      => 'Dzervju',
-            'address_building'    => '3',
-            'address_entrance'    => 'II',
-            'address_postal_code' => 'LV-1019',
-            'notes'               => 'Long-long notes. Long-long notes. Long-long notes. Long-long notes. ',
-            'lift_manager_id'     => '12',
+            'reg_number'          => $data["regNumber"],
+            'factory_number'      => $data["factoryNumber"],
+            'lift_type'           => $data["liftType"],
+            'lift_category'       => $data["liftCategory"],
+            'model'               => $data["model"],
+            'speed'               => $data["speed"],
+            'load'                => intval($data["load"]),
+            'manufacturer'        => $data["manufacturer"],
+            'installer'           => $data["installer"],
+            'installation_year'   => intval($data["installationYear"]),
+            'floors_serviced'     => intval($data["floorsServiced"]),
+            'address'             => $data["address"],
+            'address_country'     => $data["addressCountry"],
+            'address_postal_code' => $data["addressPostalCode"],
+            'lift_manager'        => $data["liftManager"],
+            'notes'               => $data["notes"],
         ];
 
-        //        Lift::create($lift);
-        return 'LiftController-store';
+//        dd($lift);
+        Lift::create($lift);
+
+        return to_route('lift.index');
+//        return redirect()->route('lift.index');
     }
 
     /**
@@ -106,7 +107,9 @@ class LiftController extends Controller
      */
     public function edit(Lift $lift)
     {
-        return 'LiftController-edit';
+        return Inertia::render(
+            'Lift/Edit', ['lift' => $lift]
+        );
     }
 
     /**
@@ -114,15 +117,31 @@ class LiftController extends Controller
      */
     public function update(UpdateLiftRequest $request, Lift $lift)
     {
-        $lift = Lift::find(22);
-        $lift->update(
-            [
-                'reg_number' => '9CD777777'
-            ]
-        );
-        dd($lift);
+        $data = $request->validated();
 
-        return 'LiftController-update';
+        $newLiftData = [
+            'reg_number'          => $data["regNumber"],
+            'factory_number'      => $data["factoryNumber"],
+            'lift_type'           => $data["liftType"],
+            'lift_category'       => $data["liftCategory"],
+            'model'               => $data["model"],
+            'speed'               => $data["speed"],
+            'load'                => intval($data["load"]),
+            'manufacturer'        => $data["manufacturer"],
+            'installer'           => $data["installer"],
+            'installation_year'   => intval($data["installationYear"]),
+            'floors_serviced'     => intval($data["floorsServiced"]),
+            'address'             => $data["address"],
+            'address_country'     => $data["addressCountry"],
+            'address_postal_code' => $data["addressPostalCode"],
+            'lift_manager'        => $data["liftManager"],
+            'notes'               => $data["notes"],
+        ];
+//        dd($newLiftData);
+
+$lift->update($newLiftData);
+
+        return to_route('lifts.index');
     }
 
     /**
@@ -130,10 +149,7 @@ class LiftController extends Controller
      */
     public function destroy(Lift $lift)
     {
-        $lift = Lift::find(22);
         $lift->delete();
-        //        dd($lift->toArray());
-        //        dd($lift);
-        return 'LiftController-destroy';
+        return to_route('lifts.index');
     }
 }

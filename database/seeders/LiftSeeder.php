@@ -13,7 +13,7 @@ class LiftSeeder extends Seeder
     public function run(): void
     {
         $this ->lifti_source = include 'sources/lifti.php';
-        
+
         foreach ($this->lifti_source as $lifts) {
             // code...
 
@@ -28,8 +28,8 @@ class LiftSeeder extends Seeder
             $address = $lifts['lifts_adrese_iela'] . " " . $iela_or_bulvaris;
             $address = $address . " " . $lifts['lifts_adrese_maja'] ?? null;
             $address = $lifts['lifts_adrese_kapnu_telpa'] ? $address . "-" .  $lifts['lifts_adrese_kapnu_telpa'] : $address;
-            $address = $address . $lifts['lifts_adrese_novads'] ?? null;
-            $address = $address . $lifts['lifts_adrese_pagasts'] ?? null;
+            $address = $lifts['lifts_adrese_novads'] ? $address . ", ". $lifts['lifts_adrese_novads'] : $address;
+            $address = $lifts['lifts_adrese_pagasts'] ? $address . ", ". $lifts['lifts_adrese_pagasts'] : $address;
             $address = $address . ", " . $lifts['lifts_adrese_pilseta'];
             DB::table('lifts')->insert(
                 [
@@ -39,15 +39,15 @@ class LiftSeeder extends Seeder
                     'factory_number' => $lifts['lifts_rupn_nr'],
                     'model' => $lifts['lifts_modelis'] ?? null,
                     'speed' => $lifts['lifts_atrums'] ?? null,
-                    'load' => $lifts['lifts_celtspeja'],
+                    'load' => intval($lifts['lifts_celtspeja']),
                     'manufacturer' => $lifts['lifts_razotajs'] ?? null,
                     // 'manufacture_year' => $lifts['lifts_razosanas_gada'] ?? null,
                     'installer' => $lifts['lifts_uzstaditajs'] ?? null,
-                    'installation_year' => $lifts['lifts_uzstadisanas_gads'],
-                    'floors_total' => $lifts['stavu_skaits'] ?? null,
-                    'floors_serviced' => $lifts['lifts_stavu_skaits'] ?? null,
+                    'installation_year' => intval($lifts['lifts_uzstadisanas_gads']),
+//                    'floors_total' => $lifts['stavu_skaits'] ?? null,
+                    'floors_serviced' => intval($lifts['lifts_stavu_skaits']) ?? null,
                     'address_country' => $lifts['lifts_adree_valsts'] ?? 'Latvija',
-                    
+
                     'address' => $address ,
 
                     // 'address_novads' => $lifts['lifts_adrese_novads'] ?? null,
@@ -56,10 +56,10 @@ class LiftSeeder extends Seeder
                     // 'address_street' => $lifts['lifts_adrese_iela'],
                     // 'address_building' => $lifts['lifts_adrese_maja'],
                     // 'address_entrance' => $lifts['lifts_adrese_kapnu_telpa'],
-                    
+
                     'address_postal_code' => $lifts['lifts_adrese_indeks'],
                     'notes' => $lifts['lifts_piezimes'] ?? null,
-                    'lift_manager_id' => $lifts['lifts_parvaldnieks'] ?? null,
+                    'lift_manager' => $lifts['lifts_parvaldnieks'] ?? null,
 
 
                     ]

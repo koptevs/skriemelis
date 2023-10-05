@@ -136,8 +136,8 @@ export default function Layout ({ children }) {
                 <List>
                     {[
                         {
-                            text: 'Main',
-                            href: '/adminpanel',
+                            text: 'Lifts',
+                            href: '/lifts',
                             icon: <HomeOutlinedIcon/>,
                         },
                         {

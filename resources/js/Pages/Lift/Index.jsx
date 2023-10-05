@@ -50,10 +50,12 @@ const Index = ({ lifts, filters }) => {
                     )
                 }
             />
-            {/* <pre>{JSON.stringify(lifts.links)}</pre> */}
-            <ul class="list-none flex">
+            <Link href="/lifts/create" className="ml-4">
+                Add Lift
+            </Link>
+            <ul className="list-none flex">
                 {lifts.links.map((link) => (
-                    <li>
+                    <li key={link.id}>
                         <Link
                             className={`relative block rounded bg-transparent px-2 py-1 text-sm  no-underline transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white  ${
                                 link.active ? "text-red-500" : "text-slate-900"
@@ -72,13 +74,14 @@ const Index = ({ lifts, filters }) => {
             {lifts.data.map((lift) => (
                 <div key={lift.id} className="inline-block m-2 w-36">
                     <Link
-                        href={route("lift.show", lift.id)}
+                        href={route("lifts.show", lift.id)}
                         className="no-underline font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                     >
                         <h2 className="text-sm text-sky-800 mb-0 ">
                             {lift.reg_number}
                         </h2>
                     </Link>
+
                     <p className="text-xs py-0">
                         {lift.address}, {lift.address_postal_code},{" "}
                         {lift.address_country}

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 import {
     Head,
@@ -6,75 +6,80 @@ import {
     router,
     usePage,
     useForm as inertiaUseForm,
-} from "@inertiajs/react";
+} from '@inertiajs/react'
 
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import FormHelperText from "@mui/material/FormHelperText";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormLabel from "@mui/material/FormLabel";
-import Autocomplete from "@mui/material/Autocomplete";
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Checkbox from '@mui/material/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
+import FormHelperText from '@mui/material/FormHelperText'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormLabel from '@mui/material/FormLabel'
+import Autocomplete from '@mui/material/Autocomplete'
 
-import { useForm, Controller } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
+import { useForm, Controller } from 'react-hook-form'
+import { DevTool } from '@hookform/devtools'
 
-import Layout from "../AdminPanel/Layout";
+import Layout from '../AdminPanel/Layout'
 
-const Create = () => {
-    const form = useForm({
-        defaultValues: {
-            regNumber: "",
-            factoryNumber: "",
-            liftType: "elektriskais",
-            liftCategory: "CE",
-            model: "",
-            speed: "",
-            load: "",
-            manufacturer: "",
-            installer: "",
-            installationYear: "",
-            floorsServiced: "",
-            address: "",
-            addressCountry: "Latvija",
-            addressPostalCode: "LV-1000",
-            liftManager: "",
-            notes: "",
-        },
-    });
-
-    const { register, control, handleSubmit, formState } = form;
-    const { errors } = formState;
-    const { errors: inertiaErrors } = usePage().props;
-
-    const onSubmit = (data) => {
-        console.log(data);
-        router.post(route("lifts.store"), data);
-    };
+const Edit = ({ lift }) => {
 
     const serviceCompanies = [
-        { id: "1", label: "RNP Kurzeme" },
-        { id: "2", label: "RNP Purvciems" },
-        { id: "3", label: "Biedrība 'Pirmais Nams'" },
-    ];
+        { id: '0', label: 'Not Set' },
+        { id: '1', label: 'RNP Kurzeme' },
+        { id: '2', label: 'RNP Purvciems' },
+        { id: '3', label: 'Biedrība \'Pirmais Nams\'' },
+    ]
+
+    const form = useForm({
+        defaultValues: {
+            regNumber: lift.reg_number,
+            factoryNumber: lift.factory_number,
+            liftType: lift.lift_type,
+            liftCategory: lift.lift_category,
+            model: lift.model,
+            speed: lift.speed,
+            load: lift.load,
+            manufacturer: lift.manufacturer,
+            installer: lift.installer,
+            installationYear: lift.installation_year,
+            floorsServiced: lift.floors_serviced,
+            address: lift.address,
+            addressCountry: lift.address_country,
+            addressPostalCode: lift.address_postal_code,
+            // liftManager: lift.lift_manager ? serviceCompanies.find( x => x.id == lift.lift_manager)[label] : null,
+            liftManager: lift.lift_manager,
+            notes: lift.notes,
+        },
+    })
+
+
+    const { register, control, handleSubmit, formState } = form
+    const { errors } = formState
+    const { errors: inertiaErrors } = usePage().props
+
+    const onSubmit = (data) => {
+        console.log(lift.lift_manager)
+        router.patch(route('lifts.update', lift.id), data)
+    }
 
     return (
         <Layout>
-            <Head title="Crate new lift" />
-            <h1>Create new lift</h1>
+            {/*<pre>{JSON.stringify(lift, 2, 2)}</pre>*/}
+            <Head title="Edit lift"/>
+            <h1>Edit lift</h1>
             <Box
                 component="form"
                 sx={{
                     py: 2,
-                    "& .MuiTextField-root": {
+                    '& .MuiTextField-root': {
                         // width: "25ch",
                     },
                 }}
@@ -92,15 +97,15 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.regNumber?.message}
-                            {...register("regNumber", {
+                            {...register('regNumber', {
                                 required: {
                                     value: true,
-                                    message: "Registration number is required.",
+                                    message: 'Registration number is required.',
                                 },
                             })}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
@@ -114,15 +119,15 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.factoryNumber?.message}
-                            {...register("factoryNumber", {
+                            {...register('factoryNumber', {
                                 required: {
                                     value: true,
-                                    message: "Factory number is required.",
+                                    message: 'Factory number is required.',
                                 },
                             })}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
@@ -141,10 +146,10 @@ const Create = () => {
                                 id="liftType"
                                 label="Lift Type"
                                 // onChange={handleChange}
-                                {...register("liftType", {
+                                {...register('liftType', {
                                     required: {
                                         value: true,
-                                        message: "Lift Type is required.",
+                                        message: 'Lift Type is required.',
                                     },
                                 })}
                             >
@@ -176,10 +181,10 @@ const Create = () => {
                                 id="liftCategory"
                                 label="Lift Category"
                                 // onChange={handleChange}
-                                {...register("liftCategory", {
+                                {...register('liftCategory', {
                                     required: {
                                         value: true,
-                                        message: "Lift Type is required.",
+                                        message: 'Lift Type is required.',
                                     },
                                 })}
                             >
@@ -204,10 +209,10 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.model?.message}
-                            {...register("model")}
+                            {...register('model')}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
@@ -221,10 +226,10 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.speed?.message}
-                            {...register("speed")}
+                            {...register('speed')}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
@@ -238,10 +243,10 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.load?.message}
-                            {...register("load")}
+                            {...register('load')}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
@@ -255,10 +260,10 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.manufacturer?.message}
-                            {...register("manufacturer")}
+                            {...register('manufacturer')}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
@@ -272,10 +277,10 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.installer?.message}
-                            {...register("installer")}
+                            {...register('installer')}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
@@ -289,10 +294,10 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.installationYear?.message}
-                            {...register("installationYear")}
+                            {...register('installationYear')}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
@@ -306,17 +311,17 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.floorsServiced?.message}
-                            {...register("floorsServiced")}
+                            {...register('floorsServiced')}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
                         {inertiaErrors.floorsServiced && (
                             <p
                                 className={
-                                    "text-sm text-red-600 dark:text-red-400"
+                                    'text-sm text-red-600 dark:text-red-400'
                                 }
                             >
                                 {inertiaErrors.floorsServiced}
@@ -332,10 +337,10 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.address?.message}
-                            {...register("address")}
+                            {...register('address')}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
@@ -349,10 +354,10 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.addressCountry?.message}
-                            {...register("addressCountry")}
+                            {...register('addressCountry')}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
@@ -366,10 +371,10 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.addressPostalCode?.message}
-                            {...register("addressPostalCode")}
+                            {...register('addressPostalCode')}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
@@ -378,45 +383,45 @@ const Create = () => {
                     <Grid item xs={12} sm={3} md={2} xl={1}>
                         {/* liftManager */}
                         <Controller
-                            defaultValue="KONE"
+
+                            // defaultValue={lift.lift_manager ? serviceCompanies.find( x => x.id == lift.lift_manager).label : null}
+
                             control={control}
                             name="liftManager"
                             rules={{
-                                required: "this field is requried",
+                                required: 'this field is requried',
                             }}
                             render={({ field, fieldState: { error } }) => {
-                                const { onChange, value, ref } = field;
+                                const { onChange, value, ref } = field
                                 return (
                                     <>
                                         <Autocomplete
                                             id="liftManager"
-                                            // disablePortal
-                                            clearOnEscape
                                             options={serviceCompanies}
+                                            defaultValue={{ id: '1', label: 'RNP Kurzeme' }}
+                                            // getOptionLabel={(option) => {
+                                            //     return option.label
+                                            // }}
+                                            disablePortal
+                                            clearOnEscape
                                             // sx={{ width: 300 }}
                                             fullWidth
                                             autoHighlight
-                                            value={
-                                                value
-                                                    ? serviceCompanies.find(
-                                                          (option) => {
-                                                              return (
-                                                                  value ===
-                                                                  option.id
-                                                              );
-                                                          }
-                                                      ) ?? null
-                                                    : null
+                                            // value={{ id: '1', label: 'RNP Kurzeme' }}
+                                            value={lift.lift_manager ?
+                                                serviceCompanies.find(
+                                                    option => (
+                                                        option.id ===
+                                                        String(lift.lift_manager)
+                                                    ),
+                                                ) : { id: '0', label: 'Not Set' }
                                             }
                                             onChange={(event, newValue) => {
                                                 onChange(
                                                     newValue
                                                         ? newValue.id
-                                                        : null
-                                                );
-                                            }}
-                                            getOptionLabel={(option) => {
-                                                return option.label;
+                                                        : null,
+                                                )
                                             }}
                                             renderInput={(params) => (
                                                 <TextField
@@ -424,11 +429,12 @@ const Create = () => {
                                                     label="Lift Manager"
                                                     fullWidth
                                                     size="small"
+                                                    // defaultValue="RNP Kurzeme"
                                                 />
                                             )}
                                         />
                                     </>
-                                );
+                                )
                             }}
                         />
                     </Grid>
@@ -443,17 +449,17 @@ const Create = () => {
                             fullWidth
                             // autoComplete
                             helperText={errors.notes?.message}
-                            {...register("notes")}
+                            {...register('notes')}
                             sx={{
-                                "& .MuiFormHelperText-root": {
-                                    color: "red",
+                                '& .MuiFormHelperText-root': {
+                                    color: 'red',
                                 },
                             }}
                         />
                     </Grid>
 
                     {/* <Grid item xs={12} sm={6} md={2} xl={2}>
-                        RadioGroup Gender 
+                        RadioGroup Gender
                         <FormControl>
                             <FormLabel id="demo-radio-buttons-group-label">
                                 Gender
@@ -517,7 +523,7 @@ const Create = () => {
                 </Grid>
 
                 {inertiaErrors && (
-                    <p className={"text-sm text-red-600 dark:text-red-400"}>
+                    <p className={'text-sm text-red-600 dark:text-red-400'}>
                         {JSON.stringify(inertiaErrors)}
                     </p>
                 )}
@@ -529,12 +535,12 @@ const Create = () => {
                     className="mt-4 ml-2"
                     disabled={!formState.isValid}
                 >
-                    Create
+                    Save
                 </Button>
             </Box>
-            <DevTool control={control} />
+            <DevTool control={control}/>
         </Layout>
-    );
-};
+    )
+}
 
-export default Create;
+export default Edit
