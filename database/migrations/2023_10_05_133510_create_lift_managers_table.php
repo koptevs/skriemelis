@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('lift_managers', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 128);
+            $table->string('reg_number', 64)->unique();
+            $table->string('address', 128);
+            $table->string('contract_number', 128)->nullable();
+            $table->string('contract_date', 128)->nullable();
+            $table->string('contact_person', 128)->nullable();
+            $table->string('contact_person_position', 128)->nullable();
+            $table->string('contact_person_phone', 64)->nullable();
+            $table->string('contact_person_phone_bill', 64)->nullable();
+            $table->string('bank_name', 64)->nullable();
+            $table->string('bank_code', 64)->nullable();
+            $table->string('bank_account', 64)->nullable();
+            $table->string('bill_pay_days', 64)->nullable();
+            $table->boolean('protocol_with_electric_measurments', 64)->default(false);
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }
