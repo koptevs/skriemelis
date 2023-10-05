@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('contact_person_position', 128)->nullable();
             $table->string('contact_person_phone', 64)->nullable();
             $table->string('contact_person_phone_bill', 64)->nullable();
+            $table->string('email_for_docs', 64)->nullable();
             $table->string('bank_name', 64)->nullable();
             $table->string('bank_code', 64)->nullable();
             $table->string('bank_account', 64)->nullable();
