@@ -8,13 +8,9 @@ const Show = ({ lift }) => {
 
     return (
         <Layout>
-            <div>
-                <h1 className="text-2xl text-red-900 ">{reg_number}</h1>
-                <p>{address}</p>
-                <pre style={{ fontSize: "13px" }}>
-                    {JSON.stringify(lift, 2, 2)}
-                </pre>
-            </div>
+            <h1 className="text-2xl text-red-900 ">{reg_number}</h1>
+            <p>{address}</p>
+            <pre style={{ fontSize: "13px" }}>{JSON.stringify(lift, 2, 2)}</pre>
             <Link
                 href={route("lifts.edit", lift.id)}
                 className="no-underline font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"

@@ -12,6 +12,8 @@ import Button from "@mui/material/Button";
 const Index = ({ liftManagers }) => {
     return (
         <Layout>
+            <Head title="Lift managers" />
+
             <div>
                 <Link href="/lift-managers/create" className="ml-4">
                     Add Lift Manager

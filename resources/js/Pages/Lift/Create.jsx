@@ -69,7 +69,7 @@ const Create = ({ liftManagers }) => {
 
     return (
         <Layout>
-            <Head title="Crate new lift" />
+            <Head title="Create new lift" />
             <h1>Create new lift</h1>
             <Box
                 component="form"
