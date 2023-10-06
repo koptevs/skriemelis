@@ -29,7 +29,7 @@ import { DevTool } from "@hookform/devtools";
 
 import Layout from "../AdminPanel/Layout";
 
-const Create = () => {
+const Create = ({ liftManagers }) => {
     const form = useForm({
         defaultValues: {
             regNumber: "",
@@ -60,11 +60,12 @@ const Create = () => {
         router.post(route("lifts.store"), data);
     };
 
-    const serviceCompanies = [
-        { id: "1", label: "RNP Kurzeme" },
-        { id: "2", label: "RNP Purvciems" },
-        { id: "3", label: "Biedrība 'Pirmais Nams'" },
-    ];
+    const serviceCompanies = Object.entries(liftManagers).map(function (entry) {
+        return {
+            id: entry[0],
+            label: `${entry[0]} - ${entry[1]}`,
+        };
+    });
 
     return (
         <Layout>
@@ -375,10 +376,9 @@ const Create = () => {
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={3} md={2} xl={1}>
+                    <Grid item xs={12} sm={6}>
                         {/* liftManager */}
                         <Controller
-                            defaultValue="KONE"
                             control={control}
                             name="liftManager"
                             rules={{

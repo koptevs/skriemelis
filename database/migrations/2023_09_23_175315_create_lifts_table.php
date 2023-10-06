@@ -37,7 +37,7 @@ return new class extends Migration {
                 // $table->string('address_entrance')->nullable();
                 $table->string('address_postal_code');
                 $table->text('notes')->nullable();
-                $table->foreignId('lift_manager')->nullable();
+                $table->foreignId('lift_manager_id')->nullable();
                 $table->timestamps();
             }
         );

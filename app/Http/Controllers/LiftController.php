@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Lift;
 use App\Http\Requests\StoreLiftRequest;
 use App\Http\Requests\UpdateLiftRequest;
+use App\Models\LiftManager;
+use Cassandra\Map;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
@@ -49,8 +51,9 @@ class LiftController extends Controller
      */
     public function create()
     {
+        $liftManagers = LiftManager::pluck('name', 'id');
         return Inertia::render(
-            'Lift/Create', []
+            'Lift/Create', ['liftManagers' => $liftManagers]
         );
     }
 
@@ -78,7 +81,7 @@ class LiftController extends Controller
             'address'             => $data["address"],
             'address_country'     => $data["addressCountry"],
             'address_postal_code' => $data["addressPostalCode"],
-            'lift_manager'        => $data["liftManager"],
+            'lift_manager_id'        => $data["liftManager"],
             'notes'               => $data["notes"],
         ];
 
@@ -107,8 +110,9 @@ class LiftController extends Controller
      */
     public function edit(Lift $lift)
     {
+        $liftManagers = LiftManager::pluck('name', 'id');
         return Inertia::render(
-            'Lift/Edit', ['lift' => $lift]
+            'Lift/Edit', ['lift' => $lift, 'liftManagers' => $liftManagers]
         );
     }
 
@@ -134,7 +138,7 @@ class LiftController extends Controller
             'address'             => $data["address"],
             'address_country'     => $data["addressCountry"],
             'address_postal_code' => $data["addressPostalCode"],
-            'lift_manager'        => $data["liftManager"],
+            'lift_manager_id'        => $data["liftManager"],
             'notes'               => $data["notes"],
         ];
 //        dd($newLiftData);

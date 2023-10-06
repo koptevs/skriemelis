@@ -59,7 +59,7 @@ class LiftSeeder extends Seeder
 
                     'address_postal_code' => $lifts['lifts_adrese_indeks'],
                     'notes' => $lifts['lifts_piezimes'] ?? null,
-                    'lift_manager' => $lifts['lifts_parvaldnieks'] ?? null,
+                    'lift_manager_id' => $lifts['lifts_parvaldnieks'] ?? null,
 
 
                     ]

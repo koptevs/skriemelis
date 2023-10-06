@@ -13,6 +13,11 @@ class Lift extends Model
 
     protected $guarded = false;
 
+    public function lift_manager(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(LiftManager::class);
+    }
+
 //    protected $fillable = [
 //        'reg_number',
 //        'lift_type',
