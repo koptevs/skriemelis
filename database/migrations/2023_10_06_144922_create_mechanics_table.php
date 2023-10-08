@@ -11,10 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mechanics', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        Schema::create(
+            'mechanics', function (Blueprint $table) {
+                $table->id();
+                $table->string('name', 64);
+                $table->string('company', 64);
+                $table->string('phone', 64)->nullable();
+                $table->string('email', 64)->nullable();
+                $table->text('notes')->nullable();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

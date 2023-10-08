@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LiftController;
 use App\Http\Controllers\LiftManagerController;
+use App\Http\Controllers\MechanicController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -74,6 +75,14 @@ Route::middleware('auth')->group(
         Route::get('/lift-managers/{liftManager}/edit', [LiftManagerController::class, 'edit'])->name('lift-managers.edit');
         Route::patch('/lift-managers/{liftManager}', [LiftManagerController::class, 'update'])->name('lift-managers.update');
         Route::delete('/lift-managers/{liftManager}', [LiftManagerController::class, 'destroy'])->name('lift-managers.destroy');
+
+        Route::get('/mechanics', [MechanicController::class, 'index'])->name('mechanics.index');
+        Route::get('/mechanics/create', [MechanicController::class, 'create'])->name('mechanics.create');
+        Route::post('/mechanics', [MechanicController::class, 'store'])->name('mechanics.store');
+        Route::get('/mechanics/{mechanic}', [MechanicController::class, 'show'])->name('mechanics.show');
+        Route::get('/mechanics/{mechanic}/edit', [MechanicController::class, 'edit'])->name('mechanics.edit');
+        Route::patch('/mechanics/{mechanic}', [MechanicController::class, 'update'])->name('mechanics.update');
+        Route::delete('/mechanics/{mechanic}', [MechanicController::class, 'destroy'])->name('mechanics.destroy');
 
 
     }

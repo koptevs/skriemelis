@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Mechanic;
 use App\Http\Requests\StoreMechanicRequest;
 use App\Http\Requests\UpdateMechanicRequest;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
 
 class MechanicController extends Controller
 {
@@ -13,7 +15,9 @@ class MechanicController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render(
+            'Mechanic/Index', ['mechanics' => Mechanic::all()],
+        );
     }
 
     /**
@@ -21,7 +25,9 @@ class MechanicController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render(
+            'Mechanic/Create', [],
+        );
     }
 
     /**
@@ -29,7 +35,11 @@ class MechanicController extends Controller
      */
     public function store(StoreMechanicRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        Mechanic::create($data);
+
+        return to_route('mechanics.index');
     }
 
     /**
@@ -37,7 +47,11 @@ class MechanicController extends Controller
      */
     public function show(Mechanic $mechanic)
     {
-        //
+        return Inertia::render(
+            'Mechanic/Show', [
+                'mechanic' => $mechanic
+        ],
+        );
     }
 
     /**
@@ -45,7 +59,11 @@ class MechanicController extends Controller
      */
     public function edit(Mechanic $mechanic)
     {
-        //
+        return Inertia::render(
+            'Mechanic/Edit', [
+                'mechanic' => $mechanic
+        ],
+        );
     }
 
     /**
@@ -53,7 +71,9 @@ class MechanicController extends Controller
      */
     public function update(UpdateMechanicRequest $request, Mechanic $mechanic)
     {
-        //
+        $data = $request->validated();
+//        dd($data);
+        $mechanic->update($data);
     }
 
     /**
@@ -61,6 +81,7 @@ class MechanicController extends Controller
      */
     public function destroy(Mechanic $mechanic)
     {
-        //
+        $mechanic->delete();
+        return to_route('mechanics.index');
     }
 }

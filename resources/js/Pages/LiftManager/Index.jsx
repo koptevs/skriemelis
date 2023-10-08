@@ -1,13 +1,6 @@
 import { Link, Head } from "@inertiajs/react";
-import { router } from "@inertiajs/react";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
 import Stack from "@mui/material/Stack";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Layout from "../AdminPanel/Layout";
-import { useState } from "react";
-import Button from "@mui/material/Button";
 
 const Index = ({ liftManagers }) => {
     return (

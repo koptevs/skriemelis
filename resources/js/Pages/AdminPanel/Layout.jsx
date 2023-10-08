@@ -19,6 +19,9 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import ElevatorOutlinedIcon from "@mui/icons-material/ElevatorOutlined";
+import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
+import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 import { Link as InertiaLink } from "@inertiajs/react";
 
 const drawerWidth = 240;
@@ -138,12 +141,17 @@ export default function Layout({ children }) {
                         {
                             text: "Lifts",
                             href: "/lifts",
-                            icon: <HomeOutlinedIcon />,
+                            icon: <ElevatorOutlinedIcon />,
                         },
                         {
                             text: "Lift Managers",
                             href: "/lift-managers",
-                            icon: <InboxIcon />,
+                            icon: <ManageAccountsOutlinedIcon />,
+                        },
+                        {
+                            text: "Mechanics",
+                            href: "/mechanics",
+                            icon: <BuildOutlinedIcon />,
                         },
                     ].map((menuItem, index) => (
                         <ListItem
