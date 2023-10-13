@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LiftController;
 use App\Http\Controllers\LiftManagerController;
 use App\Http\Controllers\MechanicController;
+use App\Http\Controllers\InspectionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,33 +22,33 @@ use Inertia\Inertia;
 
 Route::get(
     '/', function () {
-    return Inertia::render(
-        'Welcome', [
+        return Inertia::render(
+            'Welcome', [
             'canLogin'       => Route::has('login'),
             'canRegister'    => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion'     => PHP_VERSION,
-        ]
-    );
-}
+            ]
+        );
+    }
 );
 
 Route::get(
     '/dashboard', function () {
-    return Inertia::render('Dashboard');
-}
+        return Inertia::render('Dashboard');
+    }
 )->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get(
     '/adminpanel', function () {
-    return Inertia::render('AdminPanel/Main');
-}
+        return Inertia::render('AdminPanel/Main');
+    }
 )->middleware(['auth', 'verified'])->name('adminpanel');
 
 Route::get(
     '/second', function () {
-    return Inertia::render('AdminPanel/Second');
-}
+        return Inertia::render('AdminPanel/Second');
+    }
 )->middleware(['auth', 'verified'])->name('second');
 
 
@@ -83,6 +84,14 @@ Route::middleware('auth')->group(
         Route::get('/mechanics/{mechanic}/edit', [MechanicController::class, 'edit'])->name('mechanics.edit');
         Route::patch('/mechanics/{mechanic}', [MechanicController::class, 'update'])->name('mechanics.update');
         Route::delete('/mechanics/{mechanic}', [MechanicController::class, 'destroy'])->name('mechanics.destroy');
+
+        Route::get('/inspections', [InspectionController::class, 'index'])->name('inspections.index');
+        Route::get('/inspections/create', [InspectionController::class, 'create'])->name('inspections.create');
+        Route::post('/inspections', [InspectionController::class, 'store'])->name('inspections.store');
+        Route::get('/inspections/{inspection}', [InspectionController::class, 'show'])->name('inspections.show');
+        Route::get('/inspections/{inspection}/edit', [InspectionController::class, 'edit'])->name('inspections.edit');
+        Route::patch('/inspections/{inspection}', [InspectionController::class, 'update'])->name('inspections.update');
+        Route::delete('/inspections/{inspection}', [InspectionController::class, 'destroy'])->name('inspections.destroy');
 
 
     }

@@ -52,6 +52,7 @@ class LiftController extends Controller
     public function create()
     {
         $liftManagers = LiftManager::pluck('name', 'id');
+
         return Inertia::render(
             'Lift/Create', ['liftManagers' => $liftManagers]
         );
@@ -81,7 +82,7 @@ class LiftController extends Controller
             'address'             => $data["address"],
             'address_country'     => $data["addressCountry"],
             'address_postal_code' => $data["addressPostalCode"],
-            'lift_manager_id'        => $data["liftManager"],
+            'lift_manager_id'     => $data["liftManager"],
             'notes'               => $data["notes"],
         ];
 
@@ -97,10 +98,13 @@ class LiftController extends Controller
      */
     public function show(Lift $lift)
     {
-        //        dd($lift);
+        $lift_with_inspections = Lift::with('inspections')->find($lift->id);
+//        dd($lift_with_inspections->inspections);
+
         return Inertia::render(
             'Lift/Show', [
-                'lift' => $lift,
+                'lift'        => $lift_with_inspections
+//                'inspections' => $lift->inspections,
             ]
         );
     }
@@ -111,6 +115,7 @@ class LiftController extends Controller
     public function edit(Lift $lift)
     {
         $liftManagers = LiftManager::pluck('name', 'id');
+
         return Inertia::render(
             'Lift/Edit', ['lift' => $lift, 'liftManagers' => $liftManagers]
         );
@@ -138,12 +143,12 @@ class LiftController extends Controller
             'address'             => $data["address"],
             'address_country'     => $data["addressCountry"],
             'address_postal_code' => $data["addressPostalCode"],
-            'lift_manager_id'        => $data["liftManager"],
+            'lift_manager_id'     => $data["liftManager"],
             'notes'               => $data["notes"],
         ];
 //        dd($newLiftData);
 
-$lift->update($newLiftData);
+        $lift->update($newLiftData);
 
         return to_route('lifts.index');
     }
@@ -154,6 +159,7 @@ $lift->update($newLiftData);
     public function destroy(Lift $lift)
     {
         $lift->delete();
+
         return to_route('lifts.index');
     }
 }

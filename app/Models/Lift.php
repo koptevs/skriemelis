@@ -18,6 +18,11 @@ class Lift extends Model
         return $this->belongsTo(LiftManager::class);
     }
 
+    public function inspections()
+    {
+        return $this->hasMany(Inspection::class);
+    }
+
 //    protected $fillable = [
 //        'reg_number',
 //        'lift_type',

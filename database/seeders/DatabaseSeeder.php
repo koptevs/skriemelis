@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
                 UserSeeder::class,
                 LiftManagerSeeder::class,
                 MechanicSeeder::class,
-                // InspectionSeeder::class,
+                InspectionSeeder::class,
             ]
         );
         // \App\Models\User::factory(10)->create();

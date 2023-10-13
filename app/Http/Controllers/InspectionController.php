@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inspection;
+use App\Models\Lift;
 use App\Http\Requests\StoreInspectionRequest;
 use App\Http\Requests\UpdateInspectionRequest;
+use Inertia\Inertia;
 
 class InspectionController extends Controller
 {
@@ -21,7 +23,11 @@ class InspectionController extends Controller
      */
     public function create()
     {
-        //
+        $lifts = Lift::pluck('reg_number', 'id');
+
+        return Inertia::render(
+            'Inspection/Create', ['lifts' => $lifts]
+        );
     }
 
     /**

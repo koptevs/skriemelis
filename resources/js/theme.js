@@ -4,7 +4,7 @@ import { red } from "@mui/material/colors";
 // Create a theme instance.
 const theme = createTheme({
     typography: {
-        fontSize: 12,
+        fontSize: 11,
         poster: {
             fontSize: "4rem",
             fontWeight: "bold",
@@ -13,15 +13,15 @@ const theme = createTheme({
         },
         // fontSize: 12,
         fontFamily: [
+            '"Segoe UI"',
+            "-apple-system",
+            '"Segoe UI Symbol"',
             "IBM Plex Sans",
             "Montserrat",
-            '"Segoe UI Symbol"',
             '"Apple Color Emoji"',
             "Arial",
             "Roboto",
             "BlinkMacSystemFont",
-            '"Segoe UI"',
-            "-apple-system",
             '"Helvetica Neue"',
             "sans-serif",
             '"Segoe UI Emoji"',

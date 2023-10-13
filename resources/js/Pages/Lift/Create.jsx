@@ -30,6 +30,7 @@ import { DevTool } from "@hookform/devtools";
 import Layout from "../AdminPanel/Layout";
 
 const Create = ({ liftManagers }) => {
+    console.log(liftManagers);
     const form = useForm({
         defaultValues: {
             regNumber: "",
