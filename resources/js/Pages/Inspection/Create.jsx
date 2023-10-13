@@ -74,7 +74,6 @@ export default function Create({ lifts }) {
     const { errors } = formState;
 
     const onSubmit = (data) => {
-        console.log("What!!!");
         console.log(data);
         // router.post(route("lifts.store"), data);
     };
@@ -84,27 +83,70 @@ export default function Create({ lifts }) {
             const asArray1 = Object.entries(value.nonCompliances1);
             const asArray2 = Object.entries(value.nonCompliances2);
             const asArray3 = Object.entries(value.nonCompliances3);
-            const filtered1 = asArray1
-                .filter(([key, value]) => !!value === true)
-                .sort();
-            const filtered2 = asArray2
-                .filter(([key, value]) => !!value === true)
-                .sort();
-            const filtered3 = asArray3
-                .filter(([key, value]) => !!value === true)
-                .sort();
-            const reduced1 = filtered1.map((item) =>
+            // -------------------------------
+            const filtered1 = asArray1.filter(
+                // only checked pass
+                ([key, value]) => !!value === true
+            );
+            const notesArray1 = filtered1.filter((item) => item[0] === "notes");
+            const notesValue1 = notesArray1[0]
+                ? notesArray1[0][1].split("\n")
+                : null;
+            const filteredWithoutNotes1 = filtered1.filter(
+                (item) => item[0] !== "notes"
+            );
+            const reduced1 = filteredWithoutNotes1.map((item) =>
                 item[0].replace(/%%%/g, ".")
             );
-            const reduced2 = filtered2.map((item) =>
+            const reduced1withNotes = notesValue1
+                ? reduced1.concat(notesValue1).sort()
+                : reduced1.sort();
+
+            // --------------------------
+            // -------------------------------
+            const filtered2 = asArray2.filter(
+                // only checked pass
+                ([key, value]) => !!value === true
+            );
+            const notesArray2 = filtered2.filter((item) => item[0] === "notes");
+            const notesValue2 = notesArray2[0]
+                ? notesArray2[0][1].split("\n")
+                : null;
+            const filteredWithoutNotes2 = filtered2.filter(
+                (item) => item[0] !== "notes"
+            );
+            const reduced2 = filteredWithoutNotes2.map((item) =>
                 item[0].replace(/%%%/g, ".")
             );
-            const reduced3 = filtered3.map((item) =>
+            const reduced2withNotes = notesValue2
+                ? reduced2.concat(notesValue2).sort()
+                : reduced2.sort();
+
+            // --------------------------
+            // -------------------------------
+            const filtered3 = asArray3.filter(
+                // only checked pass
+                ([key, value]) => !!value === true
+            );
+            const notesArray3 = filtered3.filter((item) => item[0] === "notes");
+            const notesValue3 = notesArray3[0]
+                ? notesArray3[0][1].split("\n")
+                : null;
+            const filteredWithoutNotes3 = filtered3.filter(
+                (item) => item[0] !== "notes"
+            );
+            const reduced3 = filteredWithoutNotes3.map((item) =>
                 item[0].replace(/%%%/g, ".")
             );
-            setNonCompliances1(() => reduced1);
-            setNonCompliances2(() => reduced2);
-            setNonCompliances3(() => reduced3);
+            const reduced3withNotes = notesValue3
+                ? reduced3.concat(notesValue3).sort()
+                : reduced3.sort();
+
+            // --------------------------
+
+            setNonCompliances1(() => reduced1withNotes);
+            setNonCompliances2(() => reduced2withNotes);
+            setNonCompliances3(() => reduced3withNotes);
         });
         return () => subscription.unsubscribe();
     }, [watch]);
@@ -841,15 +883,70 @@ export default function Create({ lifts }) {
                     </Typography>
                 </div>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} sm={3}>
-                        {/*  
+                    {/*  
                     3.4 Izvērtēšanas vadības ierīce uz kabīnes jumta nedarbojas.
-                        3.4 Izvērtēšanas vadības ierīcei uz kabīnes jumta nedarbojas STOP poga.
+                    3.4 Izvērtēšanas vadības ierīcei uz kabīnes jumta nedarbojas STOP poga.
                         3.4 Nav izvērtēšanas vadības ierīces uz kabīnes jumta.
                         3.9 Stopslēdzis kabīnes jumtā nedarbojas.
                     */}
+                    <Grid item xs={12} sm={4}>
+                        {/* notes */}
+                        <TextField
+                            multiline
+                            rows={4}
+                            size="small"
+                            label="Papildus neatbilstības ar vertējumu 1"
+                            fullWidth
+                            // autoComplete
+                            helperText={errors.notes?.message}
+                            {...register("nonCompliances1.notes")}
+                            sx={{
+                                "& .MuiFormHelperText-root": {
+                                    color: "red",
+                                },
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        {/* notes */}
+                        <TextField
+                            multiline
+                            rows={4}
+                            size="small"
+                            label="Papildus neatbilstības ar vertējumu 2"
+                            fullWidth
+                            // autoComplete
+                            helperText={errors.notes?.message}
+                            {...register("nonCompliances2.notes")}
+                            sx={{
+                                "& .MuiFormHelperText-root": {
+                                    color: "red",
+                                },
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        {/* notes */}
+                        <TextField
+                            multiline
+                            rows={4}
+                            size="small"
+                            label="Papildus neatbilstības ar vertējumu 3"
+                            fullWidth
+                            // autoComplete
+                            helperText={errors.notes?.message}
+                            {...register("nonCompliances3.notes")}
+                            sx={{
+                                "& .MuiFormHelperText-root": {
+                                    color: "red",
+                                },
+                            }}
+                        />
                     </Grid>
                 </Grid>
+                <div>{JSON.stringify(nonCompliances1, 2, 2)}</div>
+                <div>{JSON.stringify(nonCompliances2, 2, 2)}</div>
+                <div>{JSON.stringify(nonCompliances3, 2, 2)}</div>
                 <DevTool control={control} />
                 <Button
                     type="submit"
