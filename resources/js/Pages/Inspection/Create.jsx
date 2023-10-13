@@ -74,79 +74,50 @@ export default function Create({ lifts }) {
     const { errors } = formState;
 
     const onSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
+        console.log(
+            "1 ",
+            nonCompliances1,
+            "2 ",
+            nonCompliances2,
+            "3 ",
+            nonCompliances3
+        );
         // router.post(route("lifts.store"), data);
+    };
+
+    const objectWithNotesToArrayOfStrings = (someObject) => {
+        const filtered = Object.entries(someObject).filter(
+            // only checked-true pass and notes if not empty
+            ([key, value]) => !!value === true
+        );
+        const notesArray = filtered.filter((item) => item[0] === "notes");
+        const notesValue = notesArray[0] //undefined if empty array
+            ? notesArray[0][1].split("\n")
+            : null;
+        const filteredWithoutNotes = filtered.filter(
+            (item) => item[0] !== "notes"
+        );
+        const reduced = filteredWithoutNotes.map((item) =>
+            item[0].replace(/%%%/g, ".")
+        );
+        const reducedWithNotes = notesValue
+            ? reduced.concat(notesValue).sort()
+            : reduced.sort();
+        return reducedWithNotes;
     };
 
     React.useEffect(() => {
         const subscription = watch((value, { name, type }) => {
-            const asArray1 = Object.entries(value.nonCompliances1);
-            const asArray2 = Object.entries(value.nonCompliances2);
-            const asArray3 = Object.entries(value.nonCompliances3);
-            // -------------------------------
-            const filtered1 = asArray1.filter(
-                // only checked pass
-                ([key, value]) => !!value === true
+            setNonCompliances1(() =>
+                objectWithNotesToArrayOfStrings(value.nonCompliances1)
             );
-            const notesArray1 = filtered1.filter((item) => item[0] === "notes");
-            const notesValue1 = notesArray1[0]
-                ? notesArray1[0][1].split("\n")
-                : null;
-            const filteredWithoutNotes1 = filtered1.filter(
-                (item) => item[0] !== "notes"
+            setNonCompliances2(() =>
+                objectWithNotesToArrayOfStrings(value.nonCompliances2)
             );
-            const reduced1 = filteredWithoutNotes1.map((item) =>
-                item[0].replace(/%%%/g, ".")
+            setNonCompliances3(() =>
+                objectWithNotesToArrayOfStrings(value.nonCompliances3)
             );
-            const reduced1withNotes = notesValue1
-                ? reduced1.concat(notesValue1).sort()
-                : reduced1.sort();
-
-            // --------------------------
-            // -------------------------------
-            const filtered2 = asArray2.filter(
-                // only checked pass
-                ([key, value]) => !!value === true
-            );
-            const notesArray2 = filtered2.filter((item) => item[0] === "notes");
-            const notesValue2 = notesArray2[0]
-                ? notesArray2[0][1].split("\n")
-                : null;
-            const filteredWithoutNotes2 = filtered2.filter(
-                (item) => item[0] !== "notes"
-            );
-            const reduced2 = filteredWithoutNotes2.map((item) =>
-                item[0].replace(/%%%/g, ".")
-            );
-            const reduced2withNotes = notesValue2
-                ? reduced2.concat(notesValue2).sort()
-                : reduced2.sort();
-
-            // --------------------------
-            // -------------------------------
-            const filtered3 = asArray3.filter(
-                // only checked pass
-                ([key, value]) => !!value === true
-            );
-            const notesArray3 = filtered3.filter((item) => item[0] === "notes");
-            const notesValue3 = notesArray3[0]
-                ? notesArray3[0][1].split("\n")
-                : null;
-            const filteredWithoutNotes3 = filtered3.filter(
-                (item) => item[0] !== "notes"
-            );
-            const reduced3 = filteredWithoutNotes3.map((item) =>
-                item[0].replace(/%%%/g, ".")
-            );
-            const reduced3withNotes = notesValue3
-                ? reduced3.concat(notesValue3).sort()
-                : reduced3.sort();
-
-            // --------------------------
-
-            setNonCompliances1(() => reduced1withNotes);
-            setNonCompliances2(() => reduced2withNotes);
-            setNonCompliances3(() => reduced3withNotes);
         });
         return () => subscription.unsubscribe();
     }, [watch]);
