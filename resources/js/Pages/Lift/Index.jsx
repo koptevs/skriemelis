@@ -1,6 +1,7 @@
-import { Link, Head } from "@inertiajs/react";
+import { Link as InertiaLink, Head } from "@inertiajs/react";
 import { router } from "@inertiajs/react";
 import Pagination from "@mui/material/Pagination";
+import Link from "@mui/material/Link";
 import PaginationItem from "@mui/material/PaginationItem";
 import Stack from "@mui/material/Stack";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -8,6 +9,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Layout from "../AdminPanel/Layout";
 import { useState } from "react";
 import Button from "@mui/material/Button";
+import { Box, Typography } from "@mui/material";
 
 const Index = ({ lifts, filters }) => {
     return (
@@ -57,6 +59,7 @@ const Index = ({ lifts, filters }) => {
                 {lifts.links.map((link) => (
                     <li key={link.id}>
                         <Link
+                            component={InertiaLink}
                             className={`relative block rounded bg-transparent px-2 py-1 text-sm  no-underline transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white  ${
                                 link.active ? "text-red-500" : "text-slate-900"
                             }`}
@@ -72,21 +75,40 @@ const Index = ({ lifts, filters }) => {
                 ))}
             </ul>
             {lifts.data.map((lift) => (
-                <div key={lift.id} className="inline-block m-2 w-36">
+                <Box
+                    key={lift.id}
+                    sx={{
+                        display: "inline-block",
+                        minWidth: "20vw",
+                    }}
+                >
                     <Link
+                        component={InertiaLink}
                         href={route("lifts.show", lift.id)}
-                        className="no-underline font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                        sx={{
+                            textDecoration: "none",
+                            display: "inline-block",
+                        }}
                     >
-                        <h2 className="text-sm text-sky-800 mb-0 ">
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                fontWeight: 700,
+                                color: "#2d4d9d",
+                                "&:hover": {
+                                    color: "#2d4dfd",
+                                },
+                            }}
+                        >
                             {lift.reg_number}
-                        </h2>
+                        </Typography>
                     </Link>
 
                     <p className="text-xs py-0">
                         {lift.address}, {lift.address_postal_code},{" "}
                         {lift.address_country}
                     </p>
-                </div>
+                </Box>
             ))}
             <br />
             <Stack spacing={2}>
