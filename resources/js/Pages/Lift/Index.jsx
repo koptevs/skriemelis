@@ -79,7 +79,7 @@ const Index = ({ lifts, filters }) => {
                     key={lift.id}
                     sx={{
                         display: "inline-block",
-                        minWidth: "20vw",
+                        maxWidth: "10vw",
                     }}
                 >
                     <Link

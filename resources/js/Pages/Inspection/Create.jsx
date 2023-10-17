@@ -29,10 +29,28 @@ import DatePickerWithAlert from "@/Shared/DatePickerWithAlert";
 
 import Layout from "../AdminPanel/Layout";
 
-import nostiepejs from "@/img/nostiepejs.png";
-import attalums from "@/img/attalums.png";
-import brivkustiba from "@/img/brivkustiba.png";
+import apdare from "@/img/apdare.png";
 import atsperes from "@/img/atsperes.png";
+import attalums from "@/img/attalums.png";
+import bremzes from "@/img/bremzes.png";
+import brivkustiba from "@/img/brivkustiba.png";
+import durvis from "@/img/durvis.png";
+import evakuacija from "@/img/evakuacija.png";
+import grida from "@/img/grida.png";
+import griesti from "@/img/griesti.png";
+import kovriki from "@/img/kovriki.png";
+import lamp from "@/img/lamp.png";
+import manjetsi from "@/img/manjetsi.png";
+import mitrums from "@/img/mitrums.png";
+import nostiepejs from "@/img/nostiepejs.png";
+import os from "@/img/os.png";
+import paveles from "@/img/paveles.png";
+import rules from "@/img/rules.png";
+import skriemelis from "@/img/skriemelis.png";
+import skriemelis_nevienmerigs from "@/img/skriemelis_nevienmerigs.png";
+import zeme from "@/img/zeme.png";
+import zvans from "@/img/zvans.png";
+
 import CheckboxWithImage from "@/Shared/CheckboxWithImage";
 
 export default function Create({ lifts }) {
@@ -136,6 +154,7 @@ export default function Create({ lifts }) {
     return (
         <Layout>
             <Head title="Create new inspection" />
+
             <div className="flex justify-between">
                 <h1>Create new inspection</h1>
                 <Button
@@ -759,12 +778,12 @@ export default function Create({ lifts }) {
                     </Typography>
                 </div>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} sm={3}>
+                    <Grid item xs={12} sm={2}>
                         <CheckboxWithImage
-                            className="ml-3.5"
+                            // className="ml-3.5"
                             rawName="3.7 Lifta kabīnē nedarbojas zvans."
                             nonCompliancesLevel="1"
-                            // imageSource={brivkustiba}
+                            imageSource={zvans}
                             control={control}
                             label={
                                 <>
@@ -781,22 +800,211 @@ export default function Create({ lifts }) {
                                 </>
                             }
                         />
-                        {/* 
-                        3.4 Lifta kabīnes vadības aparāts ir nolietots.
-                        3.7 Lifta kabīnē nedarbojas zvans.
-                        4.1 Lifta kabīnes apdare ir bojāta.
-                        4.1 Lifta kabīnes apdare ir nolietota.
-                        4.1 Lifta kabīnes griesti ir bojāti.
-                        4.1 Lifta kabīnes griesti ir nolietoti.
-                        4.1 Lifta kabīnē ir bojāts grīdas segums.
-                        4.1 Lifta kabīnē nolietojies grīdas segums.
-                        7.1 Lifta kabīnes durvis ir bojātas.
-                        7.1 Lifta kabīnes durvis ir nolietotas.
-                        7.1 Sprauga starp kabīnes durvīm un aiļu apmalēm ir lielāka par 10 mm.
-                        7.2 Durvju reverse mehānisms nedarbojas.
-                        8.0 Nepietiekams apgaismojums lifta kabīnē.
-                        7.1 Lifta kabīnes durvis var atvert ar rokām, kabīnei neatrodoties pretīm šahtas durvīm vai atslēgšanas zonā.
-                        */}
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <CheckboxWithImage
+                            // className="ml-3.5"
+                            rawName="3.4 Lifta kabīnes vadības aparāts ir nolietots."
+                            nonCompliancesLevel="1"
+                            imageSource={paveles}
+                            control={control}
+                            label={
+                                <>
+                                    <Typography component="span">
+                                        VA nol
+                                    </Typography>
+                                </>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <CheckboxWithImage // apdare bojata
+                            // className="ml-3.5"
+                            rawName="4.1 Lifta kabīnes apdare ir bojāta."
+                            nonCompliancesLevel="1"
+                            imageSource={apdare}
+                            control={control}
+                            label={
+                                <>
+                                    <Typography component="span">
+                                        Apdare ir bojāta.
+                                    </Typography>
+                                </>
+                            }
+                        />
+                        <CheckboxWithImage
+                            className="ml-3.5 inline-block"
+                            rawName="4.1 Lifta kabīnes apdare ir nolietota."
+                            nonCompliancesLevel="1"
+                            // imageSource={apdare}
+                            control={control}
+                            label={
+                                <>
+                                    <Typography component="span">
+                                        nolietota.
+                                    </Typography>
+                                </>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <CheckboxWithImage
+                            // className="ml-3.5"
+                            rawName="4.1 Lifta kabīnes grīdas segums ir bojāts."
+                            nonCompliancesLevel="1"
+                            imageSource={grida}
+                            control={control}
+                            label={
+                                <>
+                                    <Typography component="span">
+                                        Grīda ir bojāta.
+                                    </Typography>
+                                </>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="4.1 Lifta kabīnes grīdas segums ir nolietots."
+                            nonCompliancesLevel="1"
+                            // imageSource={apdare}
+                            control={control}
+                            label={
+                                <>
+                                    <Typography component="span">
+                                        nolietota.
+                                    </Typography>
+                                </>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="4.1 Lifta kabīnes griesti ir bojāti."
+                            nonCompliancesLevel="1"
+                            imageSource={griesti}
+                            control={control}
+                            label={
+                                <>
+                                    <Typography component="span">
+                                        Griesti ir bojāti.
+                                    </Typography>
+                                </>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="4.1 Lifta kabīnes griesti ir nolietoti."
+                            nonCompliancesLevel="1"
+                            // imageSource={apdare}
+                            control={control}
+                            label={
+                                <>
+                                    <Typography component="span">
+                                        nolietoti.
+                                    </Typography>
+                                </>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="7.1 Lifta kabīnes durvis ir bojātas."
+                            nonCompliancesLevel="1"
+                            imageSource={durvis}
+                            control={control}
+                            label={
+                                <>
+                                    <Typography component="span">
+                                        Kabīnes durvis ir bojātas.
+                                    </Typography>
+                                </>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="7.1 Sprauga starp kabīnes durvīm un aiļu apmalēm ir lielāka par 10 mm."
+                            nonCompliancesLevel="1"
+                            // imageSource={apdare}
+                            control={control}
+                            label={
+                                <>
+                                    <Typography
+                                        component="span"
+                                        // variant="h6"
+                                        className="font-bold text-red-500"
+                                    >
+                                        DAS
+                                    </Typography>
+                                    <Typography component="span">
+                                        prauga.
+                                    </Typography>
+                                </>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="7.2 Durvju reverse mehānisms nedarbojas."
+                            nonCompliancesLevel="1"
+                            // imageSource={apdare}
+                            control={control}
+                            label={
+                                <>
+                                    <Typography
+                                        component="span"
+                                        // variant="h6"
+                                        className="font-bold text-green-600"
+                                    >
+                                        &laquo;&laquo;REVERSE&raquo;&raquo;
+                                    </Typography>
+                                    <Typography component="span">
+                                        nedarbojas
+                                    </Typography>
+                                </>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <CheckboxWithImage
+                            className="ml-3.5 inline-block"
+                            rawName="8.0 Nepietiekams apgaismojums lifta kabīnē."
+                            nonCompliancesLevel="1"
+                            imageSource={lamp}
+                            control={control}
+                            label={
+                                <>
+                                    <Typography component="span">
+                                        Apgaismojums{" "}
+                                    </Typography>
+                                    <Typography
+                                        component="span"
+                                        // variant="h6"
+                                        className="font-bold text-red-500"
+                                    >
+                                        nepietiek.
+                                    </Typography>
+                                </>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="7.1 Lifta kabīnes durvis var atvert ar rokām kabīnei neatrodoties pretīm šahtas durvīm vai atslēgšanas zonā."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Kabīnes durvis var atvert ar rokām.
+                                </Typography>
+                            }
+                        />
                     </Grid>
                 </Grid>
                 <div className="bg-slate-200 w-full pl-2 py-1">
@@ -806,60 +1014,560 @@ export default function Create({ lifts }) {
                 </div>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={3}>
-                        {/*
-                        1.4 Lūkai mašīntelpā nav brīdinājuma zīmes par nokrišanas draudiem.
-                        1.4 Mašīntelpas durvīm nav brīdinājuma uzraksta "Nepiederošiem ieeja aizliegta".
-                        2.2 Nesošo trošu nodilums.
-                        3.1 Mašīntelpā ir aprīkojums, kas nav saistīts ar liftu.
-                        3.1 Mašīntelpā ir priekšmeti un aprīkojums, kas nav saistīti ar liftu. 
-                        3.1 Mašīntelpā ir priekšmeti, kas nav saistīti ar lifta ekspluatāciju.
-                        3.1 Mašīntelpā lūka ir bojāta.
-                        3.1 Mašīntelpā nav 5 cm. apmaļu grīdā ap nesošām trosēm.
-                        3.1 Mašīntelpā nav 5cm. apmaļu grīdā ap ātruma ierobežotāja trosēm.
-                        3.1 Mašīntelpā nav 5cm. apmaļu grīdā ap ātruma ierobežotāja un nesošām trosēm.
-                        3.1 Nav dielektrisko paklāju pie galvenā barošanas slēdža.
-                        3.1 Nav dielektrisko paklāju pie vadības skapja un pie galvenā barošanas slēdža.
-                        3.1 Nav dielektrisko paklāju pie vadības skapja.
-                        3.2 Ātruma ierobežotāja trose ir nodilis.
-                        3.2 Ātruma ierobežotājs ir nolietots.
-                        3.2 Ātruma ierobežotājs un tā trose ir nolietoti.
-                        3.6 Bremžu atsperes ir nodilušas.
-                        3.6 Bremžu uzlikas ir nodilušas.
-                        3.6 Eļļas noplūde no lifta mašīnas reduktora.
-                        3.6 Lifta mašīnas reduktora nolietojums un eļļas noplūde.
-                        3.6 Nevienmērīgs lifta mašīnas vadošā skriemeļa nodilums.
-                        3.6 Vādskriemeļa nodilums.
-                        8.0 Nepietiekams apgaismojums mašintelpā.
-                        8.0 Nepietiekams mašīntelpas un šahtas apgaismojums.
-                        8.0 Nepietiekams šahtas apgaismojums.
-                            НКУ
-                        '9.0 Aizsardzības aparāti VA1 un VA2 vadības skapī ir nolietoti.
-                        9.0 Aizsardzības aparāti VA1 un VA3 vadības skapī ir nolietoti.
-                        9.0 Aizsardzības aparāti VA2 un VA3 vadības skapī ir nolietoti.
-                        9.0 Aizsardzības aparāti un elektriskie kontaktori vadības skapī ir nolietoti.
-                        9.0 Aizsardzības aparāti vadības skapī ir nolietoti.
-                        9.0 Aizsardzības aparāts VA1 vadības skapī ir nolietots.
-                        9.0 Aizsardzības aparāts VA2 vadības skapī ir nolietots.
-                        9.0 Aizsardzības aparāts VA3 vadības skapī ir nolietots.
-                        9.0 Elektriskie kontaktori vadības skapī ir nolietoti.
-                        9.0 Vadības stacijas elektriskais aprīkojums ir nolietojies.
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="1.4 Lūkai mašīntelpā nav brīdinājuma zīmes par nokrišanas draudiem."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    1.4 Lūkai mašīntelpā nav brīdinājuma zīmes
+                                    par nokrišanas draudiem.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="1.4 Lūkai mašīntelpā nav brīdinājuma zīmes par nokrišanas draudiem."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Lūkai mašīntelpā nav brīdinājuma zīmes par
+                                    nokrišanas draudiem.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="1.4 Mašīntelpas durvīm nav brīdinājuma uzraksta 'Nepiederošiem ieeja aizliegta'."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    1.4 Mašīntelpas durvīm nav brīdinājuma
+                                    uzraksta 'Nepiederošiem ieeja aizliegta'.
+                                </Typography>
+                            }
+                        />
 
-                        
-                        */}
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="2.2 Nesošo trošu nodilums."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Nesošo trošu nodilums.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.1 Mašīntelpā ir aprīkojums, kas nav saistīts ar liftu."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Mašīntelpā ir aprīkojums, kas nav saistīts
+                                    ar liftu.
+                                </Typography>
+                            }
+                        />
+                        {/* ---------------------------------------------------------- */}
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="2.2 Nesošo trošu nodilums."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Nesošo trošu nodilums.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.1 Mašīntelpā ir aprīkojums, kas nav saistīts ar liftu."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Mašīntelpā ir aprīkojums, kas nav saistīts
+                                    ar liftu.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.1 Mašīntelpā ir priekšmeti un aprīkojums, kas nav saistīti ar liftu. "
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Mašīntelpā ir priekšmeti un aprīkojums, kas
+                                    nav saistīti ar liftu.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.1 Mašīntelpā ir priekšmeti, kas nav saistīti ar lifta ekspluatāciju."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Mašīntelpā ir priekšmeti, kas nav saistīti
+                                    ar lifta ekspluatāciju.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.1 Mašīntelpā lūka ir bojāta."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Mašīntelpā lūka ir bojāta.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.1 Mašīntelpā nav 5 cm. apmaļu grīdā ap nesošām trosēm."
+                            nonCompliancesLevel="1"
+                            imageSource={manjetsi}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Mašīntelpā nav 5 cm. apmaļu grīdā ap nesošām
+                                    trosēm.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.1 Mašīntelpā nav 5cm. apmaļu grīdā ap ātruma ierobežotāja trosēm."
+                            nonCompliancesLevel="1"
+                            imageSource={manjetsi}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Mašīntelpā nav 5cm. apmaļu grīdā ap ātruma
+                                    ierobežotāja trosēm.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.1 Mašīntelpā nav 5cm. apmaļu grīdā ap ātruma ierobežotāja un nesošām trosēm."
+                            nonCompliancesLevel="1"
+                            imageSource={manjetsi}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Mašīntelpā nav 5cm. apmaļu grīdā ap ātruma
+                                    ierobežotāja un nesošām trosēm.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.1 Nav dielektrisko paklāju pie galvenā barošanas slēdža."
+                            nonCompliancesLevel="1"
+                            imageSource={kovriki}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Nav dielektrisko paklāju pie galvenā
+                                    barošanas slēdža.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.1 Nav dielektrisko paklāju pie vadības skapja un pie galvenā barošanas slēdža."
+                            nonCompliancesLevel="1"
+                            imageSource={kovriki}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Nav dielektrisko paklāju pie vadības skapja
+                                    un pie galvenā barošanas slēdža.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.1 Nav dielektrisko paklāju pie vadības skapja."
+                            nonCompliancesLevel="1"
+                            imageSource={kovriki}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Nav dielektrisko paklāju pie vadības skapja.
+                                </Typography>
+                            }
+                        />
+
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.2 Ātruma ierobežotājs ir nolietots."
+                            nonCompliancesLevel="1"
+                            imageSource={os}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Ātruma ierobežotājs ir nolietots.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.2 Ātruma ierobežotāja trose ir nodilis."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Ātruma ierobežotāja trose ir nodilis.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.2 Ātruma ierobežotājs un tā trose ir nolietoti."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Ātruma ierobežotājs un tā trose ir
+                                    nolietoti.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.6 Bremžu atsperes ir nodilušas."
+                            nonCompliancesLevel="1"
+                            imageSource={atsperes}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Bremžu atsperes ir nodilušas.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.6 Bremžu uzlikas ir nodilušas."
+                            nonCompliancesLevel="1"
+                            imageSource={bremzes}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Bremžu uzlikas ir nodilušas.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.6 Eļļas noplūde no lifta mašīnas reduktora."
+                            nonCompliancesLevel="1"
+                            imageSource={mitrums}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Eļļas noplūde no lifta mašīnas reduktora.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.6 Lifta mašīnas reduktora nolietojums un eļļas noplūde."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Lifta mašīnas reduktora nolietojums un eļļas
+                                    noplūde.
+                                </Typography>
+                            }
+                        />
+
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.6 Vādskriemeļa nodilums."
+                            nonCompliancesLevel="1"
+                            imageSource={skriemelis}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Vādskriemeļa nodilums.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.6 Nevienmērīgs lifta mašīnas vadošā skriemeļa nodilums."
+                            nonCompliancesLevel="1"
+                            imageSource={skriemelis_nevienmerigs}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Nevienmērīgs lifta mašīnas vadošā skriemeļa
+                                    nodilums.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="8.0 Nepietiekams apgaismojums mašintelpā."
+                            nonCompliancesLevel="1"
+                            imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Nepietiekams apgaismojums mašintelpā.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="8.0 Nepietiekams mašīntelpas un šahtas apgaismojums."
+                            nonCompliancesLevel="1"
+                            imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Nepietiekams mašīntelpas un šahtas
+                                    apgaismojums.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="8.0 Nepietiekams šahtas apgaismojums."
+                            nonCompliancesLevel="1"
+                            imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Nepietiekams šahtas apgaismojums.
+                                </Typography>
+                            }
+                        />
+
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Aizsardzības aparāti VA1 un VA2 vadības skapī ir nolietoti."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Aizsardzības aparāti VA1 un VA2 vadības
+                                    skapī ir nolietoti.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Aizsardzības aparāti VA1 un VA3 vadības skapī ir nolietoti."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Aizsardzības aparāti VA1 un VA3 vadības
+                                    skapī ir nolietoti.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Aizsardzības aparāti VA2 un VA3 vadības skapī ir nolietoti."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Aizsardzības aparāti VA2 un VA3 vadības
+                                    skapī ir nolietoti.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Aizsardzības aparāti un elektriskie kontaktori vadības skapī ir nolietoti."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Aizsardzības aparāti un elektriskie
+                                    kontaktori vadības skapī ir nolietoti.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Aizsardzības aparāti vadības skapī ir nolietoti."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Aizsardzības aparāti vadības skapī ir
+                                    nolietoti.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Aizsardzības aparāts VA1 vadības skapī ir nolietots."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Aizsardzības aparāts VA1 vadības skapī ir
+                                    nolietots.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Aizsardzības aparāts VA2 vadības skapī ir nolietots."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Aizsardzības aparāts VA2 vadības skapī ir
+                                    nolietots.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Aizsardzības aparāts VA3 vadības skapī ir nolietots."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Aizsardzības aparāts VA3 vadības skapī ir
+                                    nolietots.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Elektriskie kontaktori vadības skapī ir nolietoti."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Elektriskie kontaktori vadības skapī ir
+                                    nolietoti.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Vadības stacijas elektriskais aprīkojums ir nolietojies."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Vadības stacijas elektriskais aprīkojums ir
+                                    nolietojies.
+                                </Typography>
+                            }
+                        />
                     </Grid>
                 </Grid>
                 <div className="bg-slate-200 w-full pl-2 py-1">
                     <Typography className="font-bold  text-slate-600 tracking-wider">
-                        KABĪNES JUMTS
+                        KABĪNES JUMTS UN ŠAHTA
                     </Typography>
                 </div>
                 <Grid container spacing={2}>
                     {/*  
                     3.4 Izvērtēšanas vadības ierīce uz kabīnes jumta nedarbojas.
                     3.4 Izvērtēšanas vadības ierīcei uz kabīnes jumta nedarbojas STOP poga.
-                        3.4 Nav izvērtēšanas vadības ierīces uz kabīnes jumta.
-                        3.9 Stopslēdzis kabīnes jumtā nedarbojas.
+                    3.4 Nav izvērtēšanas vadības ierīces uz kabīnes jumta.
+                    3.9 Stopslēdzis kabīnes jumtā nedarbojas.
                     */}
+                    <Grid item xs={12}>
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.4 Izvērtēšanas vadības ierīce uz kabīnes jumta nedarbojas."
+                            nonCompliancesLevel="3"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Izvērtēšanas vadības ierīce uz kabīnes jumta
+                                    nedarbojas.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.4 Izvērtēšanas vadības ierīcei uz kabīnes jumta nedarbojas STOP poga."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Izvērtēšanas vadības ierīcei uz kabīnes
+                                    jumta nedarbojas STOP poga.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.4 Nav izvērtēšanas vadības ierīces uz kabīnes jumta."
+                            nonCompliancesLevel="3"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Nav izvērtēšanas vadības ierīces uz kabīnes
+                                    jumta.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="3.9 Stopslēdzis kabīnes jumtā nedarbojas."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Stopslēdzis kabīnes jumtā nedarbojas.
+                                </Typography>
+                            }
+                        />
+                    </Grid>
                     <Grid item xs={12} sm={4}>
                         {/* notes */}
                         <TextField

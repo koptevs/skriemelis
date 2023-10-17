@@ -1,5 +1,7 @@
 import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
+import { Link } from "@inertiajs/react";
+
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -22,9 +24,12 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ElevatorOutlinedIcon from "@mui/icons-material/ElevatorOutlined";
 import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
+import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
+import ApplicationLogo from "@/Components/ApplicationLogo";
+
 import { Link as InertiaLink } from "@inertiajs/react";
 
-const drawerWidth = 240;
+const drawerWidth = 180;
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -43,7 +48,7 @@ const closedMixin = (theme) => ({
     overflowX: "hidden",
     width: `calc(${theme.spacing(7)} + 1px)`,
     [theme.breakpoints.up("sm")]: {
-        width: `calc(${theme.spacing(8)} + 1px)`,
+        width: `calc(${theme.spacing(7)} + 1px)`,
     },
 });
 
@@ -110,6 +115,7 @@ export default function Layout({ children }) {
 
     return (
         <Box sx={{ display: "flex" }}>
+            {/* TODO  active={route().current("lifts")}*/}
             {/* <AppBar position="fixed" open={open}>
                 <Toolbar>
                     <IconButton
@@ -130,6 +136,15 @@ export default function Layout({ children }) {
                 </Toolbar>
             </AppBar> */}
             <Drawer variant="permanent" open={open}>
+                <div className="shrink-0 flex flex-col items-center mx-auto my-2">
+                    <Link href="/dashboard" className="no-underline">
+                        <ApplicationLogo className="block h-7 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        <Typography className="font-bold text-slate-500 hover:text-slate-900 no-underline">
+                            HOME
+                        </Typography>
+                    </Link>
+                </div>
+                <Divider />
                 <DrawerHeader>
                     <IconButton onClick={handleDrawerToggle}>
                         {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -152,6 +167,11 @@ export default function Layout({ children }) {
                             text: "Mechanics",
                             href: "/mechanics",
                             icon: <BuildOutlinedIcon />,
+                        },
+                        {
+                            text: "Create inspection",
+                            href: "/inspections/create",
+                            icon: <NoteAddOutlinedIcon />,
                         },
                     ].map((menuItem, index) => (
                         <ListItem
@@ -188,7 +208,7 @@ export default function Layout({ children }) {
                         mt={2}
                         mb={1}
                         sx={{
-                            marginLeft: open ? "20px" : "10px",
+                            marginLeft: open ? "20px" : "18px",
                             fontWeight: "bold",
                             color: "#555",
                         }}
@@ -197,47 +217,43 @@ export default function Layout({ children }) {
                     </Typography>
                     <Divider />
 
-                    {["Inbox", "Starred", "Send email", "Drafts"].map(
-                        (text, index) => (
-                            <ListItem
-                                key={text}
-                                disablePadding
-                                sx={{ display: "block" }}
+                    {["Inbox", "Starred"].map((text, index) => (
+                        <ListItem
+                            key={text}
+                            disablePadding
+                            sx={{ display: "block" }}
+                        >
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? "initial" : "center",
+                                    px: 2.5,
+                                }}
                             >
-                                <ListItemButton
+                                <ListItemIcon
                                     sx={{
-                                        minHeight: 48,
-                                        justifyContent: open
-                                            ? "initial"
-                                            : "center",
-                                        px: 2.5,
+                                        minWidth: 0,
+                                        mr: open ? 3 : "auto",
+                                        justifyContent: "center",
                                     }}
                                 >
-                                    <ListItemIcon
-                                        sx={{
-                                            minWidth: 0,
-                                            mr: open ? 3 : "auto",
-                                            justifyContent: "center",
-                                        }}
-                                    >
-                                        {index % 2 === 0 ? (
-                                            <InboxIcon />
-                                        ) : (
-                                            <MailIcon />
-                                        )}
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary={text}
-                                        sx={{ opacity: open ? 1 : 0 }}
-                                    />
-                                </ListItemButton>
-                            </ListItem>
-                        )
-                    )}
+                                    {index % 2 === 0 ? (
+                                        <InboxIcon />
+                                    ) : (
+                                        <MailIcon />
+                                    )}
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={text}
+                                    sx={{ opacity: open ? 1 : 0 }}
+                                />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
                 </List>
                 <Divider />
                 <List>
-                    {["All mail", "Trash", "Spam"].map((text, index) => (
+                    {["All mail"].map((text, index) => (
                         <ListItem
                             key={text}
                             disablePadding
