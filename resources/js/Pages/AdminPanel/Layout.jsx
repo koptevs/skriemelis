@@ -25,7 +25,10 @@ import ElevatorOutlinedIcon from "@mui/icons-material/ElevatorOutlined";
 import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import ApplicationLogo from "@/Components/ApplicationLogo";
+import { useMode } from "@/theme";
 
 import { Link as InertiaLink } from "@inertiajs/react";
 
@@ -97,7 +100,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Layout({ children }) {
-    const theme = useTheme();
+    const [theme, colorMode] = useMode();
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -114,7 +117,12 @@ export default function Layout({ children }) {
     };
 
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box
+            sx={{
+                display: "flex",
+                backgroundColor: theme.palette.background.default,
+            }}
+        >
             {/* TODO  active={route().current("lifts")}*/}
             {/* <AppBar position="fixed" open={open}>
                 <Toolbar>
@@ -139,10 +147,21 @@ export default function Layout({ children }) {
                 <div className="shrink-0 flex flex-col items-center mx-auto my-2">
                     <Link href="/dashboard" className="no-underline">
                         <ApplicationLogo className="block h-7 w-auto fill-current text-gray-800 dark:text-gray-200" />
+
                         <Typography className="font-bold text-slate-500 hover:text-slate-900 no-underline">
                             HOME
                         </Typography>
                     </Link>
+                    <IconButton
+                        onClick={colorMode.toggleColorMode}
+                        sx={{ ml: 2, color: "inherit" }}
+                    >
+                        {theme.palette.mode === "dark" ? (
+                            <LightModeOutlinedIcon />
+                        ) : (
+                            <DarkModeOutlinedIcon />
+                        )}
+                    </IconButton>
                 </div>
                 <Divider />
                 <DrawerHeader>
@@ -210,7 +229,6 @@ export default function Layout({ children }) {
                         sx={{
                             marginLeft: open ? "20px" : "18px",
                             fontWeight: "bold",
-                            color: "#555",
                         }}
                     >
                         Test

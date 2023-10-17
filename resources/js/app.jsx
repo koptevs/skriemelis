@@ -9,12 +9,22 @@ import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
+
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-import theme from "./theme";
+import { ColorModeContext, useMode } from "@/theme";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
+
+const ColorModeThemeProvider = ({ children }) => {
+    const [theme, colorMode] = useMode();
+    return (
+        <ColorModeContext.Provider value={colorMode}>
+            <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        </ColorModeContext.Provider>
+    );
+};
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -25,11 +35,10 @@ createInertiaApp({
         ),
     setup({ el, App, props }) {
         const root = createRoot(el);
-
         root.render(
             <React.StrictMode>
                 <StyledEngineProvider injectFirst>
-                    <ThemeProvider theme={theme}>
+                    <ColorModeThemeProvider>
                         <LocalizationProvider
                             dateAdapter={AdapterDayjs}
                             adapterLocale="lv"
@@ -37,7 +46,7 @@ createInertiaApp({
                             <CssBaseline />
                             <App {...props} />
                         </LocalizationProvider>
-                    </ThemeProvider>
+                    </ColorModeThemeProvider>
                 </StyledEngineProvider>
             </React.StrictMode>
         );

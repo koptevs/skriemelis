@@ -7,11 +7,17 @@ import Stack from "@mui/material/Stack";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Layout from "../AdminPanel/Layout";
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
+import { ColorModeContext, colorTokens } from "@/theme";
 
 const Index = ({ lifts, filters }) => {
+    const theme = useTheme();
+    log(theme);
+    const colors = colorTokens(theme.palette.mode);
+    const colorMode = React.useContext(ColorModeContext);
+    console.log(theme.palette.mode);
     return (
         <Layout>
             <label htmlFor="search-reg" className="text-sm">
@@ -91,12 +97,16 @@ const Index = ({ lifts, filters }) => {
                         }}
                     >
                         <Typography
-                            variant="h6"
+                            variant="h5"
                             sx={{
                                 fontWeight: 700,
-                                color: "#2d4d9d",
+                                color:
+                                    theme.palette.mode === "dark"
+                                        ? "red"
+                                        : "green",
+                                // color: "#2d4d9d",
                                 "&:hover": {
-                                    color: "#2d4dfd",
+                                    // color: "#2d4dfd",
                                 },
                             }}
                         >
@@ -104,10 +114,10 @@ const Index = ({ lifts, filters }) => {
                         </Typography>
                     </Link>
 
-                    <p className="text-xs py-0">
+                    <Typography component="p" sx={{}}>
                         {lift.address}, {lift.address_postal_code},{" "}
                         {lift.address_country}
-                    </p>
+                    </Typography>
                 </Box>
             ))}
             <br />
