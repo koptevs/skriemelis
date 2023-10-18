@@ -2,7 +2,7 @@ import "./bootstrap";
 import "../css/app.css";
 import "dayjs/locale/lv";
 
-import * as React from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
@@ -38,15 +38,15 @@ createInertiaApp({
         root.render(
             <React.StrictMode>
                 <StyledEngineProvider injectFirst>
-                    <ColorModeThemeProvider>
-                        <LocalizationProvider
-                            dateAdapter={AdapterDayjs}
-                            adapterLocale="lv"
-                        >
+                    <LocalizationProvider
+                        dateAdapter={AdapterDayjs}
+                        adapterLocale="lv"
+                    >
+                        <ColorModeThemeProvider>
                             <CssBaseline />
                             <App {...props} />
-                        </LocalizationProvider>
-                    </ColorModeThemeProvider>
+                        </ColorModeThemeProvider>
+                    </LocalizationProvider>
                 </StyledEngineProvider>
             </React.StrictMode>
         );

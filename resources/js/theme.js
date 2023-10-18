@@ -209,8 +209,8 @@ export const themeSettings = (mode) => {
                 ? {
                       // palette values for dark mode
                       primary: {
-                          ...colors.primary,
-                          main: colors.primary[500],
+                          ...colors.blueAccent,
+                          main: colors.blueAccent[500],
                       },
                       secondary: {
                           ...colors.secondary,
@@ -230,8 +230,8 @@ export const themeSettings = (mode) => {
                 : {
                       // palette values for light mode
                       primary: {
-                          ...colors.primary,
-                          main: colors.primary[100],
+                          ...colors.blueAccent,
+                          main: colors.blueAccent[100],
                       },
                       secondary: {
                           ...colors.secondary,
@@ -296,7 +296,6 @@ export const ColorModeContext = createContext({
 
 export const useMode = () => {
     const [mode, setMode] = useState("light");
-    console.log(mode);
     // const [mode, setMode] = useState("dark");
     //
     const colorMode = useMemo(

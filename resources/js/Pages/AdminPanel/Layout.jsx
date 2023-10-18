@@ -1,7 +1,6 @@
 import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
-import { Link } from "@inertiajs/react";
-
+import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -28,7 +27,7 @@ import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import ApplicationLogo from "@/Components/ApplicationLogo";
-import { useMode } from "@/theme";
+import { ColorModeContext, colorTokens } from "@/theme";
 
 import { Link as InertiaLink } from "@inertiajs/react";
 
@@ -100,7 +99,8 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Layout({ children }) {
-    const [theme, colorMode] = useMode();
+    const theme = useTheme();
+    const colorMode = React.useContext(ColorModeContext);
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -154,7 +154,7 @@ export default function Layout({ children }) {
                     </Link>
                     <IconButton
                         onClick={colorMode.toggleColorMode}
-                        sx={{ ml: 2, color: "inherit" }}
+                        sx={{ color: "inherit" }}
                     >
                         {theme.palette.mode === "dark" ? (
                             <LightModeOutlinedIcon />
