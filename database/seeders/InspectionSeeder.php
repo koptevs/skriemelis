@@ -40,10 +40,10 @@ class InspectionSeeder extends Seeder
                     'notes' => $inspection['piezimes'],
                     'notes_for_protokol' => serialize($inspection['atkartotas_parbaudes_iemesls']),
 
-                    'non_compliances_0' => $inspection['parbaude_neatbilstibas_0'] ? $inspection['parbaude_neatbilstibas_0'] : '',
-                    'non_compliances_1' => $inspection['parbaude_neatbilstibas_1'],
-                    'non_compliances_2' => $inspection['parbaude_neatbilstibas_2'],
-                    'non_compliances_3' => $inspection['parbaude_neatbilstibas_3'],
+                    'non_compliances_0' => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_0']), JSON_UNESCAPED_UNICODE),
+                    'non_compliances_1' => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_1']), JSON_UNESCAPED_UNICODE),
+                    'non_compliances_2' => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_2']), JSON_UNESCAPED_UNICODE),
+                    'non_compliances_3' => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_3']), JSON_UNESCAPED_UNICODE),
                 ]
             );
         }

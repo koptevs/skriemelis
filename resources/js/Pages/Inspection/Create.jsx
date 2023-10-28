@@ -121,8 +121,6 @@ export default function Create({ lifts, auth }) {
     const { errors: inertiaErrors } = usePage().props;
 
     const onSubmit = (data) => {
-        console.log(data.inspectionDateStart.format("YYYY-MM-DD"));
-
         const dataToSent = {
             protocol_number: data.protocolNumber,
             lift_id: data.liftId,
@@ -140,32 +138,29 @@ export default function Create({ lifts, auth }) {
             participant_1: "",
             participant_2: "",
             non_compliances_0: !!nonCompliances0.length
-                ? nonCompliances0.join(" ")
+                ? // ? nonCompliances0.join(" ")
+                  JSON.stringify(nonCompliances0)
                 : "",
             non_compliances_1: !!nonCompliances1.length
-                ? nonCompliances1.join(" ")
+                ? // ? nonCompliances1.join(" ")
+                  JSON.stringify(nonCompliances1)
                 : "",
             non_compliances_2: !!nonCompliances2.length
-                ? nonCompliances2.join(" ")
+                ? // ? nonCompliances2.join(" ")
+                  JSON.stringify(nonCompliances2)
                 : "",
             non_compliances_3: !!nonCompliances3.length
-                ? nonCompliances3.join(" ")
+                ? // ? nonCompliances3.join(" ")
+                  JSON.stringify(nonCompliances3)
                 : "",
             notes: data.notes ? data.notes : "",
             notes_for_protokol: data.notes_for_protokol
                 ? data.notes_for_protokol
                 : "",
         };
-        // console.log(
-        //     "1 ",
-        //     nonCompliances1,
-        //     "2 ",
-        //     nonCompliances2,
-        //     "3 ",
-        //     nonCompliances3
-        // );
+
         // router.post(route("inspections.store"));
-        console.log(dataToSent);
+        // console.log(dataToSent);
         // router.post(route("inspections.store"), data);
         router.post(route("inspections.store"), dataToSent);
     };
