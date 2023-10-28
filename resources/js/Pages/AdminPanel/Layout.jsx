@@ -22,16 +22,19 @@ import MailIcon from "@mui/icons-material/Mail";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ElevatorOutlinedIcon from "@mui/icons-material/ElevatorOutlined";
 import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import ApplicationLogo from "@/Components/ApplicationLogo";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { ColorModeContext, colorTokens } from "@/theme";
 
 import { Link as InertiaLink } from "@inertiajs/react";
+import Topbar from "@/Layouts/Topbar";
 
-const drawerWidth = 180;
+const drawerWidth = 200;
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -98,10 +101,12 @@ const Drawer = styled(MuiDrawer, {
     }),
 }));
 
-export default function Layout({ children }) {
+export default function Layout({ children, auth }) {
     const theme = useTheme();
+    const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+    console.log(isSmall);
     const colorMode = React.useContext(ColorModeContext);
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(!isSmall);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -115,16 +120,20 @@ export default function Layout({ children }) {
         // setOpen(!open);
         setOpen((prev) => !prev);
     };
-
+    const mediaSmUp = useMediaQuery(theme.breakpoints.up("sm"));
     return (
         <Box
             sx={{
                 display: "flex",
-                backgroundColor: theme.palette.background.default,
+                // backgroundColor: theme.palette.background.default,
             }}
         >
-            {/* TODO  active={route().current("lifts")}*/}
-            {/* <AppBar position="fixed" open={open}>
+            <AppBar
+                position="fixed"
+                open={open}
+                elevation={0}
+                sx={{ backgroundColor: theme.palette.topbarBg }}
+            >
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -142,30 +151,13 @@ export default function Layout({ children }) {
                         Admin Panel
                     </Typography>
                 </Toolbar>
-            </AppBar> */}
+            </AppBar>
             <Drawer variant="permanent" open={open}>
-                <div className="shrink-0 flex flex-col items-center mx-auto my-2">
-                    <Link href="/dashboard" className="no-underline">
-                        <ApplicationLogo className="block h-7 w-auto fill-current text-gray-800 dark:text-gray-200" />
-
-                        <Typography className="font-bold text-slate-500 hover:text-slate-900 no-underline">
-                            HOME
-                        </Typography>
-                    </Link>
+                <DrawerHeader sx={{ backgroundColor: theme.palette.topbarBg }}>
                     <IconButton
-                        onClick={colorMode.toggleColorMode}
-                        sx={{ color: "inherit" }}
+                        onClick={handleDrawerToggle}
+                        sx={{ color: "white" }}
                     >
-                        {theme.palette.mode === "dark" ? (
-                            <LightModeOutlinedIcon />
-                        ) : (
-                            <DarkModeOutlinedIcon />
-                        )}
-                    </IconButton>
-                </div>
-                <Divider />
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerToggle}>
                         {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </DrawerHeader>
@@ -173,23 +165,33 @@ export default function Layout({ children }) {
                 <List>
                     {[
                         {
+                            text: "Dashboard",
+                            href: "/dashboard",
+                            route: "dashboard",
+                            icon: <DashboardIcon />,
+                        },
+                        {
                             text: "Lifts",
                             href: "/lifts",
+                            route: "lifts.index",
                             icon: <ElevatorOutlinedIcon />,
                         },
                         {
                             text: "Lift Managers",
                             href: "/lift-managers",
+                            route: "lift-managers.index",
                             icon: <ManageAccountsOutlinedIcon />,
                         },
                         {
                             text: "Mechanics",
                             href: "/mechanics",
+                            route: "mechanics.index",
                             icon: <BuildOutlinedIcon />,
                         },
                         {
                             text: "Create inspection",
                             href: "/inspections/create",
+                            route: "inspections.create",
                             icon: <NoteAddOutlinedIcon />,
                         },
                     ].map((menuItem, index) => (
@@ -212,13 +214,26 @@ export default function Layout({ children }) {
                                         minWidth: 0,
                                         mr: open ? 3 : "auto",
                                         justifyContent: "center",
+                                        color:
+                                            route().current() === menuItem.route
+                                                ? theme.palette.activeLink
+                                                : "",
                                     }}
                                 >
                                     {menuItem.icon}
                                 </ListItemIcon>
+
                                 <ListItemText
                                     primary={menuItem.text}
-                                    sx={{ opacity: open ? 1 : 0 }}
+                                    sx={{
+                                        opacity: open ? 1 : 0,
+                                        "& .MuiTypography-root":
+                                            route().current() ===
+                                                menuItem.route && {
+                                                fontWeight: "bold",
+                                                color: theme.palette.activeLink,
+                                            },
+                                    }}
                                 />
                             </ListItemButton>
                         </ListItem>
@@ -305,11 +320,36 @@ export default function Layout({ children }) {
                         </ListItem>
                     ))}
                 </List>
+                <IconButton
+                    onClick={colorMode.toggleColorMode}
+                    sx={{ color: "inherit" }}
+                >
+                    {theme.palette.mode === "dark" ? (
+                        <LightModeOutlinedIcon />
+                    ) : (
+                        <DarkModeOutlinedIcon />
+                    )}
+                </IconButton>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                {/* <DrawerHeader /> */}
+            <Box
+                component="main"
+                sx={{
+                    marginTop: "64px", // AppBar compensation
+                    padding: "16px 8px 0 8px",
+                    ...(mediaSmUp && {
+                        padding: "16px 16px 0 16px",
+                    }),
+                }}
+            >
                 {children}
             </Box>
         </Box>
     );
 }
+
+// sx={{
+//     marginLeft: "5px",
+//     ...(mediaSmUp && {
+//         marginLeft: "15px",
+//     }),
+// }}

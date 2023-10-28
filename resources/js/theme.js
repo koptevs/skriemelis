@@ -223,9 +223,9 @@ export const themeSettings = (mode) => {
                       background: {
                           default: colors.primary[500],
                       },
-                      topbarBg: {
-                          main: colors.blueAccent[800],
-                      },
+                      topbarBg: colors.blueAccent[900],
+
+                      activeLink: colors.redAccent[500],
                   }
                 : {
                       // palette values for light mode
@@ -244,9 +244,9 @@ export const themeSettings = (mode) => {
                       background: {
                           default: "#fcfcfc",
                       },
-                      topbarBg: {
-                          main: colors.blueAccent[600],
-                      },
+                      topbarBg: colors.blueAccent[300],
+
+                      activeLink: colors.redAccent[500],
                   }),
         },
 
@@ -284,7 +284,8 @@ export const themeSettings = (mode) => {
             },
         },
         settings: {
-            containerWidth: "lg",
+            containerWidth: "xl",
+            topbarBackgroundColor: "tomato",
         },
     };
 };

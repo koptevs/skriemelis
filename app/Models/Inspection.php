@@ -18,7 +18,7 @@ class Inspection extends Model
         return $this->belongsTo(Lift::class);
     }
 
-    public function getNotesForProtokolAttribute($value){
-        return unserialize($value);
-    }
+//    public function getNotesForProtokolAttribute($value){
+//        return unserialize($value);
+//    }
 }

@@ -41,7 +41,7 @@ const Index = ({ liftManagers }) => {
                     variant="outlined"
                     shape="rounded"
                     onChange={(e, page) => {
-                        router.visit(route("lift.index") + `?page=${page}`);
+                        router.visit(route("lifts.index") + `?page=${page}`);
                         // console.log(e, page)
                     }}
                 /> */}

@@ -11,7 +11,7 @@ class StoreInspectionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,26 @@ class StoreInspectionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'protocol_number'      => 'required|string',
+            'lift_id'              => 'required|int',
+            'inspection_type'      => 'required|string',
+            'inspection_next_type' => 'required|string',
+            'expert'               => 'required|string',
+            'date_start'           => 'required|date',
+            'date_end'             => 'required|date',
+            'date_next'            => 'nullable|date',
+            'date_next_normal'     => 'nullable|date',
+            'label'                => 'required|string',
+            'bir_number'           => 'nullable|string',
+            'inspection_result'    => 'nullable|string',
+            'participant_1'        => 'nullable|string',
+            'participant_2'        => 'nullable|string',
+            'non_compliances_0'    => 'nullable|string',
+            'non_compliances_1'    => 'nullable|string',
+            'non_compliances_2'    => 'nullable|string',
+            'non_compliances_3'    => 'nullable|string',
+            'notes'                => 'nullable|string',
+            'notes_for_protokol'   => 'nullable|string',
         ];
     }
 }

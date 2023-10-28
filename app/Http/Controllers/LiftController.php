@@ -63,6 +63,7 @@ class LiftController extends Controller
      */
     public function store(StoreLiftRequest $request)
     {
+//       dd('wewrwr');
 //        $data = \request()->all();
         $data = $request->validated();
 
@@ -89,8 +90,8 @@ class LiftController extends Controller
 //        dd($lift);
         Lift::create($lift);
 
-        return to_route('lift.index');
-//        return redirect()->route('lift.index');
+        return to_route('lifts.index');
+//        return redirect()->route('lifts.index');
     }
 
     /**
@@ -163,3 +164,4 @@ class LiftController extends Controller
         return to_route('lifts.index');
     }
 }
+

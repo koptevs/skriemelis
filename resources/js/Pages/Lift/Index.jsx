@@ -11,16 +11,21 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { Box, Typography, useTheme } from "@mui/material";
 import Grid from "@mui/material/Grid";
+
 import { colorTokens } from "@/theme";
+import Topbar from "@/Layouts/Topbar";
 
 const Index = ({ lifts, filters }) => {
     const theme = useTheme();
     const colors = colorTokens(theme.palette.mode);
+
     return (
         <Layout>
+            <Head title="Lifti" />
+            {/* <Topbar user="Igor" /> */}
             {/* <pre>{JSON.stringify(theme, 2, 2)}</pre> */}
             {/* {theme.palette.mode} */}
-            <Grid container spacing={2} sx={{ marginTop: "1em" }}>
+            <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
                     <label htmlFor="search-reg" className="text-sm">
                         Поиск по Reg. Nr.{"  "}
@@ -102,7 +107,18 @@ const Index = ({ lifts, filters }) => {
                     </li>
                 ))}
             </ul>
-            <Grid container spacing={2}>
+            <Grid
+                id="findme"
+                container
+                spacing={3}
+                // sx={{ marginLeft: mediaSmUp ? "25px" : "5px" }}
+                // sx={{
+                //     marginLeft: "5px",
+                //     ...(mediaSmUp && {
+                //         marginLeft: "15px",
+                //     }),
+                // }}
+            >
                 {lifts.data.map((lift) => (
                     <Grid
                         item
@@ -151,7 +167,7 @@ const Index = ({ lifts, filters }) => {
                     variant="outlined"
                     shape="rounded"
                     onChange={(e, page) => {
-                        router.visit(route("lift.index") + `?page=${page}`);
+                        router.visit(route("lifts.index") + `?page=${page}`);
                         // console.log(e, page)
                     }}
                 /> */}

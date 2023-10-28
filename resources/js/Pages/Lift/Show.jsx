@@ -2,14 +2,17 @@ import { Link, Head, router } from "@inertiajs/react";
 import Button from "@mui/material/Button";
 
 import Layout from "../AdminPanel/Layout";
+import { Typography } from "@mui/material";
 
 const Show = ({ lift }) => {
     const { reg_number, address, inspections } = lift;
 
     return (
         <Layout>
-            <h1 className="text-2xl text-red-900 ">{reg_number}</h1>
-            <p>{address}</p>
+            <Typography variant="h3" sx={{ fontWeight: 600 }}>
+                {reg_number}
+            </Typography>
+            <Typography>{address}</Typography>
             <pre style={{ fontSize: "13px" }}>
                 {JSON.stringify(inspections, 2, 2)}
             </pre>

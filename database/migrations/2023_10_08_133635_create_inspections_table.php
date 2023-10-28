@@ -13,29 +13,29 @@ return new class extends Migration
     {
         Schema::create('inspections', function (Blueprint $table) {
             $table->id();
-            $table->text('protocol_number');
+            $table->string('protocol_number', 32);
             $table->foreignId('lift_id');
 //            $table->integer('lift_id');
 
             $table->enum('inspection_type', [
                 'Pirmreizējā', 'Kārtējā', 'Ārpuskārtas', 'Atkārtotā'
-            ])->nullable();
+            ]);
             $table->enum('inspection_next_type', [
                 'Pirmreizējā', 'Kārtējā', 'Ārpuskārtas', 'Atkārtotā'
-            ])->nullable();
-            $table->text('expert')->nullable();
+            ]);
+            $table->string('expert', 32)->nullable();
 
             $table->date('date_start')->nullable();
             $table->date('date_end')->nullable();
             $table->date('date_next')->nullable();
             $table->date('date_next_normal')->nullable();
 
-            $table->text('label');
-            $table->text('bir_number');
-            $table->text('inspection_result')->nullable();
+            $table->string('label', 32);
+            $table->string('bir_number', 32);
+            $table->string('inspection_result', 16)->nullable();
 
-            $table->text('participant_1')->nullable();
-            $table->text('participant_2')->nullable();
+            $table->string('participant_1', 64)->nullable();
+            $table->string('participant_2', 64)->nullable();
 
 
             $table->text('non_compliances_0')->nullable();

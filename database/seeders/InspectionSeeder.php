@@ -17,9 +17,10 @@ class InspectionSeeder extends Seeder
         $this->inspections_source = include 'sources/parbaudes.php';
         foreach ($this->inspections_source as $inspection) {
             $this->counter++;
-            var_dump($this->counter);
+            // var_dump($this->counter);
+            // var_dump($inspection);
             $lift_id = \App\Models\Lift::query()->where('reg_number', 'like',$inspection['parbaude_lifts_reg_nr'])->pluck('id')->toArray()[0];
-//            dd($lift_id);
+        //    dd($lift_id);
             DB::table('inspections')->insert(
                 [
                     'protocol_number' => $inspection['parbaude_nr'],
