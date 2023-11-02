@@ -76,7 +76,7 @@ import KabinesDurvisVarAtvert from "./Fields/KabinesDurvisVarAtvert";
 import BridinajumaDurvimNav from "./Fields/BridinajumaDurvimNav";
 import BridinajumaLukaiNav from "./Fields/BridinajumaLukaiNav";
 
-export default function Create({ lifts, auth }) {
+export default function Create({ lifts, auth, mechanics }) {
     const [nonCompliances0, setNonCompliances0] = React.useState([]);
     const [nonCompliances1, setNonCompliances1] = React.useState([]);
     const [nonCompliances2, setNonCompliances2] = React.useState([]);
@@ -89,6 +89,12 @@ export default function Create({ lifts, auth }) {
             label: `${entry[1]}`,
         };
     });
+    // console.log("mechanics", mechanics);
+    const mechanicsArray = mechanics.map((entry) => ({
+        id: entry.id,
+        label: `${entry.name} - ${entry.company}`,
+    }));
+    // console.log("mechanicsArray", mechanicsArray);
 
     const {
         register,
@@ -135,8 +141,8 @@ export default function Create({ lifts, auth }) {
             label: data.label,
             bir_number: data.birNumber,
             inspection_result: "",
-            participant_1: "",
-            participant_2: "",
+            participant_1: data.participant1Id,
+            participant_2: data.participant2Id,
             non_compliances_0: !!nonCompliances0.length
                 ? // ? nonCompliances0.join(" ")
                   JSON.stringify(nonCompliances0)
@@ -160,7 +166,7 @@ export default function Create({ lifts, auth }) {
         };
 
         // router.post(route("inspections.store"));
-        // console.log(dataToSent);
+        console.log("dataToSent", dataToSent);
         // router.post(route("inspections.store"), data);
         router.post(route("inspections.store"), dataToSent);
     };
@@ -227,7 +233,6 @@ export default function Create({ lifts, auth }) {
                 </Button>
             </div>
             {!!inertiaErrors.length && JSON.stringify(inertiaErrors, 2, 2)}
-
             <Box
                 className="flex flex-wrap space-y-2"
                 component="form"
@@ -570,6 +575,149 @@ export default function Create({ lifts, auth }) {
                                 />
                             </RadioGroup>
                         </FormControl>
+                    </Grid>
+                    {/* {JSON.stringify(mechanicsArray, 2, 2)} */}
+                    <Grid item xs={12} sm={4}>
+                        <Controller
+                            control={control}
+                            name="participant1Id"
+                            // rules={{
+                            //     required: {
+                            //         value: true,
+                            //         message:
+                            //             "Lift registration number is required.",
+                            //     },
+                            // }}
+                            render={({ field, fieldState: { error } }) => {
+                                const { onChange, value, ref } = field;
+                                return (
+                                    <>
+                                        <Autocomplete
+                                            id="participant1Id"
+                                            // disablePortal
+                                            clearOnEscape
+                                            options={mechanicsArray}
+                                            // sx={{ width: 200 }}
+                                            fullWidth
+                                            autoHighlight
+                                            value={
+                                                value
+                                                    ? mechanicsArray.find(
+                                                          (option) => {
+                                                              return (
+                                                                  value ===
+                                                                  option.id
+                                                              );
+                                                          }
+                                                      ) ?? null
+                                                    : null
+                                            }
+                                            onChange={(event, newValue) => {
+                                                onChange(
+                                                    newValue
+                                                        ? newValue.id
+                                                        : null
+                                                );
+                                            }}
+                                            getOptionLabel={(option) => {
+                                                return option.label;
+                                            }}
+                                            renderInput={(params) => (
+                                                <TextField
+                                                    {...params}
+                                                    label="Participant 1"
+                                                    fullWidth
+                                                    size="small"
+                                                    helperText={
+                                                        errors.participant1Id
+                                                            ?.message
+                                                    }
+                                                    sx={{
+                                                        "& .MuiFormHelperText-root":
+                                                            {
+                                                                fontSize:
+                                                                    "12px",
+                                                                color: "red",
+                                                            },
+                                                    }}
+                                                />
+                                            )}
+                                        />
+                                    </>
+                                );
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <Controller
+                            control={control}
+                            name="participant2Id"
+                            // rules={{
+                            //     required: {
+                            //         value: true,
+                            //         message:
+                            //             "Lift registration number is required.",
+                            //     },
+                            // }}
+                            render={({ field, fieldState: { error } }) => {
+                                const { onChange, value, ref } = field;
+                                return (
+                                    <>
+                                        <Autocomplete
+                                            id="participant2Id"
+                                            // disablePortal
+                                            clearOnEscape
+                                            options={mechanicsArray}
+                                            // sx={{ width: 200 }}
+                                            fullWidth
+                                            autoHighlight
+                                            value={
+                                                value
+                                                    ? mechanicsArray.find(
+                                                          (option) => {
+                                                              return (
+                                                                  value ===
+                                                                  option.id
+                                                              );
+                                                          }
+                                                      ) ?? null
+                                                    : null
+                                            }
+                                            onChange={(event, newValue) => {
+                                                onChange(
+                                                    newValue
+                                                        ? newValue.id
+                                                        : null
+                                                );
+                                            }}
+                                            getOptionLabel={(option) => {
+                                                return option.label;
+                                            }}
+                                            renderInput={(params) => (
+                                                <TextField
+                                                    {...params}
+                                                    label="Participant 2"
+                                                    fullWidth
+                                                    size="small"
+                                                    helperText={
+                                                        errors.participant2Id
+                                                            ?.message
+                                                    }
+                                                    sx={{
+                                                        "& .MuiFormHelperText-root":
+                                                            {
+                                                                fontSize:
+                                                                    "12px",
+                                                                color: "red",
+                                                            },
+                                                    }}
+                                                />
+                                            )}
+                                        />
+                                    </>
+                                );
+                            }}
+                        />
                     </Grid>
                 </Grid>
                 <div className="bg-slate-200 w-full pl-2 py-1">
@@ -1273,7 +1421,7 @@ export default function Create({ lifts, auth }) {
                 <div>{JSON.stringify(nonCompliances1, 2, 2)}</div>
                 <div>{JSON.stringify(nonCompliances2, 2, 2)}</div>
                 <div>{JSON.stringify(nonCompliances3, 2, 2)}</div>
-                {/* <DevTool control={control} /> */}
+                <DevTool control={control} />
                 <Button
                     type="submit"
                     size="small"
@@ -1296,7 +1444,56 @@ export default function Create({ lifts, auth }) {
                         ).format("DD.MM.YYYY")}  `}
                     </pre> */}
             </Box>
+            <Typography variant="h5">LVS 344:2022</Typography>
+            .<br />
+            .<br />
+            .<br />
+            .<br />
+            <Typography variant="h5">Citas neatbilstības</Typography>
+            Reduktora sazobē ir liels dilums un brīvgaita.
+            <br />
+            Velkošām trosēm ir palielināts dilums.
+            <br />
+            Nav evakuācijas roktura
+            <br />
+            Nolietojies reversa mehānisms.
+            <br />
+            Dokumentācija neatrodas iekārtas tuvumā.
+            <br />
+            Durvju gumijā robi (robs). Выбоина, щербина
+            <br />
+            No 1.-3. stāvam nav apgaismojuma instalācijas šahtā.
+            <br />
+            Stacijas elektroiekārtas nolietojums - ielīp releji.
+            <br />
+            Šahtas durvju sprauga pie apakšas ir lielāka par 10mm.
+            <br />
+            Gala slēdža lineāls nav nifiksēts uz ass.
+            <br />
+            Apdegušie kontakti, nolietojusies elektroiekārta.
+            <br />
+            Kustās vadotnes stiprinājums.
+            <br />
+            Vārpstas vāks vav uzstādīts. - Крышка вала не установлена.
+            <br />
+            Nekorekta durvju veršanas mehānisma darbība.
+            <br />
+            Klaudzieni ātruma ierobežotāja iericē.
+            <br />
+            Text
+            <br />
+            Text
+            <br />
+            Text
+            <br />
+            Text
+            <br />
+            Text
+            <br />
+            Text
+            <br />
         </Layout>
     );
 }
 // dayjs(watchAllFields.StartDate).format("DD.MM.YYYY");
+// Reduktora sazobē ir liels dilums un brīvgaita

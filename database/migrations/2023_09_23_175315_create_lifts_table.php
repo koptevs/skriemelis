@@ -29,6 +29,7 @@ return new class extends Migration {
                 $table->integer('floors_serviced')->unsigned()->nullable();
                 $table->string('address_country', 64);
                 $table->string('address', 256);
+                $table->enum('inspection_status', ['0','1', '2', '3'])->default('0');
                 // $table->string('address_novads', 128)->nullable();
                 // $table->string('address_pagasts', 128)->nullable();
                 // $table->string('address_city', 64);

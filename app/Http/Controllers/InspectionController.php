@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inspection;
 use App\Models\Lift;
+use App\Models\Mechanic;
 use App\Http\Requests\StoreInspectionRequest;
 use App\Http\Requests\UpdateInspectionRequest;
 use Illuminate\Support\Facades\Request;
@@ -11,6 +12,15 @@ use Inertia\Inertia;
 
 class InspectionController extends Controller
 {
+
+    public function protocol(Inspection $inspection)
+    {
+        return view('protocol.print.index', [
+            'inspection' => $inspection,
+            'lift'       => $inspection->lift
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -28,10 +38,11 @@ class InspectionController extends Controller
      */
     public function create()
     {
-        $lifts = Lift::pluck('reg_number', 'id');
+        $lifts     = Lift::pluck('reg_number', 'id');
+        $mechanics = Mechanic::select('id', 'name', 'company')->get()->toArray();
 
         return Inertia::render(
-            'Inspection/Create', ['lifts' => $lifts]
+            'Inspection/Create', ['lifts' => $lifts, 'mechanics' => $mechanics]
         );
     }
 
@@ -59,8 +70,8 @@ class InspectionController extends Controller
             'label'                => $data["label"],
             'bir_number'           => $data["bir_number"],
             'inspection_result'    => $data["inspection_result"],
-            'participant_1'        => $data["participant_1"],
-            'participant_2'        => $data["participant_2"],
+            'participant_1'        => $data["participant_1"] ? $data["participant_1"] : null,
+            'participant_2'        => $data["participant_2"] ? $data["participant_2"] : null,
             'non_compliances_0'    => $data["non_compliances_0"],
             'non_compliances_1'    => $data["non_compliances_1"],
             'non_compliances_2'    => $data["non_compliances_2"],

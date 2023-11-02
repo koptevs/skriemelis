@@ -24,6 +24,7 @@ const Index = ({ lifts, filters }) => {
             <Head title="Lifti" />
             {/* <Topbar user="Igor" /> */}
             {/* <pre>{JSON.stringify(theme, 2, 2)}</pre> */}
+            {/* <pre>{JSON.stringify(lifts, 2, 2)}</pre> */}
             {/* {theme.palette.mode} */}
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
@@ -119,44 +120,67 @@ const Index = ({ lifts, filters }) => {
                 //     }),
                 // }}
             >
-                {lifts.data.map((lift) => (
-                    <Grid
-                        item
-                        key={lift.id}
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        lg={3}
-                        xl={2}
-                    >
-                        <Link
-                            component={InertiaLink}
-                            href={route("lifts.show", lift.id)}
-                            sx={{
-                                textDecoration: "none",
-                                display: "inline-block",
-                            }}
+                {lifts.data.map((lift) => {
+                    let statusMarkColor = null;
+                    const status = lift.inspection_status;
+                    if (status === "0") {
+                        statusMarkColor = "transparent";
+                    } else if (status === "1") {
+                        statusMarkColor = "green";
+                    } else if (status === "2") {
+                        statusMarkColor = "orange";
+                    } else if (status === "3") {
+                        statusMarkColor = "red";
+                    }
+                    return (
+                        <Grid
+                            item
+                            key={lift.id}
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            lg={3}
+                            xl={2}
                         >
-                            <Typography
-                                variant="h5"
+                            <Link
+                                component={InertiaLink}
+                                href={route("lifts.show", lift.id)}
                                 sx={{
-                                    fontWeight: 700,
-                                    color: theme.palette.primary[200],
-                                    "&:hover": {
-                                        color: theme.palette.primary[400],
-                                    },
+                                    textDecoration: "none",
+                                    display: "inline-block",
                                 }}
                             >
-                                {lift.reg_number}
-                            </Typography>
-                        </Link>
+                                <Typography
+                                    variant="h5"
+                                    sx={{
+                                        fontWeight: 700,
+                                        color: theme.palette.primary[200],
+                                        "&:hover": {
+                                            color: theme.palette.primary[400],
+                                        },
+                                    }}
+                                >
+                                    {lift.reg_number}
+                                    <div
+                                        style={{
+                                            display: "inline-block",
+                                            width: "12px",
+                                            height: "12px",
+                                            backgroundColor: statusMarkColor,
+                                            marginLeft: "5px",
+                                            borderRadius: "50%",
+                                        }}
+                                    />
+                                </Typography>
+                            </Link>
 
-                        <Typography component="p" sx={{}}>
-                            {lift.address}, {lift.address_postal_code},{" "}
-                            {lift.address_country}
-                        </Typography>
-                    </Grid>
-                ))}
+                            <Typography component="p" sx={{}}>
+                                {lift.address}, {lift.address_postal_code},{" "}
+                                {lift.address_country}
+                            </Typography>
+                        </Grid>
+                    );
+                })}
             </Grid>
             <br />
             <Stack spacing={2}>

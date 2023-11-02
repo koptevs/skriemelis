@@ -23,7 +23,9 @@ return new class extends Migration
             $table->enum('inspection_next_type', [
                 'Pirmreizējā', 'Kārtējā', 'Ārpuskārtas', 'Atkārtotā'
             ]);
-            $table->string('expert', 32)->nullable();
+            $table->string('expert', 32);
+            $table->string('lift_manager', 32)->nullable();
+
 
             $table->date('date_start')->nullable();
             $table->date('date_end')->nullable();
@@ -31,11 +33,11 @@ return new class extends Migration
             $table->date('date_next_normal')->nullable();
 
             $table->string('label', 32);
-            $table->string('bir_number', 32);
+            $table->string('bir_number', 32)->nullable();
             $table->string('inspection_result', 16)->nullable();
 
-            $table->string('participant_1', 64)->nullable();
-            $table->string('participant_2', 64)->nullable();
+            $table->integer('participant_1')->unsigned()->nullable();
+            $table->integer('participant_2')->unsigned()->nullable();
 
 
             $table->text('non_compliances_0')->nullable();

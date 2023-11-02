@@ -86,12 +86,15 @@ Route::middleware('auth')->group(
         Route::delete('/mechanics/{mechanic}', [MechanicController::class, 'destroy'])->name('mechanics.destroy');
 
         Route::get('/inspections', [InspectionController::class, 'index'])->name('inspections.index');
+
+        Route::get('/inspections/protocol/{inspection}', [InspectionController::class, 'protocol'])->name('inspections.protocol');
         Route::get('/inspections/create', [InspectionController::class, 'create'])->name('inspections.create');
         Route::post('/inspections', [InspectionController::class, 'store'])->name('inspections.store');
         Route::get('/inspections/{inspection}', [InspectionController::class, 'show'])->name('inspections.show');
         Route::get('/inspections/{inspection}/edit', [InspectionController::class, 'edit'])->name('inspections.edit');
         Route::patch('/inspections/{inspection}', [InspectionController::class, 'update'])->name('inspections.update');
         Route::delete('/inspections/{inspection}', [InspectionController::class, 'destroy'])->name('inspections.destroy');
+
 
 
     }
