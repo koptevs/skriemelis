@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Inspection;
 use App\Models\Lift;
 use App\Models\Mechanic;
+use App\Models\LiftManager;
 use App\Http\Requests\StoreInspectionRequest;
 use App\Http\Requests\UpdateInspectionRequest;
 use Illuminate\Support\Facades\Request;
@@ -16,8 +17,11 @@ class InspectionController extends Controller
     public function protocol(Inspection $inspection)
     {
         return view('protocol.print.index', [
-            'inspection' => $inspection,
-            'lift'       => $inspection->lift
+            'inspection'   => $inspection,
+            'lift'         => $inspection->lift()->get(),
+            'lift_manager' => LiftManager::find($inspection['lift_manager']),
+            'mechanic'     => Mechanic::find($inspection['participant_1']),
+//            'mechanic'     => Mechanic::find($inspection['participant_1'])->select('id', 'name', 'company')->get(),
         ]);
     }
 
