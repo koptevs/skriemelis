@@ -24,7 +24,7 @@ return new class extends Migration
                 'Pirmreizējā', 'Kārtējā', 'Ārpuskārtas', 'Atkārtotā'
             ]);
             $table->string('expert', 32);
-            $table->string('lift_manager', 32)->nullable();
+            $table->integer('lift_manager')->unsigned();
 
 
             $table->date('date_start')->nullable();

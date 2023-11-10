@@ -1,23 +1,23 @@
 import CheckboxWithImage from "@/Shared/CheckboxWithImage";
 import React from "react";
-import zvans from "@/img/zvans.png";
+import os from "@/img/os.png";
 import { Typography } from "@mui/material";
 
-const BridinajumaDurvimNav = ({ control }) => {
+const AIUnTroseNolietoti = ({ control }) => {
     return (
         <CheckboxWithImage
             // className="ml-3.5 inline-block"
-            rawName="1.4 Mašīntelpas durvīm nav brīdinājuma uzraksta 'Nepiederošiem ieeja aizliegta'."
+            rawName="3.2 Ātruma ierobežotājs un tā trose ir nolietoti."
             nonCompliancesLevel="1"
-            // imageSource={lamp}
+            // imageSource={os}
             control={control}
             label={
                 <Typography component="span">
-                    1.4 Durvīm nav brīdinājuma.
+                    Ātruma ierobežotājs un tā trose ir nolietoti.
                 </Typography>
             }
         />
     );
 };
 
-export default BridinajumaDurvimNav;
+export default AIUnTroseNolietoti;

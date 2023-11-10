@@ -65,7 +65,7 @@ class InspectionSeeder extends Seeder
                 [
                     'protocol_number'      => $inspection['parbaude_nr'],
                     'lift_id'              => $lift_id,
-                    'lift_manager'         => $inspection['parbaude_valditajs'],
+                    'lift_manager'         => $inspection['parbaude_valditajs'] !== '' ? $inspection['parbaude_valditajs'] : 0,
                     'inspection_type'      => $inspection['parbaude_veids'],
                     'inspection_next_type' => $inspection['parbaude_next_veids'],
                     'expert'               => substr($inspection['parbaude_nr'], -2),

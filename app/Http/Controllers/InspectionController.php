@@ -44,9 +44,10 @@ class InspectionController extends Controller
     {
         $lifts     = Lift::pluck('reg_number', 'id');
         $mechanics = Mechanic::select('id', 'name', 'company')->get()->toArray();
+        $managers  = LiftManager::select('id', 'name')->get()->toArray();
 
         return Inertia::render(
-            'Inspection/Create', ['lifts' => $lifts, 'mechanics' => $mechanics]
+            'Inspection/Create', ['lifts' => $lifts, 'mechanics' => $mechanics, 'managers' => $managers]
         );
     }
 
@@ -76,6 +77,7 @@ class InspectionController extends Controller
             'inspection_result'    => $data["inspection_result"],
             'participant_1'        => $data["participant_1"] ? $data["participant_1"] : null,
             'participant_2'        => $data["participant_2"] ? $data["participant_2"] : null,
+            'lift_manager'         => $data["lift_manager"],
             'non_compliances_0'    => $data["non_compliances_0"],
             'non_compliances_1'    => $data["non_compliances_1"],
             'non_compliances_2'    => $data["non_compliances_2"],

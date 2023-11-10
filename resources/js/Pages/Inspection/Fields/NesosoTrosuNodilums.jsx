@@ -3,21 +3,19 @@ import React from "react";
 import zvans from "@/img/zvans.png";
 import { Typography } from "@mui/material";
 
-const BridinajumaDurvimNav = ({ control }) => {
+const NesosoTrosuNodilums = ({ control }) => {
     return (
         <CheckboxWithImage
             // className="ml-3.5 inline-block"
-            rawName="1.4 Mašīntelpas durvīm nav brīdinājuma uzraksta 'Nepiederošiem ieeja aizliegta'."
+            rawName="2.2 Nesošo trošu nodilums."
             nonCompliancesLevel="1"
             // imageSource={lamp}
             control={control}
             label={
-                <Typography component="span">
-                    1.4 Durvīm nav brīdinājuma.
-                </Typography>
+                <Typography component="span">Nesošo trošu nodilums.</Typography>
             }
         />
     );
 };
 
-export default BridinajumaDurvimNav;
+export default NesosoTrosuNodilums;

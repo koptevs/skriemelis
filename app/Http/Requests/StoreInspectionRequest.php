@@ -36,14 +36,15 @@ class StoreInspectionRequest extends FormRequest
             'inspection_result'    => 'nullable|string',
             'participant_1'        => 'nullable|int',
             'participant_2'        => 'nullable|int',
+            'lift_manager'         => 'required|int',
             'non_compliances_0'    => 'nullable|string',
             'non_compliances_1'    => 'nullable|string',
             'non_compliances_2'    => 'nullable|string',
             'non_compliances_3'    => 'nullable|string',
             'notes'                => 'nullable|string',
             'notes_for_protokol'   => 'nullable|string',
-            'extra_check_reason' => 'nullable|string',
-            'not_checked_forced' => 'nullable|string',
+            'extra_check_reason'   => 'nullable|string',
+            'not_checked_forced'   => 'nullable|string',
         ];
     }
 }

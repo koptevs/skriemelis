@@ -75,8 +75,31 @@ import ApgaismojumsKabineNepietiek from "./Fields/ApgaismojumsKabineNepietiek";
 import KabinesDurvisVarAtvert from "./Fields/KabinesDurvisVarAtvert";
 import BridinajumaDurvimNav from "./Fields/BridinajumaDurvimNav";
 import BridinajumaLukaiNav from "./Fields/BridinajumaLukaiNav";
+import LukaBojata from "./Fields/LukaBojata";
+import EllasNoplude from "./Fields/EllasNoplude";
+import ReduktorsNolietotsUnEllasNoplude from "./Fields/ReduktorsNolietotsUnEllasNoplude";
+import ApgaismojumsMasintelpaNepietiek from "./Fields/ApgaismojumsMasintelpaNepietiek";
+import ApgaismojumsSahtaNepietiek from "./Fields/ApgaismojumsSahtaNepietiek";
+import ApgaismojumsMasintelpaUnSahtalpaNepietiek from "./Fields/ApgaismojumsMasintelpaUnSahtalpaNepietiek";
+import ApmalesApNesosamTrosemNav from "./Fields/ApmalesApNesosamTrosemNav";
+import ApmalesApAITrosemNav from "./Fields/ApmalesApAITrosemNav";
+import ApmalesApNesosamUnAITrosemNav from "./Fields/ApmalesApNesosamUnAITrosemNav";
+import PaklajuPieGalvSledzaNav from "./Fields/PaklajuPieGalvSledzaNav";
+import PaklajuPieNKUNav from "./Fields/PaklajuPieNKUNav";
+import PaklajuPieGalvSledzaUnNKUNav from "./Fields/PaklajuPieGalvSledzaUnNKUNav";
+import NesosoTrosuNodilums from "./Fields/NesosoTrosuNodilums";
+import AprikojumsMasintelpa from "./Fields/AprikojumsMasintelpa";
+import PrieksmetiMasintelpa from "./Fields/PrieksmetiMasintelpa";
+import AprikojumsUnPrieksmetiMasintelpa from "./Fields/AprikojumsUnPrieksmetiMasintelpa";
+import AINolietots from "./Fields/AINolietots";
+import AITroseNolietota from "./Fields/AITroseNolietota";
+import AIUnTroseNolietoti from "./Fields/AIUnTroseNolietoti";
+import AtsperesBremzuNolietotas from "./Fields/AtsperesBremzuNolietotas";
+import UzlikasBremzuNolietotas from "./Fields/UzlikasBremzuNolietotas";
+import VadskriemelaNodilums from "./Fields/VadskriemelaNodilums";
+import VadskriemelaNevienmerigsNodilums from "./Fields/VadskriemelaNevienmerigsNodilums";
 
-export default function Create({ lifts, auth, mechanics }) {
+export default function Create({ lifts, auth, mechanics, managers, page }) {
     const [nonCompliances0, setNonCompliances0] = React.useState([]);
     const [nonCompliances1, setNonCompliances1] = React.useState([]);
     const [nonCompliances2, setNonCompliances2] = React.useState([]);
@@ -89,12 +112,15 @@ export default function Create({ lifts, auth, mechanics }) {
             label: `${entry[1]}`,
         };
     });
-    // console.log("mechanics", mechanics);
+
     const mechanicsArray = mechanics.map((entry) => ({
         id: entry.id,
         label: `${entry.name} - ${entry.company}`,
     }));
-    // console.log("mechanicsArray", mechanicsArray);
+    const managersArray = managers.map((entry) => ({
+        id: entry.id,
+        name: `${entry.id} - ${entry.name}`,
+    }));
 
     const {
         register,
@@ -127,6 +153,7 @@ export default function Create({ lifts, auth, mechanics }) {
     const { errors: inertiaErrors } = usePage().props;
 
     const onSubmit = (data) => {
+        console.log(page, data);
         const dataToSent = {
             protocol_number: data.protocolNumber,
             lift_id: data.liftId,
@@ -141,8 +168,9 @@ export default function Create({ lifts, auth, mechanics }) {
             label: data.label,
             bir_number: data.birNumber,
             inspection_result: "",
-            participant_1: data.participant1Id,
-            participant_2: data.participant2Id,
+            participant_1: data.participant1Id ? data.participant1Id : null,
+            participant_2: data.participant2Id ? data.participant2Id : null,
+            lift_manager: data.manager,
             non_compliances_0: !!nonCompliances0.length
                 ? // ? nonCompliances0.join(" ")
                   JSON.stringify(nonCompliances0)
@@ -168,7 +196,6 @@ export default function Create({ lifts, auth, mechanics }) {
         };
 
         // router.post(route("inspections.store"));
-        console.log("dataToSent", dataToSent);
         // router.post(route("inspections.store"), data);
         router.post(route("inspections.store"), dataToSent);
     };
@@ -234,7 +261,11 @@ export default function Create({ lifts, auth, mechanics }) {
                     Clear all fields
                 </Button>
             </div>
-            {!!inertiaErrors.length && JSON.stringify(inertiaErrors, 2, 2)}
+            {Object.keys(inertiaErrors).length !== 0 && (
+                <span style={{ color: "red", fontSize: "18px" }}>
+                    {JSON.stringify(inertiaErrors, 2, 2)}
+                </span>
+            )}
             <Box
                 className="flex flex-wrap space-y-2"
                 component="form"
@@ -721,6 +752,76 @@ export default function Create({ lifts, auth, mechanics }) {
                             }}
                         />
                     </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <Controller
+                            control={control}
+                            name="manager"
+                            // rules={{
+                            //     required: {
+                            //         value: true,
+                            //         message:
+                            //             "Lift registration number is required.",
+                            //     },
+                            // }}
+                            render={({ field, fieldState: { error } }) => {
+                                const { onChange, value, ref } = field;
+                                return (
+                                    <>
+                                        <Autocomplete
+                                            id="manager"
+                                            // disablePortal
+                                            clearOnEscape
+                                            options={managersArray}
+                                            // sx={{ width: 200 }}
+                                            fullWidth
+                                            autoHighlight
+                                            value={
+                                                value
+                                                    ? managersArray.find(
+                                                          (option) => {
+                                                              return (
+                                                                  value ===
+                                                                  option.id
+                                                              );
+                                                          }
+                                                      ) ?? null
+                                                    : null
+                                            }
+                                            onChange={(event, newValue) => {
+                                                onChange(
+                                                    newValue
+                                                        ? newValue.id
+                                                        : null
+                                                );
+                                            }}
+                                            getOptionLabel={(option) => {
+                                                return option.name;
+                                            }}
+                                            renderInput={(params) => (
+                                                <TextField
+                                                    {...params}
+                                                    label="Lift Manager"
+                                                    fullWidth
+                                                    size="small"
+                                                    helperText={
+                                                        errors.manager?.message
+                                                    }
+                                                    sx={{
+                                                        "& .MuiFormHelperText-root":
+                                                            {
+                                                                fontSize:
+                                                                    "12px",
+                                                                color: "red",
+                                                            },
+                                                    }}
+                                                />
+                                            )}
+                                        />
+                                    </>
+                                );
+                            }}
+                        />
+                    </Grid>
                 </Grid>
                 <div className="bg-slate-200 w-full pl-2 py-1">
                     <Typography className="font-bold  text-slate-600 tracking-wider">
@@ -842,381 +943,67 @@ export default function Create({ lifts, auth, mechanics }) {
                     </Typography>
                 </div>
                 <Grid container spacing={2}>
+                    {/* Mašīntelpa - row 1 */}
                     <Grid item xs={12} sm={3}>
-                        {/* ZZZ */}
                         <BridinajumaDurvimNav control={control} />
                         <BridinajumaLukaiNav control={control} />
-
-                        {/* LukaBojata */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.1 Mašīntelpā lūka ir bojāta."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
+                        <LukaBojata control={control} />
+                        <EllasNoplude control={control} />
+                        <ReduktorsNolietotsUnEllasNoplude control={control} />
+                        <ApgaismojumsMasintelpaNepietiek control={control} />
+                        <ApgaismojumsSahtaNepietiek control={control} />
+                        <ApgaismojumsMasintelpaUnSahtalpaNepietiek
                             control={control}
-                            label={
-                                <Typography component="span">
-                                    Mašīntelpā lūka ir bojāta.
-                                </Typography>
-                            }
-                        />
-                        {/* EllasNoplude */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.6 Eļļas noplūde no lifta mašīnas reduktora."
-                            nonCompliancesLevel="1"
-                            imageSource={mitrums}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Eļļas noplūde no lifta mašīnas reduktora.
-                                </Typography>
-                            }
-                        />
-                        {/* ReduktorsNolietotsUnEllasNoplude */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.6 Lifta mašīnas reduktora nolietojums un eļļas noplūde."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Lifta mašīnas reduktora nolietojums un eļļas
-                                    noplūde.
-                                </Typography>
-                            }
-                        />
-                        {/* ApgaismojumsMasintelpaNepietiek */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="8.0 Nepietiekams apgaismojums mašintelpā."
-                            nonCompliancesLevel="1"
-                            imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Nepietiekams apgaismojums mašintelpā.
-                                </Typography>
-                            }
-                        />
-                        {/* ApgaismojumsSahtalpaNepietiek */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="8.0 Nepietiekams šahtas apgaismojums."
-                            nonCompliancesLevel="1"
-                            imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Nepietiekams šahtas apgaismojums.
-                                </Typography>
-                            }
-                        />
-                        {/* ApgaismojumsMasintelpaUnSahtalpaNepietiek */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="8.0 Nepietiekams mašīntelpas un šahtas apgaismojums."
-                            nonCompliancesLevel="1"
-                            imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Nepietiekams mašīntelpas un šahtas
-                                    apgaismojums.
-                                </Typography>
-                            }
                         />
                     </Grid>
+                    {/* Mašīntelpa - row 2 */}
                     <Grid item xs={12} sm={3}>
-                        {/* ApmalesApNesosamTrosemNav */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.1 Mašīntelpā nav 5 cm. apmaļu grīdā ap nesošām trosēm."
-                            nonCompliancesLevel="1"
-                            imageSource={manjetsi}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Mašīntelpā nav 5 cm. apmaļu grīdā ap nesošām
-                                    trosēm.
-                                </Typography>
-                            }
-                        />
-                        {/* ApmalesApAITrosemNav */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.1 Mašīntelpā nav 5cm. apmaļu grīdā ap ātruma ierobežotāja trosēm."
-                            nonCompliancesLevel="1"
-                            imageSource={manjetsi}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Mašīntelpā nav 5cm. apmaļu grīdā ap ātruma
-                                    ierobežotāja trosēm.
-                                </Typography>
-                            }
-                        />
-                        {/* ApmalesApNesosamUnAITrosemNav */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.1 Mašīntelpā nav 5cm. apmaļu grīdā ap ātruma ierobežotāja un nesošām trosēm."
-                            nonCompliancesLevel="1"
-                            imageSource={manjetsi}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Mašīntelpā nav 5cm. apmaļu grīdā ap ātruma
-                                    ierobežotāja un nesošām trosēm.
-                                </Typography>
-                            }
-                        />
-                        {/* PaklajuPieGalvSledzaNav */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.1 Nav dielektrisko paklāju pie galvenā barošanas slēdža."
-                            nonCompliancesLevel="1"
-                            imageSource={kovriki}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Nav dielektrisko paklāju pie galvenā
-                                    barošanas slēdža.
-                                </Typography>
-                            }
-                        />
-                        {/* PaklajuPieNKUNav */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.1 Nav dielektrisko paklāju pie vadības skapja."
-                            nonCompliancesLevel="1"
-                            imageSource={kovriki}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Nav dielektrisko paklāju pie vadības skapja.
-                                </Typography>
-                            }
-                        />
-                        {/* PaklajuPieGalvSledzaUnNKUNav */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.1 Nav dielektrisko paklāju pie vadības skapja un pie galvenā barošanas slēdža."
-                            nonCompliancesLevel="1"
-                            imageSource={kovriki}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Nav dielektrisko paklāju pie vadības skapja
-                                    un pie galvenā barošanas slēdža.
-                                </Typography>
-                            }
-                        />
+                        <ApmalesApNesosamTrosemNav control={control} />
+                        <ApmalesApAITrosemNav control={control} />
+                        <ApmalesApNesosamUnAITrosemNav control={control} />
+                        <PaklajuPieGalvSledzaNav control={control} />
+                        <PaklajuPieNKUNav control={control} />
+                        <PaklajuPieGalvSledzaUnNKUNav control={control} />
                     </Grid>
-                    {/* MT3 */}
-                    <Grid item xs={12} sm={3}>
-                        {/* NesosoTrosuNodilums */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="2.2 Nesošo trošu nodilums."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Nesošo trošu nodilums.
-                                </Typography>
-                            }
-                        />
-                        {/* AprikojumsMasintelpa */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.1 Mašīntelpā ir aprīkojums, kas nav saistīts ar liftu."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Mašīntelpā ir aprīkojums, kas nav saistīts
-                                    ar liftu.
-                                </Typography>
-                            }
-                        />
 
-                        {/* PrieksmetiMasintelpa */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.1 Mašīntelpā ir priekšmeti, kas nav saistīti ar lifta ekspluatāciju."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Mašīntelpā ir priekšmeti, kas nav saistīti
-                                    ar lifta ekspluatāciju.
-                                </Typography>
-                            }
-                        />
-                        {/* AprikojumsUnPrieksmetiMasintelpa */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.1 Mašīntelpā ir priekšmeti un aprīkojums, kas nav saistīti ar liftu. "
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Mašīntelpā ir priekšmeti un aprīkojums, kas
-                                    nav saistīti ar liftu.
-                                </Typography>
-                            }
-                        />
-                        {/* AINolietots */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.2 Ātruma ierobežotājs ir nolietots."
-                            nonCompliancesLevel="1"
-                            imageSource={os}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Ātruma ierobežotājs ir nolietots.
-                                </Typography>
-                            }
-                        />
-                        {/* AITroseNolietota */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.2 Ātruma ierobežotāja trose ir nodilis."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Ātruma ierobežotāja trose ir nodilis.
-                                </Typography>
-                            }
-                        />
-                        {/* AIUnTroseNolietoti */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.2 Ātruma ierobežotājs un tā trose ir nolietoti."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Ātruma ierobežotājs un tā trose ir
-                                    nolietoti.
-                                </Typography>
-                            }
-                        />
+                    {/* Mašīntelpa - row 3 */}
+
+                    <Grid item xs={12} sm={3}>
+                        <NesosoTrosuNodilums control={control} />
+                        <AprikojumsMasintelpa control={control} />
+                        <PrieksmetiMasintelpa control={control} />
+                        <AprikojumsUnPrieksmetiMasintelpa control={control} />
+                        <AINolietots control={control} />
+                        <AITroseNolietota control={control} />
+                        <AIUnTroseNolietoti control={control} />
                     </Grid>
-                    {/* MT4 */}
-                    {/* AtsperesBremzuNolietotas */}
+
+                    {/* Mašīntelpa - row 4 */}
+
+                    <Grid item xs={12} sm={3}>
+                        <AtsperesBremzuNolietotas control={control} />
+                        <UzlikasBremzuNolietotas control={control} />
+                        <VadskriemelaNodilums control={control} />
+                        <VadskriemelaNevienmerigsNodilums control={control} />
+                    </Grid>
+                </Grid>
+                <div className="bg-slate-200 w-full pl-2 py-1">
+                    <Typography className="font-bold  text-slate-600 tracking-wider">
+                        НКУ
+                    </Typography>
+                </div>
+                <Grid container spacing={2}>
                     <Grid item xs={12} sm={3}>
                         <CheckboxWithImage
                             // className="ml-3.5 inline-block"
-                            rawName="3.6 Bremžu atsperes ir nodilušas."
-                            nonCompliancesLevel="1"
-                            imageSource={atsperes}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Bremžu atsperes ir nodilušas.
-                                </Typography>
-                            }
-                        />
-                        {/* UzlikasBremzuNolietotas */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.6 Bremžu uzlikas ir nodilušas."
-                            nonCompliancesLevel="1"
-                            imageSource={bremzes}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Bremžu uzlikas ir nodilušas.
-                                </Typography>
-                            }
-                        />
-                        {/* VadskriemelaNodilums */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.6 Vādskriemeļa nodilums."
-                            nonCompliancesLevel="1"
-                            imageSource={skriemelis}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Vādskriemeļa nodilums.
-                                </Typography>
-                            }
-                        />
-                        {/* VadskriemelaNevienmerigsNodilums */}
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.6 Nevienmērīgs lifta mašīnas vadošā skriemeļa nodilums."
-                            nonCompliancesLevel="1"
-                            imageSource={skriemelis_nevienmerigs}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Nevienmērīgs lifta mašīnas vadošā skriemeļa
-                                    nodilums.
-                                </Typography>
-                            }
-                        />
-
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāti VA1 un VA2 vadības skapī ir nolietoti."
+                            rawName="9.0 Vadības stacijas elektriskais aprīkojums ir nolietojies."
                             nonCompliancesLevel="1"
                             // imageSource={lamp}
                             control={control}
                             label={
                                 <Typography component="span">
-                                    Aizsardzības aparāti VA1 un VA2 vadības
-                                    skapī ir nolietoti.
-                                </Typography>
-                            }
-                        />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāti VA1 un VA3 vadības skapī ir nolietoti."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Aizsardzības aparāti VA1 un VA3 vadības
-                                    skapī ir nolietoti.
-                                </Typography>
-                            }
-                        />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāti VA2 un VA3 vadības skapī ir nolietoti."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Aizsardzības aparāti VA2 un VA3 vadības
-                                    skapī ir nolietoti.
-                                </Typography>
-                            }
-                        />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāti un elektriskie kontaktori vadības skapī ir nolietoti."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Aizsardzības aparāti un elektriskie
-                                    kontaktori vadības skapī ir nolietoti.
+                                    Vadības stacijas elektriskais aprīkojums ir
+                                    nolietojies.
                                 </Typography>
                             }
                         />
@@ -1233,6 +1020,34 @@ export default function Create({ lifts, auth, mechanics }) {
                                 </Typography>
                             }
                         />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Elektriskie kontaktori vadības skapī ir nolietoti."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Elektriskie kontaktori vadības skapī ir
+                                    nolietoti.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Aizsardzības aparāti un elektriskie kontaktori vadības skapī ir nolietoti."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Aizsardzības aparāti un elektriskie
+                                    kontaktori vadības skapī ir nolietoti.
+                                </Typography>
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
                         <CheckboxWithImage
                             // className="ml-3.5 inline-block"
                             rawName="9.0 Aizsardzības aparāts VA1 vadības skapī ir nolietots."
@@ -1272,33 +1087,49 @@ export default function Create({ lifts, auth, mechanics }) {
                                 </Typography>
                             }
                         />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
                         <CheckboxWithImage
                             // className="ml-3.5 inline-block"
-                            rawName="9.0 Elektriskie kontaktori vadības skapī ir nolietoti."
+                            rawName="9.0 Aizsardzības aparāti VA1 un VA2 vadības skapī ir nolietoti."
                             nonCompliancesLevel="1"
                             // imageSource={lamp}
                             control={control}
                             label={
                                 <Typography component="span">
-                                    Elektriskie kontaktori vadības skapī ir
-                                    nolietoti.
+                                    Aizsardzības aparāti VA1 un VA2 vadības
+                                    skapī ir nolietoti.
                                 </Typography>
                             }
                         />
                         <CheckboxWithImage
                             // className="ml-3.5 inline-block"
-                            rawName="9.0 Vadības stacijas elektriskais aprīkojums ir nolietojies."
+                            rawName="9.0 Aizsardzības aparāti VA1 un VA3 vadības skapī ir nolietoti."
                             nonCompliancesLevel="1"
                             // imageSource={lamp}
                             control={control}
                             label={
                                 <Typography component="span">
-                                    Vadības stacijas elektriskais aprīkojums ir
-                                    nolietojies.
+                                    Aizsardzības aparāti VA1 un VA3 vadības
+                                    skapī ir nolietoti.
+                                </Typography>
+                            }
+                        />
+                        <CheckboxWithImage
+                            // className="ml-3.5 inline-block"
+                            rawName="9.0 Aizsardzības aparāti VA2 un VA3 vadības skapī ir nolietoti."
+                            nonCompliancesLevel="1"
+                            // imageSource={lamp}
+                            control={control}
+                            label={
+                                <Typography component="span">
+                                    Aizsardzības aparāti VA2 un VA3 vadības
+                                    skapī ir nolietoti.
                                 </Typography>
                             }
                         />
                     </Grid>
+                    <Grid item xs={12} sm={3}></Grid>
                 </Grid>
                 <div className="bg-slate-200 w-full pl-2 py-1">
                     <Typography className="font-bold  text-slate-600 tracking-wider">
@@ -1306,13 +1137,7 @@ export default function Create({ lifts, auth, mechanics }) {
                     </Typography>
                 </div>
                 <Grid container spacing={2}>
-                    {/*
-                    3.4 Izvērtēšanas vadības ierīce uz kabīnes jumta nedarbojas.
-                    3.4 Izvērtēšanas vadības ierīcei uz kabīnes jumta nedarbojas STOP poga.
-                    3.4 Nav izvērtēšanas vadības ierīces uz kabīnes jumta.
-                    3.9 Stopslēdzis kabīnes jumtā nedarbojas.
-                    */}
-                    <Grid item xs={12}>
+                    <Grid item xs={12} sm={3}>
                         <CheckboxWithImage
                             // className="ml-3.5 inline-block"
                             rawName="3.4 Izvērtēšanas vadības ierīce uz kabīnes jumta nedarbojas."
@@ -1365,6 +1190,13 @@ export default function Create({ lifts, auth, mechanics }) {
                             }
                         />
                     </Grid>
+                </Grid>
+                <div className="bg-slate-200 w-full pl-2 py-1">
+                    <Typography className="font-bold  text-slate-600 tracking-wider">
+                        Papildus neatbilstības
+                    </Typography>
+                </div>
+                <Grid container spacing={2}>
                     <Grid item xs={12} sm={4}>
                         {/* notes */}
                         <TextField
@@ -1470,7 +1302,7 @@ export default function Create({ lifts, auth, mechanics }) {
             <br />
             Šahtas durvju sprauga pie apakšas ir lielāka par 10mm.
             <br />
-            Gala slēdža lineāls nav nifiksēts uz ass.
+            Gala slēdža lineāls nav nofiksēts uz ass.
             <br />
             Apdegušie kontakti, nolietojusies elektroiekārta.
             <br />

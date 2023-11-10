@@ -1,21 +1,21 @@
 import CheckboxWithImage from "@/Shared/CheckboxWithImage";
 import React from "react";
-import zvans from "@/img/zvans.png";
+import skriemelis from "@/img/skriemelis.png";
 import { Typography } from "@mui/material";
 
-const BridinajumaLukaiNav = ({ control }) => {
+const VadskriemelaNodilums = ({ control }) => {
     return (
         <CheckboxWithImage
             // className="ml-3.5 inline-block"
-            rawName="1.4 Lūkai mašīntelpā nav brīdinājuma zīmes par nokrišanas draudiem."
+            rawName="3.6 Vādskriemeļa nodilums."
             nonCompliancesLevel="1"
-            // imageSource={lamp}
+            imageSource={skriemelis}
             control={control}
             label={
-                <Typography component="span">Lūkai nav brīdinājuma</Typography>
+                <Typography component="span">Vādskriemeļa nodilums.</Typography>
             }
         />
     );
 };
 
-export default BridinajumaLukaiNav;
+export default VadskriemelaNodilums;

@@ -1,23 +1,23 @@
 import CheckboxWithImage from "@/Shared/CheckboxWithImage";
 import React from "react";
-import zvans from "@/img/zvans.png";
+import lamp from "@/img/lamp.png";
 import { Typography } from "@mui/material";
 
-const BridinajumaDurvimNav = ({ control }) => {
+const ApgaismojumsSahtaNepietiek = ({ control }) => {
     return (
         <CheckboxWithImage
-            // className="ml-3.5 inline-block"
-            rawName="1.4 Mašīntelpas durvīm nav brīdinājuma uzraksta 'Nepiederošiem ieeja aizliegta'."
+            className="ml-3.5 inline-block"
+            rawName="8.0 Nepietiekams šahtas apgaismojums."
             nonCompliancesLevel="1"
-            // imageSource={lamp}
+            imageSource={lamp}
             control={control}
             label={
                 <Typography component="span">
-                    1.4 Durvīm nav brīdinājuma.
+                    Nepietiekams šahtas apgaismojums.
                 </Typography>
             }
         />
     );
 };
 
-export default BridinajumaDurvimNav;
+export default ApgaismojumsSahtaNepietiek;

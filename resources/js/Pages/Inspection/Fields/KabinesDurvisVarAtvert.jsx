@@ -8,7 +8,7 @@ const KabinesDurvisVarAtvert = ({ control }) => {
         <CheckboxWithImage
             // className="ml-3.5 inline-block"
             rawName="7.1 Lifta kabīnes durvis var atvert ar rokām kabīnei neatrodoties pretīm šahtas durvīm vai atslēgšanas zonā."
-            nonCompliancesLevel="1"
+            nonCompliancesLevel="3"
             // imageSource={lamp}
             control={control}
             label={

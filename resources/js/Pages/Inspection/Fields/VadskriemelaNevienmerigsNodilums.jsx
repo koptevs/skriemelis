@@ -1,23 +1,23 @@
 import CheckboxWithImage from "@/Shared/CheckboxWithImage";
 import React from "react";
-import zvans from "@/img/zvans.png";
+import skriemelis_nevienmerigs from "@/img/skriemelis_nevienmerigs.png";
 import { Typography } from "@mui/material";
 
-const BridinajumaDurvimNav = ({ control }) => {
+const VadskriemelaNevienmerigsNodilums = ({ control }) => {
     return (
         <CheckboxWithImage
             // className="ml-3.5 inline-block"
-            rawName="1.4 Mašīntelpas durvīm nav brīdinājuma uzraksta 'Nepiederošiem ieeja aizliegta'."
+            rawName="3.6 Nevienmērīgs lifta mašīnas vadošā skriemeļa nodilums."
             nonCompliancesLevel="1"
-            // imageSource={lamp}
+            imageSource={skriemelis_nevienmerigs}
             control={control}
             label={
                 <Typography component="span">
-                    1.4 Durvīm nav brīdinājuma.
+                    Nevienmērīgs lifta mašīnas vadošā skriemeļa nodilums.
                 </Typography>
             }
         />
     );
 };
 
-export default BridinajumaDurvimNav;
+export default VadskriemelaNevienmerigsNodilums;
