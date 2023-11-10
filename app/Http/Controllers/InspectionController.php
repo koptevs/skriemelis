@@ -82,6 +82,8 @@ class InspectionController extends Controller
             'non_compliances_3'    => $data["non_compliances_3"],
             'notes'                => $data["notes"],
             'notes_for_protokol'   => $data["notes_for_protokol"],
+            'extra_check_reason'   => $data["extra_check_reason"],
+            'not_checked_forced'   => $data["not_checked_forced"],
         ];
         Inspection::create($inspection);
     }

@@ -42,6 +42,8 @@ class StoreInspectionRequest extends FormRequest
             'non_compliances_3'    => 'nullable|string',
             'notes'                => 'nullable|string',
             'notes_for_protokol'   => 'nullable|string',
+            'extra_check_reason' => 'nullable|string',
+            'not_checked_forced' => 'nullable|string',
         ];
     }
 }

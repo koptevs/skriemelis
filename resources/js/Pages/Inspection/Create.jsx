@@ -146,19 +146,21 @@ export default function Create({ lifts, auth, mechanics }) {
             non_compliances_0: !!nonCompliances0.length
                 ? // ? nonCompliances0.join(" ")
                   JSON.stringify(nonCompliances0)
-                : "",
+                : JSON.stringify([]),
             non_compliances_1: !!nonCompliances1.length
                 ? // ? nonCompliances1.join(" ")
                   JSON.stringify(nonCompliances1)
-                : "",
+                : JSON.stringify([]),
             non_compliances_2: !!nonCompliances2.length
                 ? // ? nonCompliances2.join(" ")
                   JSON.stringify(nonCompliances2)
-                : "",
+                : JSON.stringify([]),
             non_compliances_3: !!nonCompliances3.length
                 ? // ? nonCompliances3.join(" ")
                   JSON.stringify(nonCompliances3)
-                : "",
+                : JSON.stringify([]),
+            extra_check_reason: JSON.stringify([]),
+            not_checked_forced: JSON.stringify([]),
             notes: data.notes ? data.notes : "",
             notes_for_protokol: data.notes_for_protokol
                 ? data.notes_for_protokol
@@ -1304,7 +1306,7 @@ export default function Create({ lifts, auth, mechanics }) {
                     </Typography>
                 </div>
                 <Grid container spacing={2}>
-                    {/*  
+                    {/*
                     3.4 Izvērtēšanas vadības ierīce uz kabīnes jumta nedarbojas.
                     3.4 Izvērtēšanas vadības ierīcei uz kabīnes jumta nedarbojas STOP poga.
                     3.4 Nav izvērtēšanas vadības ierīces uz kabīnes jumta.

@@ -22,45 +22,45 @@ class InspectionSeeder extends Seeder
             $lift_id = \App\Models\Lift::query()->where('reg_number', 'like',
                 $inspection['parbaude_lifts_reg_nr'])->pluck('id')->toArray()[0];
             //    dd($lift_id);
-            $expert = substr($inspection['parbaude_nr'], -2);
+            $expert       = substr($inspection['parbaude_nr'], -2);
             $lift_manager = $inspection['parbaude_valditajs'];
-            if ($expert === '02' && $lift_manager !== '99'){
-
-            switch ($inspection['parbaude_mehanikis_vards_uzvards']) {
-                case 'Olegs Jevstratovs':
-                    $participant_1 = 1;
-                    $participant_2 = null;
-                    break;
-                case 'Olegs Bogorads':
-                    $participant_1 = 2;
-                    $participant_2 = null;
-                    break;
-                case 'Jevgēnijs Prihodjko':
-                    $participant_1 = 3;
-                    $participant_2 = null;
-                    break;
-                case 'Boris':
-                    $participant_1 = 4;
-                    $participant_2 = null;
-                    break;
-                case 'Aleksejs Kijasovs':
-                    $participant_1 = 5;
-                    $participant_2 = null;
-                    break;
-                case 'Boris & Aleks':
-                    $participant_1 = 4;
-                    $participant_2 = 5;
-                    break;
-                case 'Martiņš & Artūrs':
-                    $participant_1 = 6;
-                    $participant_2 = 7;
-                    break;
-                default:
-                    $participant_1 = null;
-                    $participant_2 = null;
+            if ($expert === '02' && $lift_manager !== '99') {
+                switch ($inspection['parbaude_mehanikis_vards_uzvards']) {
+                    case 'Olegs Jevstratovs':
+                        $participant_1 = 1;
+                        $participant_2 = null;
+                        break;
+                    case 'Olegs Bogorads':
+                        $participant_1 = 2;
+                        $participant_2 = null;
+                        break;
+                    case 'Jevgēnijs Prihodjko':
+                        $participant_1 = 3;
+                        $participant_2 = null;
+                        break;
+                    case 'Boris':
+                        $participant_1 = 4;
+                        $participant_2 = null;
+                        break;
+                    case 'Aleksejs Kijasovs':
+                        $participant_1 = 5;
+                        $participant_2 = null;
+                        break;
+                    case 'Boris & Aleks':
+                        $participant_1 = 4;
+                        $participant_2 = 5;
+                        break;
+                    case 'Martiņš & Artūrs':
+                        $participant_1 = 6;
+                        $participant_2 = 7;
+                        break;
+                    default:
+                        $participant_1 = null;
+                        $participant_2 = null;
+                }
             }
-
-            DB::table('lifts')->where('id', $lift_id)->update(['lift_manager_id' => intval($inspection['parbaude_valditajs'])]);
+            DB::table('lifts')->where('id',
+                $lift_id)->update(['lift_manager_id' => intval($inspection['parbaude_valditajs'])]);
             DB::table('inspections')->insert(
                 [
                     'protocol_number'      => $inspection['parbaude_nr'],
@@ -84,19 +84,48 @@ class InspectionSeeder extends Seeder
                     'participant_1'      => $participant_1,
                     'participant_2'      => $participant_2,
                     'notes'              => $inspection['piezimes'],
-                    'notes_for_protokol' => serialize($inspection['atkartotas_parbaudes_iemesls']),
+                    'notes_for_protokol' => json_encode([], JSON_UNESCAPED_UNICODE),
 
-                    'non_compliances_0' => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_0']),
+//                    'non_compliances_0' => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_0']),
+//                        JSON_UNESCAPED_UNICODE),
+
+                    'non_compliances_0' => $inspection['parbaude_neatbilstibas_0'] !== '' ? json_encode(explode("\n",
+                        $inspection['parbaude_neatbilstibas_0']),
+                        JSON_UNESCAPED_UNICODE) : json_encode([], JSON_UNESCAPED_UNICODE),
+
+                    'non_compliances_1' => $inspection['parbaude_neatbilstibas_1'] !== '' ? json_encode(explode("\n",
+                        $inspection['parbaude_neatbilstibas_1']),
+                        JSON_UNESCAPED_UNICODE) : json_encode([], JSON_UNESCAPED_UNICODE),
+
+                    'non_compliances_2' => $inspection['parbaude_neatbilstibas_2'] !== '' ? json_encode(explode("\n",
+                        $inspection['parbaude_neatbilstibas_2']),
+                        JSON_UNESCAPED_UNICODE) : json_encode([], JSON_UNESCAPED_UNICODE),
+
+                    'non_compliances_3'  => $inspection['parbaude_neatbilstibas_3'] !== '' ? json_encode(explode("\n",
+                        $inspection['parbaude_neatbilstibas_3']),
+                        JSON_UNESCAPED_UNICODE) : json_encode([], JSON_UNESCAPED_UNICODE),
+
+
+//                    'non_compliances_2'  => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_2']),
+//                        JSON_UNESCAPED_UNICODE),
+
+//                    'non_compliances_3'  => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_3']),
+//                        JSON_UNESCAPED_UNICODE),
+                    'extra_check_reason' => json_encode($inspection['atkartotas_parbaudes_iemesls'],
                         JSON_UNESCAPED_UNICODE),
-                    'non_compliances_1' => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_1']),
-                        JSON_UNESCAPED_UNICODE),
-                    'non_compliances_2' => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_2']),
-                        JSON_UNESCAPED_UNICODE),
-                    'non_compliances_3' => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_3']),
-                        JSON_UNESCAPED_UNICODE),
+                    'not_checked_forced' => array_key_exists('parbaude_netika_parbaudits', $inspection) ?
+                        $inspection['parbaude_netika_parbaudits'] !== '' ?
+                            json_encode(explode("\n",
+                                preg_replace('/\t+/S', '', $inspection['parbaude_netika_parbaudits'])),
+                                JSON_UNESCAPED_UNICODE) : json_encode([], JSON_UNESCAPED_UNICODE)
+
+
+                        :
+                        json_encode([], JSON_UNESCAPED_UNICODE),
+                    // строка -> удаляются все табы -> создаётся массив с разделением по новой строке -> переводится в строку для сохранения в базе
                 ]
             );
-            }
         }
     }
+//    }
 }

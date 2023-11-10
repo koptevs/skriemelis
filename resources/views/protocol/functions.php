@@ -1,11 +1,6 @@
 <?php
 
-function get_lift_data_by_id($id)
-{
-    global $lifti;
 
-    return $lifti[$id];
-}
 
 function left_padding()
 {
@@ -62,10 +57,10 @@ function numbered_string_to_array($mystr)
 
     $without_tabs            = preg_replace('/\s+/S', ' ', $mystr);
     $string_without_newlines = preg_replace('~[\r\n]+~', '', $without_tabs);
+//    dd( $string_without_newlines );
     $array_of_characters     = mb_str_split(trim($string_without_newlines));
     $arr_len                 = count($array_of_characters);
-    // var_dump( $array_of_characters );
-    // die();
+//    dd( $array_of_characters );
 
     $result = array();
 
@@ -101,27 +96,27 @@ function numbered_string_to_array($mystr)
     return $result;
 }
 
-function getPositionForCheckbox($pdf)
-{
-    global $checkboxes;
-    $x            = $pdf->GetX();
-    $y            = $pdf->GetY();
-    $checkboxes[] = array(
-        'x' => $x,
-        'y' => $y,
-    );
-}
+//function getPositionForCheckbox($pdf)
+//{
+//    global $checkboxes;
+//    $x            = $pdf->GetX();
+//    $y            = $pdf->GetY();
+//    $checkboxes[] = array(
+//        'x' => $x,
+//        'y' => $y,
+//    );
+//}
 
-function getPositionForEmptyCheckbox($pdf)
-{
-    global $empty_checkboxes;
-    $x                  = $pdf->GetX();
-    $y                  = $pdf->GetY();
-    $empty_checkboxes[] = array(
-        'x' => $x,
-        'y' => $y,
-    );
-}
+//function getPositionForEmptyCheckbox($pdf)
+//{
+//    global $empty_checkboxes;
+//    $x                  = $pdf->GetX();
+//    $y                  = $pdf->GetY();
+//    $empty_checkboxes[] = array(
+//        'x' => $x,
+//        'y' => $y,
+//    );
+//}
 
 function check_list_divider($multiplier = 1)
 {

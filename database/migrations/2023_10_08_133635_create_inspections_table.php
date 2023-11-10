@@ -45,6 +45,9 @@ return new class extends Migration
             $table->text('non_compliances_2')->nullable();
             $table->text('non_compliances_3')->nullable();
 
+//            $table->text('repeated_check_reason')->nullable();
+            $table->text('extra_check_reason')->nullable();
+            $table->text('not_checked_forced')->nullable();
 
             $table->text('notes')->nullable();
             $table->text('notes_for_protokol')->nullable();

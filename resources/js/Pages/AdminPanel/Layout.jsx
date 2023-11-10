@@ -104,7 +104,7 @@ const Drawer = styled(MuiDrawer, {
 export default function Layout({ children, auth }) {
     const theme = useTheme();
     const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
-    console.log(isSmall);
+    // console.log(isSmall);
     const colorMode = React.useContext(ColorModeContext);
     const [open, setOpen] = React.useState(!isSmall);
 
