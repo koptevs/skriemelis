@@ -139,8 +139,8 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
             inspectionDateNextNormal: dayjs().add(1, "year"),
             inspectionType: "kārtējā",
             inspectionNextType: "kārtējā",
-            protocolNumber: "04.45/518-23/02",
-            liftId: "4CL013877",
+            // protocolNumber: "04.45/518-23/02",
+            // liftId: "4CL013877",
             nonCompliances1: [],
             nonCompliances2: [],
             notes: "",
@@ -153,7 +153,6 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
     const { errors: inertiaErrors } = usePage().props;
 
     const onSubmit = (data) => {
-        console.log(page, data);
         const dataToSent = {
             protocol_number: data.protocolNumber,
             lift_id: data.liftId,
@@ -194,6 +193,7 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 ? data.notes_for_protokol
                 : "",
         };
+        console.log(dataToSent);
 
         // router.post(route("inspections.store"));
         // router.post(route("inspections.store"), data);
@@ -756,13 +756,12 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                         <Controller
                             control={control}
                             name="manager"
-                            // rules={{
-                            //     required: {
-                            //         value: true,
-                            //         message:
-                            //             "Lift registration number is required.",
-                            //     },
-                            // }}
+                            rules={{
+                                required: {
+                                    value: true,
+                                    message: "Lift Manager is required.",
+                                },
+                            }}
                             render={({ field, fieldState: { error } }) => {
                                 const { onChange, value, ref } = field;
                                 return (
