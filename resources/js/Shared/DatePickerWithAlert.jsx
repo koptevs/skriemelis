@@ -32,7 +32,8 @@ export default function DatePickerWithAlert({
                 name={name}
                 render={({ field: { onChange, onBlur, value, ref } }) => (
                     <DatePicker
-                        format="D. MMMM YYYY"
+                        // format="D. MMMM YYYY"
+                        format="D.MM.YYYY"
                         label={label}
                         // defaultValue={dayjs()}
                         onChange={onChange}

@@ -167,37 +167,45 @@ export default function Layout({ children, auth }) {
                         {
                             text: "Dashboard",
                             href: "/dashboard",
-                            route: "dashboard",
+                            routes: ["dashboard"],
                             icon: <DashboardIcon />,
                         },
                         {
                             text: "Lifts",
                             href: "/lifts",
-                            route: "lifts.index",
+                            routes: ["lifts.index", "lifts.show", "lifts.edit"],
                             icon: <ElevatorOutlinedIcon />,
                         },
                         {
                             text: "Lift Managers",
                             href: "/lift-managers",
-                            route: "lift-managers.index",
+                            routes: [
+                                "lift-managers.index",
+                                "lift-managers.show",
+                                "lift-managers.edit",
+                            ],
                             icon: <ManageAccountsOutlinedIcon />,
                         },
                         {
                             text: "Mechanics",
                             href: "/mechanics",
-                            route: "mechanics.index",
+                            routes: [
+                                "mechanics.index",
+                                "mechanics.show",
+                                "mechanics.edit",
+                            ],
                             icon: <BuildOutlinedIcon />,
                         },
                         {
                             text: "Inspections",
                             href: "/inspections",
-                            route: "inspections",
+                            routes: ["inspections.index", "inspections.show"],
                             icon: <NoteAddOutlinedIcon />,
                         },
                         {
                             text: "Create inspection",
                             href: "/inspections/create",
-                            route: "inspections.create",
+                            routes: ["inspections.create"],
                             icon: <NoteAddOutlinedIcon />,
                         },
                     ].map((menuItem, index) => (
@@ -220,22 +228,32 @@ export default function Layout({ children, auth }) {
                                         minWidth: 0,
                                         mr: open ? 3 : "auto",
                                         justifyContent: "center",
-                                        color:
-                                            route().current() === menuItem.route
-                                                ? theme.palette.activeLink
-                                                : "",
+                                        color: menuItem.routes.includes(
+                                            route().current()
+                                        )
+                                            ? theme.palette.activeLink
+                                            : "",
                                     }}
                                 >
                                     {menuItem.icon}
                                 </ListItemIcon>
 
                                 <ListItemText
-                                    primary={menuItem.text}
+                                    primary={
+                                        menuItem.text +
+                                        (menuItem.routes.includes(
+                                            route().current()
+                                        )
+                                            ? " - " +
+                                              route().current().split(".")[1]
+                                            : "")
+                                    }
                                     sx={{
                                         opacity: open ? 1 : 0,
                                         "& .MuiTypography-root":
-                                            route().current() ===
-                                                menuItem.route && {
+                                            menuItem.routes.includes(
+                                                route().current()
+                                            ) && {
                                                 fontWeight: "bold",
                                                 color: theme.palette.activeLink,
                                             },

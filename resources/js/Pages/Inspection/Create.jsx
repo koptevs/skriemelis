@@ -29,23 +29,6 @@ import DatePickerWithAlert from "@/Shared/DatePickerWithAlert";
 
 import Layout from "../AdminPanel/Layout";
 
-import atsperes from "@/img/atsperes.png";
-
-import bremzes from "@/img/bremzes.png";
-
-import evakuacija from "@/img/evakuacija.png";
-
-import kovriki from "@/img/kovriki.png";
-import lamp from "@/img/lamp.png";
-import manjetsi from "@/img/manjetsi.png";
-import mitrums from "@/img/mitrums.png";
-import os from "@/img/os.png";
-
-import rules from "@/img/rules.png";
-import skriemelis from "@/img/skriemelis.png";
-import skriemelis_nevienmerigs from "@/img/skriemelis_nevienmerigs.png";
-import zeme from "@/img/zeme.png";
-
 import CheckboxWithImage from "@/Shared/CheckboxWithImage";
 
 import ZvansNedarbojas from "./Fields/ZvansNedarbojas";
@@ -157,6 +140,7 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
             // liftId: "4CL013877",
             nonCompliances1: [],
             nonCompliances2: [],
+            nonCompliances3: [],
             notes: "",
         },
     });
@@ -167,6 +151,13 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
     const { errors: inertiaErrors } = usePage().props;
 
     const onSubmit = (data) => {
+        let extraCheckReasonEnterString = "";
+        if (data.inspectionType === "atkārtotā") {
+            extraCheckReasonEnterString = "Atkārtotās pārbaudes iemesls:";
+        } else if (data.inspectionType === "ārpuskārtas") {
+            extraCheckReasonEnterString = "Ārpuskārtas pārbaudes iemesls:";
+        }
+
         const dataToSent = {
             protocol_number: data.protocolNumber,
             lift_id: data.liftId,
@@ -200,7 +191,14 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 ? // ? nonCompliances3.join(" ")
                   JSON.stringify(nonCompliances3)
                 : JSON.stringify([]),
-            extra_check_reason: JSON.stringify([]),
+            // extra_check_reason: JSON.stringify([]),
+            extra_check_reason:
+                data.inspectionType !== "kārtējā"
+                    ? JSON.stringify([
+                          extraCheckReasonEnterString,
+                          data.extraCheckReason,
+                      ])
+                    : JSON.stringify([]),
             not_checked_forced: JSON.stringify([]),
             notes: data.notes ? data.notes : "",
             notes_for_protokol: data.notes_for_protokol
@@ -441,6 +439,7 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                             >
                                 Pārbaudes veids
                             </FormLabel>
+
                             <RadioGroup
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
@@ -836,6 +835,41 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                         />
                     </Grid>
                 </Grid>
+                {(getValues("inspectionType") === "atkārtotā" ||
+                    getValues("inspectionType") === "ārpuskārtas") && (
+                    <div className=" w-full pl-2 py-1">
+                        {/* <Typography className="font-bold  text-slate-600 tracking-wider">
+                            {getValues("inspectionType") === "atkārtotā"
+                                ? "Atkārtotas pārbaudes iemesls"
+                                : "Ārpuskārtas pārbaudes iemesls"}
+                        </Typography> */}
+                        <TextField
+                            multiline
+                            rows={4}
+                            size="small"
+                            label={
+                                getValues("inspectionType") === "atkārtotā"
+                                    ? "Atkārtotas pārbaudes iemesls"
+                                    : "Ārpuskārtas pārbaudes iemesls"
+                            }
+                            fullWidth
+                            // autoComplete
+                            helperText={errors.notes?.message}
+                            {...register("extraCheckReason")}
+                            sx={{
+                                "& .MuiFormHelperText-root": {
+                                    color: "red",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    marginTop: "-0.3em",
+                                    padding: "5px",
+                                    fontSize: "16px",
+                                    backgroundColor: "white",
+                                },
+                            }}
+                        />
+                    </div>
+                )}
                 <div className="bg-slate-200 w-full pl-2 py-1">
                     <Typography className="font-bold  text-slate-600 tracking-wider">
                         BEDRE
