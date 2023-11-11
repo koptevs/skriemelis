@@ -189,6 +189,12 @@ export default function Layout({ children, auth }) {
                             icon: <BuildOutlinedIcon />,
                         },
                         {
+                            text: "Inspections",
+                            href: "/inspections",
+                            route: "inspections",
+                            icon: <NoteAddOutlinedIcon />,
+                        },
+                        {
                             text: "Create inspection",
                             href: "/inspections/create",
                             route: "inspections.create",

@@ -35,7 +35,8 @@ const navItems = [
     { id: 1, name: "DASHBOARD", href: "dashboard" },
     { id: 2, name: "LIFTS", href: "lifts.index" },
     { id: 3, name: "MANAGERS", href: "lift-managers.index" },
-    { id: 4, name: "MECHANICS", href: "mechanics.index" },
+    { id: 4, name: "INSPECTIONS", href: "inspections.index" },
+    { id: 5, name: "MECHANICS", href: "mechanics.index" },
 ];
 
 function Topbar(props) {

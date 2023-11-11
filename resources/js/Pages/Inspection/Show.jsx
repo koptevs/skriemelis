@@ -3,14 +3,14 @@ import { Link, Head, router } from "@inertiajs/react";
 
 import dayjs from "dayjs";
 
-const Show = ({ inspection }) => {
+const Show = ({ inspection, lift }) => {
     const nonCompliances0Array = JSON.parse(inspection.non_compliances_0);
     const nonCompliances1Array = JSON.parse(inspection.non_compliances_1);
     const nonCompliances2Array = JSON.parse(inspection.non_compliances_2);
     const nonCompliances3Array = JSON.parse(inspection.non_compliances_3);
     return (
         <div>
-            {/* {JSON.stringify(inspection.id, 2, 2)} */}
+            {/*<pre>{JSON.stringify(inspection, 2, 2)}</pre>*/}
             <h1>{inspection.protocol_number}</h1>
             <a
                 href={route("inspections.protocol", inspection.id)}
@@ -41,7 +41,8 @@ const Show = ({ inspection }) => {
                       <div key={index}>{string}</div>
                   ))
                 : null}
-            <pre>{JSON.stringify(inspection, 2, 2)}</pre>
+            {/* <pre>{JSON.stringify(inspection, 2, 2)}</pre> */}
+            {/* <pre>{JSON.stringify(lift, 2, 2)}</pre> */}
         </div>
     );
 };

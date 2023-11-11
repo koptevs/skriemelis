@@ -32,7 +32,7 @@ class InspectionController extends Controller
     {
         return Inertia::render(
             'Inspection/Index', [
-                'inspections' => Inspection::all()
+                'inspections' => Inspection::with('lift')->get()
             ]
         );
     }
@@ -95,12 +95,14 @@ class InspectionController extends Controller
      */
     public function show(Inspection $inspection)
     {
+//        dd($inspection->lift_id);
 //        dd(json_decode("[\"3.1 Mašīntelpā lūka ir bojāta.\",\"3.1 Mašīntelpā nav 5 cm. apmaļu grīdā ap nesošām trosēm.\",\"3.1 Nav dielektrisko paklāju pie galvenā barošanas slēdža.\",\"3.6 Eļļas noplūde no lifta mašīnas reduktora.\",\"4.1 Lifta kabīnes grīdas segums ir bojāts.\",\"5.3 Palielināta lifta kabīnes un pretsvara brīvkustība vadotnēs (nolietoti vādkurpji).\",\"9.0 Aizsardzības aparāti VA1 un VA3 vadības skapī ir nolietoti.\"]",
 //            true));
 
         return Inertia::render(
             'Inspection/Show', [
-                'inspection' => $inspection
+                'inspection' => $inspection,
+                'lift' => Lift::find($inspection->lift_id)
             ]
         );
     }

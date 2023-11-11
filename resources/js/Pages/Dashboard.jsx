@@ -15,7 +15,13 @@ export default function Dashboard({ auth }) {
             <Typography sx={{ marginTop: "100px" }} variant="h2">
                 SKRIEMELIS
             </Typography>
-            <img src={loviteli} alt="" width="500px" height="auto" />
+            <img
+                src={loviteli}
+                alt=""
+                width="100%"
+                height="auto"
+                maxWidth="200px"
+            />
         </Container>
     );
 }

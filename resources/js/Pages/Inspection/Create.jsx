@@ -98,6 +98,20 @@ import AtsperesBremzuNolietotas from "./Fields/AtsperesBremzuNolietotas";
 import UzlikasBremzuNolietotas from "./Fields/UzlikasBremzuNolietotas";
 import VadskriemelaNodilums from "./Fields/VadskriemelaNodilums";
 import VadskriemelaNevienmerigsNodilums from "./Fields/VadskriemelaNevienmerigsNodilums";
+import NKUAprikojumsNolietots from "./Fields/NKUAprikojumsNolietots";
+import NKUAizsardzibasAutomatiNolietoti from "./Fields/NKUAizsardzibasAutomatiNolietoti";
+import NKUKontaktoriNolietoti from "./Fields/NKUKontaktoriNolietoti";
+import NKUAizsardzibasAutomatiUnKontaktoriNolietoti from "./Fields/NKUAizsardzibasAutomatiUnKontaktoriNolietoti";
+import NKUAizsardzibasAutomatsVA1Nolietots from "./Fields/NKUAizsardzibasAutomatsVA1Nolietots";
+import NKUAizsardzibasAutomatsVA2Nolietots from "./Fields/NKUAizsardzibasAutomatsVA2Nolietots";
+import NKUAizsardzibasAutomatsVA3Nolietots from "./Fields/NKUAizsardzibasAutomatsVA3Nolietots";
+import NKUAizsardzibasAutomatiVA1UnVA2Nolietoti from "./Fields/NKUAizsardzibasAutomatiVA1UnVA2Nolietoti";
+import NKUAizsardzibasAutomatiVA1UnVA3Nolietoti from "./Fields/NKUAizsardzibasAutomatiVA1UnVA3Nolietoti";
+import NKUAizsardzibasAutomatiVA2UnVA3Nolietoti from "./Fields/NKUAizsardzibasAutomatiVA2UnVA3Nolietoti";
+import RevizijaNedarbojas from "./Fields/RevizijaNedarbojas";
+import RevizijasStopNedarbojas from "./Fields/RevizijasStopNedarbojas";
+import RevizijasNav from "./Fields/RevizijasNav";
+import StopJumtaNedarbojas from "./Fields/StopJumtaNedarbojas";
 
 export default function Create({ lifts, auth, mechanics, managers, page }) {
     const [nonCompliances0, setNonCompliances0] = React.useState([]);
@@ -849,52 +863,7 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                             control={control}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={3}>
-                        {!!nonCompliances1.length && (
-                            <Typography
-                                variant="h6"
-                                className="font-bold text-slate-700"
-                            >
-                                Neatbilstības ar vertējumu 1
-                            </Typography>
-                        )}
-
-                        {nonCompliances1.map((string) => (
-                            <p key={string} className="m-0">
-                                {string}
-                            </p>
-                        ))}
-
-                        {!!nonCompliances2.length && (
-                            <Typography
-                                variant="h6"
-                                className="font-bold text-slate-700"
-                            >
-                                Neatbilstības ar vertējumu 2
-                            </Typography>
-                        )}
-
-                        {nonCompliances2.map((string) => (
-                            <p key={string} className="m-0">
-                                {string}
-                            </p>
-                        ))}
-
-                        {!!nonCompliances3.length && (
-                            <Typography
-                                variant="h6"
-                                className="font-bold text-slate-700"
-                            >
-                                Neatbilstības ar vertējumu 3
-                            </Typography>
-                        )}
-
-                        {nonCompliances3.map((string) => (
-                            <p key={string} className="m-0">
-                                {string}
-                            </p>
-                        ))}
-                    </Grid>
+                    <Grid item xs={12} sm={3}></Grid>
                 </Grid>
                 <div className="bg-slate-200 w-full pl-2 py-1">
                     <Typography className="font-bold  text-slate-600 tracking-wider">
@@ -993,139 +962,33 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 </div>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={3}>
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Vadības stacijas elektriskais aprīkojums ir nolietojies."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
+                        <NKUAprikojumsNolietots control={control} />
+                        <NKUAizsardzibasAutomatiNolietoti control={control} />
+                        <NKUKontaktoriNolietoti control={control} />
+                        <NKUAizsardzibasAutomatiUnKontaktoriNolietoti
                             control={control}
-                            label={
-                                <Typography component="span">
-                                    Vadības stacijas elektriskais aprīkojums ir
-                                    nolietojies.
-                                </Typography>
-                            }
-                        />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāti vadības skapī ir nolietoti."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Aizsardzības aparāti vadības skapī ir
-                                    nolietoti.
-                                </Typography>
-                            }
-                        />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Elektriskie kontaktori vadības skapī ir nolietoti."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Elektriskie kontaktori vadības skapī ir
-                                    nolietoti.
-                                </Typography>
-                            }
-                        />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāti un elektriskie kontaktori vadības skapī ir nolietoti."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Aizsardzības aparāti un elektriskie
-                                    kontaktori vadības skapī ir nolietoti.
-                                </Typography>
-                            }
                         />
                     </Grid>
                     <Grid item xs={12} sm={3}>
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāts VA1 vadības skapī ir nolietots."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
+                        <NKUAizsardzibasAutomatsVA1Nolietots
                             control={control}
-                            label={
-                                <Typography component="span">
-                                    Aizsardzības aparāts VA1 vadības skapī ir
-                                    nolietots.
-                                </Typography>
-                            }
                         />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāts VA2 vadības skapī ir nolietots."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
+                        <NKUAizsardzibasAutomatsVA2Nolietots
                             control={control}
-                            label={
-                                <Typography component="span">
-                                    Aizsardzības aparāts VA2 vadības skapī ir
-                                    nolietots.
-                                </Typography>
-                            }
                         />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāts VA3 vadības skapī ir nolietots."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
+                        <NKUAizsardzibasAutomatsVA3Nolietots
                             control={control}
-                            label={
-                                <Typography component="span">
-                                    Aizsardzības aparāts VA3 vadības skapī ir
-                                    nolietots.
-                                </Typography>
-                            }
                         />
                     </Grid>
                     <Grid item xs={12} sm={3}>
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāti VA1 un VA2 vadības skapī ir nolietoti."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
+                        <NKUAizsardzibasAutomatiVA1UnVA2Nolietoti
                             control={control}
-                            label={
-                                <Typography component="span">
-                                    Aizsardzības aparāti VA1 un VA2 vadības
-                                    skapī ir nolietoti.
-                                </Typography>
-                            }
                         />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāti VA1 un VA3 vadības skapī ir nolietoti."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
+                        <NKUAizsardzibasAutomatiVA1UnVA3Nolietoti
                             control={control}
-                            label={
-                                <Typography component="span">
-                                    Aizsardzības aparāti VA1 un VA3 vadības
-                                    skapī ir nolietoti.
-                                </Typography>
-                            }
                         />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="9.0 Aizsardzības aparāti VA2 un VA3 vadības skapī ir nolietoti."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
+                        <NKUAizsardzibasAutomatiVA2UnVA3Nolietoti
                             control={control}
-                            label={
-                                <Typography component="span">
-                                    Aizsardzības aparāti VA2 un VA3 vadības
-                                    skapī ir nolietoti.
-                                </Typography>
-                            }
                         />
                     </Grid>
                     <Grid item xs={12} sm={3}></Grid>
@@ -1137,57 +1000,10 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 </div>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={3}>
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.4 Izvērtēšanas vadības ierīce uz kabīnes jumta nedarbojas."
-                            nonCompliancesLevel="3"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Izvērtēšanas vadības ierīce uz kabīnes jumta
-                                    nedarbojas.
-                                </Typography>
-                            }
-                        />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.4 Izvērtēšanas vadības ierīcei uz kabīnes jumta nedarbojas STOP poga."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Izvērtēšanas vadības ierīcei uz kabīnes
-                                    jumta nedarbojas STOP poga.
-                                </Typography>
-                            }
-                        />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.4 Nav izvērtēšanas vadības ierīces uz kabīnes jumta."
-                            nonCompliancesLevel="3"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Nav izvērtēšanas vadības ierīces uz kabīnes
-                                    jumta.
-                                </Typography>
-                            }
-                        />
-                        <CheckboxWithImage
-                            // className="ml-3.5 inline-block"
-                            rawName="3.9 Stopslēdzis kabīnes jumtā nedarbojas."
-                            nonCompliancesLevel="1"
-                            // imageSource={lamp}
-                            control={control}
-                            label={
-                                <Typography component="span">
-                                    Stopslēdzis kabīnes jumtā nedarbojas.
-                                </Typography>
-                            }
-                        />
+                        <RevizijaNedarbojas control={control} />
+                        <RevizijasStopNedarbojas control={control} />
+                        <RevizijasNav control={control} />
+                        <StopJumtaNedarbojas control={control} />
                     </Grid>
                 </Grid>
                 <div className="bg-slate-200 w-full pl-2 py-1">
@@ -1251,6 +1067,52 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                         />
                     </Grid>
                 </Grid>
+                <div style={{ width: "100%" }}>
+                    {!!nonCompliances1.length && (
+                        <Typography
+                            variant="h6"
+                            className="font-bold text-slate-700"
+                        >
+                            Neatbilstības ar vertējumu 1
+                        </Typography>
+                    )}
+
+                    {nonCompliances1.map((string) => (
+                        <p key={string} className="m-0">
+                            {string}
+                        </p>
+                    ))}
+
+                    {!!nonCompliances2.length && (
+                        <Typography
+                            variant="h6"
+                            className="font-bold text-slate-700"
+                        >
+                            Neatbilstības ar vertējumu 2
+                        </Typography>
+                    )}
+
+                    {nonCompliances2.map((string) => (
+                        <p key={string} className="m-0">
+                            {string}
+                        </p>
+                    ))}
+
+                    {!!nonCompliances3.length && (
+                        <Typography
+                            variant="h6"
+                            className="font-bold text-slate-700"
+                        >
+                            Neatbilstības ar vertējumu 3
+                        </Typography>
+                    )}
+
+                    {nonCompliances3.map((string) => (
+                        <p key={string} className="m-0">
+                            {string}
+                        </p>
+                    ))}
+                </div>
                 <div>{JSON.stringify(nonCompliances1, 2, 2)}</div>
                 <div>{JSON.stringify(nonCompliances2, 2, 2)}</div>
                 <div>{JSON.stringify(nonCompliances3, 2, 2)}</div>

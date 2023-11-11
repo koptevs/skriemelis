@@ -12,6 +12,8 @@ const Index = ({ inspections }) => {
     const colors = colorTokens(theme.palette.mode);
     return (
         <Layout>
+            {/*<pre>{JSON.stringify(inspections, 2, 2)}</pre>*/}
+
             <Head title="Lifti" />
             <Grid container spacing={3}>
                 {/* <pre>{JSON.stringify(inspections, 2, 2)}</pre> */}
@@ -53,6 +55,23 @@ const Index = ({ inspections }) => {
                                     dayjs(inspection.date_end).format(
                                         "DD.MM.YYYY"
                                     )}
+                            </Typography>
+                            <Link
+                                component={InertiaLink}
+                                href={route("lifts.show", inspection.lift.id)}
+                                sx={{
+                                    textDecoration: "none",
+                                    display: "inline-block",
+                                }}
+                            >
+
+                            <Typography sx={{ fontWeight: 600}}>
+                                {inspection.lift.reg_number}
+                            </Typography>
+
+                            </Link>
+                            <Typography sx={{ fontWeight: 600}}>
+                                {inspection.lift.address}
                             </Typography>
                         </Link>
                     </Grid>
