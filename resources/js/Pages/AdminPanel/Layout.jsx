@@ -199,7 +199,11 @@ export default function Layout({ children, auth }) {
                         {
                             text: "Inspections",
                             href: "/inspections",
-                            routes: ["inspections.index", "inspections.show"],
+                            routes: [
+                                "inspections.index",
+                                "inspections.show",
+                                "inspections.edit",
+                            ],
                             icon: <NoteAddOutlinedIcon />,
                         },
                         {
