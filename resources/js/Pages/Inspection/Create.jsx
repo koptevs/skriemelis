@@ -158,6 +158,58 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
             extraCheckReasonEnterString = "Ārpuskārtas pārbaudes iemesls:";
         }
 
+        const extraCheckReason = [];
+        if (data.inspectionType !== "kārtējā") {
+            extraCheckReason.push(extraCheckReasonEnterString);
+
+            if (data.inspectionType === "ārpuskārtas") {
+                if (data.pacelsanasMehanismaNomaina) {
+                    extraCheckReason.push(
+                        "lifta pacelšanas mehānisma nomaiņa."
+                    );
+                    extraCheckReason.push(
+                        "Mehānisms tika slogots ar slodzi +25% no nominālas un atbilst prasībām."
+                    );
+                }
+                if (data.atrumaIerobezotajaNomaina) {
+                    extraCheckReason.push("ātruma ierobežotāja nomaņia.");
+                }
+                nonCompliances0.push("test");
+                // data.vertZero !== "" ? data.vertZero.split("\n") : [];
+            }
+            if (data.inspectionType === "atkārtotā") {
+                if (data.NovNeatb2) {
+                    extraCheckReason.push(
+                        "Noverstas kārtējās pārbaudes neatbilstības ar vērtējumu 2:"
+                    );
+                }
+                if (data.NovNeatb3) {
+                    extraCheckReason.push(
+                        "Noverstas kārtējās pārbaudes neatbilstības ar vērtējumu 3:"
+                    );
+                }
+            }
+            if (data.extraCheckReasonTextField !== "") {
+                extraCheckReason.push(data.extraCheckReasonTextField);
+            }
+        }
+
+        const notCheckedForced = [];
+        if (data.inspectionType !== "kārtējā") {
+            if (data.pacelsanasMehanismaNomaina) {
+                notCheckedForced.push(
+                    `1.1 Lifta atbilstības deklarācija.\n1.2 Lifta atbilstības sertifikāts.\n1.3 Lifta lietošanas dokumentācija.\n1.4 Brīdinājumi, apzimējumi un informācija par lifta lietošanu.\n3.2 Ātruma ierobežotājs un ķērājierīce elektriskajiem liftiem.\n3.3 Augšupejošas kabīnes ātruma ierobežošanas ierīce.\n3.4 Vadības ierīces.\n3.5 Gala slēdži.\n3.7 Trauksmes ierīce ārkārtas gadījumos.\n3.8 Darbināšana ārkārtas gadījumos.\n3.9 Lifta apstadināšanas ierīces.\n4.1 Lifta kabīne.\n4.2 Celtspējas kontroles ierīce.\n5.1 Šahtas atbilstība.\n5.2 Šahtas nožogojumi.\n5.3 Vadotnes un metālkonstrukcija.\n5.4 Lifta buferi.\n5.5 Pretsvars un kabīnes jumts.\n6.1 Hidraulisko liftu drošības ierīces.\n6.2 Lifta hidrauliskās sistēmas cauruļvadi.\n7.1 Šahtas un kabīnes durvis.\n7.2 Durvju slēgšanas un drošības ierīces.\n8.0 Apgaismojumi.\n9.0 Elektriskās iekārtas un ietaises.`
+                );
+            }
+            if (data.atrumaIerobezotajaNomaina) {
+                notCheckedForced.push(
+                    `1.1 Lifta atbilstības deklarācija.\n1.2 Lifta atbilstības sertifikāts.\n1.3 Lifta lietošanas dokumentācija.\n2.1 Trošu, siksnu nostiepuma kontrole.\n2.2 Lifta piekāre un tās elementi.\n1.4 Brīdinājumi, apzimējumi un informācija par lifta lietošanu.\n3.1 Mašīntelpa un trīšu telpas.\n3.3 Augšupejošas kabīnes ātruma ierobežošanas ierīce.\n3.4 Vadības ierīces.\n3.5 Gala slēdži.\n3.6 Lifta mašīna.\n3.7 Trauksmes ierīce ārkārtas gadījumos.\n3.8 Darbināšana ārkārtas gadījumos.\n3.9 Lifta apstadināšanas ierīces.\n4.1 Lifta kabīne.\n4.2 Celtspējas kontroles ierīce.\n4.3 Lifta kabīnes līmeņošanas un apstāšanas precizitāte\n5.1 Šahtas atbilstība.\n5.2 Šahtas nožogojumi.\n5.3 Vadotnes un metālkonstrukcija.\n5.4 Lifta buferi.\n5.5 Pretsvars un kabīnes jumts.\n6.1 Hidraulisko liftu drošības ierīces.\n6.2 Lifta hidrauliskās sistēmas cauruļvadi.\n7.1 Šahtas un kabīnes durvis.\n7.2 Durvju slēgšanas un drošības ierīces.\n8.0 Apgaismojumi.\n9.0 Elektriskās iekārtas un ietaises.`
+                );
+            }
+        }
+        // NovNeatb2
+        // NovNeatb3
+
         const dataToSent = {
             protocol_number: data.protocolNumber,
             lift_id: data.liftId,
@@ -175,9 +227,8 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
             participant_1: data.participant1Id ? data.participant1Id : null,
             participant_2: data.participant2Id ? data.participant2Id : null,
             lift_manager: data.manager,
-            non_compliances_0: !!nonCompliances0.length
-                ? // ? nonCompliances0.join(" ")
-                  JSON.stringify(nonCompliances0)
+            non_compliances_0: nonCompliances0.length
+                ? JSON.stringify(nonCompliances0)
                 : JSON.stringify([]),
             non_compliances_1: !!nonCompliances1.length
                 ? // ? nonCompliances1.join(" ")
@@ -192,14 +243,9 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                   JSON.stringify(nonCompliances3)
                 : JSON.stringify([]),
             // extra_check_reason: JSON.stringify([]),
-            extra_check_reason:
-                data.inspectionType !== "kārtējā"
-                    ? JSON.stringify([
-                          extraCheckReasonEnterString,
-                          data.extraCheckReason,
-                      ])
-                    : JSON.stringify([]),
-            not_checked_forced: JSON.stringify([]),
+            extra_check_reason: JSON.stringify(extraCheckReason),
+
+            not_checked_forced: JSON.stringify(notCheckedForced),
             notes: data.notes ? data.notes : "",
             notes_for_protokol: data.notes_for_protokol
                 ? data.notes_for_protokol
@@ -235,6 +281,10 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
 
     React.useEffect(() => {
         const subscription = watch((value, { name, type }) => {
+            // console.log("Watch", value.vertZero);
+            setNonCompliances0(() =>
+                value.vertZero ? value.vertZero.split("\n") : []
+            );
             setNonCompliances1(() =>
                 objectWithNotesToArrayOfStrings(value.nonCompliances1)
             );
@@ -838,11 +888,92 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 {(getValues("inspectionType") === "atkārtotā" ||
                     getValues("inspectionType") === "ārpuskārtas") && (
                     <div className=" w-full pl-2 py-1">
-                        {/* <Typography className="font-bold  text-slate-600 tracking-wider">
+                        <Typography
+                            variant="h5"
+                            className="font-bold  text-slate-600 tracking-wider"
+                        >
                             {getValues("inspectionType") === "atkārtotā"
                                 ? "Atkārtotas pārbaudes iemesls"
                                 : "Ārpuskārtas pārbaudes iemesls"}
-                        </Typography> */}
+                        </Typography>
+                        {getValues("inspectionType") === "atkārtotā" && (
+                            <>
+                                <FormControlLabel
+                                    control={
+                                        <Controller
+                                            name="NovNeatb2"
+                                            control={control}
+                                            render={({ field: props }) => (
+                                                <Checkbox
+                                                    className={`font-bold`}
+                                                    {...props}
+                                                />
+                                            )}
+                                        />
+                                    }
+                                    label="Noverstas kārtējās pārbaudes neatbilstības ar vērtējumu 2"
+                                />
+                                <FormControlLabel
+                                    control={
+                                        <Controller
+                                            name="NovNeatb3"
+                                            control={control}
+                                            render={({ field: props }) => (
+                                                <Checkbox
+                                                    className={`font-bold`}
+                                                    {...props}
+                                                />
+                                            )}
+                                        />
+                                    }
+                                    label="Noverstas kārtējās pārbaudes neatbilstības ar vērtējumu 3"
+                                />
+                            </>
+                        )}
+                        {getValues("inspectionType") === "ārpuskārtas" && (
+                            <>
+                                <FormControlLabel
+                                    // className="hidden"
+                                    control={
+                                        <Controller
+                                            name="pacelsanasMehanismaNomaina"
+                                            control={control}
+                                            render={({ field: props }) => (
+                                                <Checkbox
+                                                    className={`font-bold`}
+                                                    {...props}
+                                                    // checked={props.value}
+                                                    // onChange={(e) =>
+                                                    //     props.onChange(e.target.checked)
+                                                    // }
+                                                />
+                                            )}
+                                        />
+                                    }
+                                    label="Pacelšanas mehānisma nomaiņa (noslogots ar 25%)"
+                                />
+                                <FormControlLabel
+                                    control={
+                                        <Controller
+                                            name="atrumaIerobezotajaNomaina"
+                                            control={control}
+                                            render={({ field: props }) => (
+                                                <Checkbox
+                                                    className={`font-bold`}
+                                                    {...props}
+                                                    // checked={props.value}
+                                                    // onChange={(e) =>
+                                                    //     props.onChange(e.target.checked)
+                                                    // }
+                                                />
+                                            )}
+                                        />
+                                    }
+                                    label="Ātruma ierobežotāja nomaņia"
+                                />
+                            </>
+                        )}
+
                         <TextField
                             multiline
                             rows={4}
@@ -855,19 +986,44 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                             fullWidth
                             // autoComplete
                             helperText={errors.notes?.message}
-                            {...register("extraCheckReason")}
+                            {...register("extraCheckReasonTextField")}
                             sx={{
                                 "& .MuiFormHelperText-root": {
                                     color: "red",
                                 },
                                 "& .MuiInputLabel-root": {
-                                    marginTop: "-0.3em",
-                                    padding: "5px",
-                                    fontSize: "16px",
-                                    backgroundColor: "white",
+                                    // marginTop: "-0.3em",
+                                    // padding: "5px",
+                                    // fontSize: "16px",
+                                    // backgroundColor: "white",
                                 },
                             }}
                         />
+
+                        {getValues("inspectionType") === "atkārtotā" && (
+                            <TextField
+                                multiline
+                                rows={4}
+                                size="small"
+                                label="Vertējums 0"
+                                fullWidth
+                                // autoComplete
+                                // helperText={errors.notes?.message}
+                                {...register("vertZero")}
+                                sx={{
+                                    marginTop: "1em",
+                                    "& .MuiFormHelperText-root": {
+                                        color: "red",
+                                    },
+                                    "& .MuiInputLabel-root": {
+                                        // marginTop: "-0.3em",
+                                        // padding: "5px",
+                                        // fontSize: "16px",
+                                        // backgroundColor: "white",
+                                    },
+                                }}
+                            />
+                        )}
                     </div>
                 )}
                 <div className="bg-slate-200 w-full pl-2 py-1">
