@@ -988,9 +988,8 @@ if (( ! $is_atkartota && ! $is_arpuskartas && $lift_manager_protocol_with_electr
 
 }
 
-
 // $output_address = explode( ',', $lifts['lifts_parbaudes_adrese'] )[0];
-$output_date = implode('.', array_reverse(explode('.', $inspection_date_start)));
+$output_date = implode('.', explode('-', $inspection_date_start));
 // dd($output_date);
 // $output_date = $inspection_date_start;
 $pdf->output('I', $output_date.'_'.$lift_reg_number.'_'.$lifts_parbaudes_adrese_short.'.pdf', true);

@@ -138,6 +138,7 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
             inspectionNextType: "kārtējā",
             // protocolNumber: "04.45/518-23/02",
             // liftId: "4CL013877",
+            nonCompliances0: [],
             nonCompliances1: [],
             nonCompliances2: [],
             nonCompliances3: [],
@@ -151,6 +152,21 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
     const { errors: inertiaErrors } = usePage().props;
 
     const onSubmit = (data) => {
+        const nonCompliances0 = !!data.nonCompliances0.length
+            ? data.nonCompliances0.split("\n")
+            : [];
+        const nonCompliances1 = objectWithNotesToArrayOfStrings(
+            data.nonCompliances1
+        );
+        const nonCompliances2 = objectWithNotesToArrayOfStrings(
+            data.nonCompliances2
+        );
+        const nonCompliances3 = objectWithNotesToArrayOfStrings(
+            data.nonCompliances3
+        );
+
+        // objectWithNotesToArrayOfStrings
+
         let extraCheckReasonEnterString = "";
         if (data.inspectionType === "atkārtotā") {
             extraCheckReasonEnterString = "Atkārtotās pārbaudes iemesls:";
@@ -230,25 +246,15 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
             non_compliances_0: nonCompliances0.length
                 ? JSON.stringify(nonCompliances0)
                 : JSON.stringify([]),
-            non_compliances_1: !!nonCompliances1.length
-                ? // ? nonCompliances1.join(" ")
-                  JSON.stringify(nonCompliances1)
-                : JSON.stringify([]),
-            non_compliances_2: !!nonCompliances2.length
-                ? // ? nonCompliances2.join(" ")
-                  JSON.stringify(nonCompliances2)
-                : JSON.stringify([]),
-            non_compliances_3: !!nonCompliances3.length
-                ? // ? nonCompliances3.join(" ")
-                  JSON.stringify(nonCompliances3)
-                : JSON.stringify([]),
-            // extra_check_reason: JSON.stringify([]),
+            non_compliances_1: JSON.stringify(nonCompliances1),
+            non_compliances_2: JSON.stringify(nonCompliances2),
+            non_compliances_3: JSON.stringify(nonCompliances3),
             extra_check_reason: JSON.stringify(extraCheckReason),
 
             not_checked_forced: JSON.stringify(notCheckedForced),
             notes: data.notes ? data.notes : "",
-            notes_for_protokol: data.notes_for_protokol
-                ? data.notes_for_protokol
+            notes_for_protokol: data.notesForProtokol
+                ? data.notesForProtokol
                 : "",
         };
         console.log(dataToSent);
@@ -279,24 +285,24 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
         return reducedWithNotes;
     };
 
-    React.useEffect(() => {
-        const subscription = watch((value, { name, type }) => {
-            // console.log("Watch", value.vertZero);
-            setNonCompliances0(() =>
-                value.vertZero ? value.vertZero.split("\n") : []
-            );
-            setNonCompliances1(() =>
-                objectWithNotesToArrayOfStrings(value.nonCompliances1)
-            );
-            setNonCompliances2(() =>
-                objectWithNotesToArrayOfStrings(value.nonCompliances2)
-            );
-            setNonCompliances3(() =>
-                objectWithNotesToArrayOfStrings(value.nonCompliances3)
-            );
-        });
-        return () => subscription.unsubscribe();
-    }, [watch]);
+    // React.useEffect(() => {
+    //     const subscription = watch((value, { name, type }) => {
+    //         // console.log("Watch", value.vertZero);
+    //         setNonCompliances0(() =>
+    //             value.vertZero ? value.vertZero.split("\n") : []
+    //         );
+    //         setNonCompliances1(() =>
+    //             objectWithNotesToArrayOfStrings(value.nonCompliances1)
+    //         );
+    //         setNonCompliances2(() =>
+    //             objectWithNotesToArrayOfStrings(value.nonCompliances2)
+    //         );
+    //         setNonCompliances3(() =>
+    //             objectWithNotesToArrayOfStrings(value.nonCompliances3)
+    //         );
+    //     });
+    //     return () => subscription.unsubscribe();
+    // }, [watch]);
 
     React.useEffect(() => {
         if (cleared) {
@@ -1009,7 +1015,7 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                                 fullWidth
                                 // autoComplete
                                 // helperText={errors.notes?.message}
-                                {...register("vertZero")}
+                                {...register("nonCompliances0")}
                                 sx={{
                                     marginTop: "1em",
                                     "& .MuiFormHelperText-root": {
@@ -1190,10 +1196,10 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 </div>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={3}>
-                        <RevizijaNedarbojas control={control} />
+                        {/* <RevizijaNedarbojas control={control} />
                         <RevizijasStopNedarbojas control={control} />
                         <RevizijasNav control={control} />
-                        <StopJumtaNedarbojas control={control} />
+                        <StopJumtaNedarbojas control={control} /> */}
                     </Grid>
                 </Grid>
                 <div className="bg-slate-200 w-full pl-2 py-1">
@@ -1257,7 +1263,7 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                         />
                     </Grid>
                 </Grid>
-                <div style={{ width: "100%" }}>
+                {/* <div style={{ width: "100%" }}>
                     {!!nonCompliances1.length && (
                         <Typography
                             variant="h6"
@@ -1305,7 +1311,7 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 </div>
                 <div>{JSON.stringify(nonCompliances1, 2, 2)}</div>
                 <div>{JSON.stringify(nonCompliances2, 2, 2)}</div>
-                <div>{JSON.stringify(nonCompliances3, 2, 2)}</div>
+                <div>{JSON.stringify(nonCompliances3, 2, 2)}</div> */}
                 <DevTool control={control} />
                 <Button
                     type="submit"
