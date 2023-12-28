@@ -1,33 +1,17 @@
 import CheckboxWithImage from "@/Shared/CheckboxWithImage";
 import React from "react";
-import { Typography } from "@mui/material";
 
-const NostiepejaSledzisNedarbojas = ({ control }) => {
+const NostiepejaSledzisNedarbojas = ({ register }) => {
     return (
         <CheckboxWithImage
             className="ml-3.5"
             rawName="2.1 Nedarbojas ātruma ierobežotāja nostiepēja kontroles slēdzis."
             nonCompliancesLevel="3"
-            control={control}
+            register={register}
             label={
                 <>
-                    <Typography
-                        component="span"
-                        // variant="h6"
-                        className="font-bold text-red-500"
-                    >
-                        Nostiepēja slēdzis{" "}
-                    </Typography>
-                    <Typography component="span">
-                        (ВНУ) bedrē nedarbojas{" "}
-                    </Typography>
-                    <Typography
-                        component="span"
-                        // variant="h6"
-                        className="font-bold text-red-500"
-                    >
-                        (3)
-                    </Typography>
+                    Nostiepēja slēdzis (ВНУ) bedrē nedarbojas{" "}
+                    <span style={{ color: "red" }}>(3)</span>
                 </>
             }
         />

@@ -3,22 +3,19 @@ import React from "react";
 import { Typography } from "@mui/material";
 import brivkustiba from "@/img/brivkustiba.png";
 
-const KabinesBrivkustiba = ({ control }) => {
+const KabinesBrivkustiba = ({ register }) => {
     return (
         <CheckboxWithImage
             rawName="5.3 Palielināta lifta kabīnes brīvkustība vadotnēs."
             nonCompliancesLevel="1"
             imageSource={brivkustiba}
-            control={control}
+            register={register}
             label={
                 <>
-                    <Typography
-                        component="span"
-                        className="text-red-500 font-bold"
-                    >
+                    <span style={{ color: "red", fontWeight: 700 }}>
                         Kabīnes{" "}
-                    </Typography>
-                    <Typography component="span">brīvkustība</Typography>
+                    </span>
+                    "brīvkustība"
                 </>
             }
         />

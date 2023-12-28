@@ -9,21 +9,18 @@ const CheckboxWithImage = ({
     control,
     label,
     className,
+    register,
 }) => {
-    const dotsReplacedWithThreePercentSymbols = rawName.replace(/\./g, "%%%");
+    const dotsReplacedWithThreePercentSymbols = rawName
+        .replace(/\./g, "%%%")
+        .replace(/\,/g, "&&&");
     const name = `nonCompliances${nonCompliancesLevel}.${dotsReplacedWithThreePercentSymbols}`;
     return (
         <div className="flex">
             {imageSource && (
-                <img
-                    src={imageSource}
-                    alt=""
-                    width="21px"
-                    height="21px"
-                    className="mr-1 mt-2"
-                />
+                <img src={imageSource} alt="" width="21px" height="21px" />
             )}
-            <FormControlLabel
+            {/* <FormControlLabel
                 className={className}
                 control={
                     <Controller
@@ -42,7 +39,11 @@ const CheckboxWithImage = ({
                     />
                 }
                 label={label}
-            />
+            /> */}
+            <label>
+                <input type="checkbox" {...register(name)} />
+                {label}
+            </label>
         </div>
     );
 };

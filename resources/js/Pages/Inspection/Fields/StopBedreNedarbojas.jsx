@@ -2,7 +2,7 @@ import CheckboxWithImage from "@/Shared/CheckboxWithImage";
 import React from "react";
 import { Typography } from "@mui/material";
 
-const StopNedarbojas = ({ control }) => {
+const StopNedarbojas = ({ control, register }) => {
     return (
         <CheckboxWithImage
             className="ml-3.5"
@@ -10,6 +10,7 @@ const StopNedarbojas = ({ control }) => {
             nonCompliancesLevel="3"
             // imageSource={brivkustiba}
             control={control}
+            register={register}
             label={
                 <>
                     <Typography

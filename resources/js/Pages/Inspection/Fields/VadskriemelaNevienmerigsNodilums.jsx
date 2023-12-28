@@ -1,21 +1,16 @@
 import CheckboxWithImage from "@/Shared/CheckboxWithImage";
 import React from "react";
 import skriemelis_nevienmerigs from "@/img/skriemelis_nevienmerigs.png";
-import { Typography } from "@mui/material";
 
-const VadskriemelaNevienmerigsNodilums = ({ control }) => {
+const VadskriemelaNevienmerigsNodilums = ({ register }) => {
     return (
         <CheckboxWithImage
             // className="ml-3.5 inline-block"
             rawName="3.6 Nevienmērīgs lifta mašīnas vadošā skriemeļa nodilums."
             nonCompliancesLevel="1"
             imageSource={skriemelis_nevienmerigs}
-            control={control}
-            label={
-                <Typography component="span">
-                    Nevienmērīgs lifta mašīnas vadošā skriemeļa nodilums.
-                </Typography>
-            }
+            register={register}
+            label={"Nevienmērīgs lifta mašīnas vadošā skriemeļa nodilums."}
         />
     );
 };

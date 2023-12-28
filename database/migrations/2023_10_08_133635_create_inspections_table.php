@@ -14,17 +14,17 @@ return new class extends Migration
         Schema::create('inspections', function (Blueprint $table) {
             $table->id();
             $table->string('protocol_number', 32);
-            $table->foreignId('lift_id');
+            $table->foreignId('lift_id')->nullable();
 //            $table->integer('lift_id');
 
             $table->enum('inspection_type', [
                 'Pirmreizējā', 'Kārtējā', 'Ārpuskārtas', 'Atkārtotā'
-            ]);
+            ])->nullable();
             $table->enum('inspection_next_type', [
                 'Pirmreizējā', 'Kārtējā', 'Ārpuskārtas', 'Atkārtotā'
-            ]);
-            $table->string('expert', 32);
-            $table->integer('lift_manager')->unsigned();
+            ])->nullable();
+            $table->integer('expert')->unsigned()->nullable();
+            $table->integer('lift_manager')->unsigned()->nullable();
 
 
             $table->date('date_start')->nullable();
@@ -32,12 +32,11 @@ return new class extends Migration
             $table->date('date_next')->nullable();
             $table->date('date_next_normal')->nullable();
 
-            $table->string('label', 32);
+            $table->string('label', 32)->nullable();
             $table->string('bir_number', 32)->nullable();
-            $table->string('inspection_result', 16)->nullable();
+            $table->integer('inspection_result')->unsigned()->nullable();
 
-            $table->integer('participant_1')->unsigned()->nullable();
-            $table->integer('participant_2')->unsigned()->nullable();
+            $table->string('participants')->nullable();
 
 
             $table->text('non_compliances_0')->nullable();

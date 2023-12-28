@@ -22,7 +22,7 @@ import FormLabel from "@mui/material/FormLabel";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 import DatePickerWithAlert from "@/Shared/DatePickerWithAlert";
@@ -136,8 +136,10 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
             inspectionDateNextNormal: dayjs().add(1, "year"),
             inspectionType: "kārtējā",
             inspectionNextType: "kārtējā",
-            // protocolNumber: "04.45/518-23/02",
-            // liftId: "4CL013877",
+            protocolNumber: "04.45/518-23/02",
+            // liftId: 1,
+            // manager: 1,
+            // label: "1234",
             nonCompliances0: [],
             nonCompliances1: [],
             nonCompliances2: [],
@@ -146,12 +148,16 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
         },
     });
 
-    const watchAllFields = watch();
+    const watchAllFields = watch(["inspectionType"]);
+
+    // console.log("inspectionType", watchAllFields);
 
     const { errors } = formState;
     const { errors: inertiaErrors } = usePage().props;
 
     const onSubmit = (data) => {
+        console.log("data:", data);
+
         const nonCompliances0 = !!data.nonCompliances0.length
             ? data.nonCompliances0.split("\n")
             : [];
@@ -223,15 +229,15 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 );
             }
         }
-        // NovNeatb2
-        // NovNeatb3
-
-        const dataToSent = {
+        const participants = [];
+        if (data.participant1Id) participants.push(data.participant1Id);
+        if (data.participant2Id) participants.push(data.participant2Id);
+        const dataToSend = {
             protocol_number: data.protocolNumber,
             lift_id: data.liftId,
             inspection_type: data.inspectionType,
             inspection_next_type: data.inspectionNextType,
-            expert: auth.user.expert_number,
+            expert: parseInt(auth.user.expert_number),
             date_start: data.inspectionDateStart.format("YYYY-MM-DD"),
             date_end: data.inspectionDateEnd.format("YYYY-MM-DD"),
             date_next: data.inspectionDateNext.format("YYYY-MM-DD"),
@@ -240,8 +246,7 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
             label: data.label,
             bir_number: data.birNumber,
             inspection_result: "",
-            participant_1: data.participant1Id ? data.participant1Id : null,
-            participant_2: data.participant2Id ? data.participant2Id : null,
+            participants: JSON.stringify(participants),
             lift_manager: data.manager,
             non_compliances_0: nonCompliances0.length
                 ? JSON.stringify(nonCompliances0)
@@ -253,15 +258,17 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
 
             not_checked_forced: JSON.stringify(notCheckedForced),
             notes: data.notes ? data.notes : "",
-            notes_for_protokol: data.notesForProtokol
-                ? data.notesForProtokol
-                : "",
+            notes_for_protokol: data.notesForProtocol
+                ? JSON.stringify(
+                      data.notesForProtocol.map((item) => item.value)
+                  )
+                : JSON.stringify([]),
         };
-        console.log(dataToSent);
+        console.log(dataToSend);
 
         // router.post(route("inspections.store"));
         // router.post(route("inspections.store"), data);
-        router.post(route("inspections.store"), dataToSent);
+        router.post(route("inspections.store"), dataToSend);
     };
 
     const objectWithNotesToArrayOfStrings = (someObject) => {
@@ -277,7 +284,7 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
             (item) => item[0] !== "notes"
         );
         const reduced = filteredWithoutNotes.map((item) =>
-            item[0].replace(/%%%/g, ".")
+            item[0].replace(/%%%/g, ".").replace(/&&&/g, ",")
         );
         const reducedWithNotes = notesValue
             ? reduced.concat(notesValue).sort()
@@ -314,6 +321,12 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
         }
         return () => {};
     }, [cleared]);
+
+    const { fields, append, prepend, remove, swap, move, insert } =
+        useFieldArray({
+            control, // control props comes from useForm (optional: if you are using FormContext)
+            name: "notesTest", // unique name for your Field Array
+        });
 
     return (
         <Layout>
@@ -1039,24 +1052,26 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 </div>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={3}>
-                        <StopBedreNestandarts control={control} />
-                        <StopBedreNedarbojas control={control} />
-                        <NostiepejsNolietots control={control} />
-                        <NostiepejaSledzisNedarbojas control={control} />
+                        <StopBedreNestandarts register={register} />
+                        <StopBedreNedarbojas register={register} />
+                        <NostiepejsNolietots register={register} />
+                        <NostiepejaSledzisNedarbojas register={register} />
                     </Grid>
                     <Grid item xs={12} sm={3}>
-                        <PretsvarsBuferisAttalumsNepietiek control={control} />
-                        <PretsvaraBrivkustiba control={control} />
-                        <KabinesBrivkustiba control={control} />
-                        <KabinesUnPretsvaraBrivkustiba control={control} />
+                        <PretsvarsBuferisAttalumsNepietiek
+                            register={register}
+                        />
+                        <PretsvaraBrivkustiba register={register} />
+                        <KabinesBrivkustiba register={register} />
+                        <KabinesUnPretsvaraBrivkustiba register={register} />
                     </Grid>
 
                     <Grid item xs={12} sm={3}>
-                        <AtsperesPretsvaraNolietotas control={control} />
-                        <PretsvaraVadkurpesNolietotas control={control} />
-                        <KabinesVadkurpesNolietotas control={control} />
+                        <AtsperesPretsvaraNolietotas register={register} />
+                        <PretsvaraVadkurpesNolietotas register={register} />
+                        <KabinesVadkurpesNolietotas register={register} />
                         <KabinesUnPretsvaraVadkurpesNolietotas
-                            control={control}
+                            register={register}
                         />
                     </Grid>
                     <Grid item xs={12} sm={3}></Grid>
@@ -1068,37 +1083,37 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 </div>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={2}>
-                        <ZvansNedarbojas control={control} />
+                        <ZvansNedarbojas register={register} />
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                        <VadibasAparatsNolietots control={control} />
+                        <VadibasAparatsNolietots register={register} />
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                        <ApdareKabineBojata control={control} />
-                        <ApdareKabineNolietota control={control} />
+                        <ApdareKabineBojata register={register} />
+                        <ApdareKabineNolietota register={register} />
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                        <GridaKabineBojata control={control} />
-                        <GridaKabineNolietota control={control} />
+                        <GridaKabineBojata register={register} />
+                        <GridaKabineNolietota register={register} />
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                        <GriestiKabineBojati control={control} />
-                        <GriestiKabineNolietoti control={control} />
+                        <GriestiKabineBojati register={register} />
+                        <GriestiKabineNolietoti register={register} />
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                        <KabinesDurvisBojatas control={control} />
+                        <KabinesDurvisBojatas register={register} />
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                        <KabinesDASprauga control={control} />
+                        <KabinesDASprauga register={register} />
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                        <ReverseNedarbojas control={control} />
+                        <ReverseNedarbojas register={register} />
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                        <ApgaismojumsKabineNepietiek control={control} />
+                        <ApgaismojumsKabineNepietiek register={register} />
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                        <KabinesDurvisVarAtvert control={control} />
+                        <KabinesDurvisVarAtvert register={register} />
                     </Grid>
                 </Grid>
                 <div className="bg-slate-200 w-full pl-2 py-1">
@@ -1109,46 +1124,47 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 <Grid container spacing={2}>
                     {/* Mašīntelpa - row 1 */}
                     <Grid item xs={12} sm={3}>
-                        <BridinajumaDurvimNav control={control} />
-                        <BridinajumaLukaiNav control={control} />
-                        <LukaBojata control={control} />
-                        <EllasNoplude control={control} />
-                        <ReduktorsNolietotsUnEllasNoplude control={control} />
-                        <ApgaismojumsMasintelpaNepietiek control={control} />
-                        <ApgaismojumsSahtaNepietiek control={control} />
+                        <BridinajumaDurvimNav register={register} />
+                        <BridinajumaLukaiNav register={register} />
+                        <LukaBojata register={register} />
+                        <EllasNoplude register={register} />
+                        <ReduktorsNolietotsUnEllasNoplude register={register} />
+                        <ApgaismojumsMasintelpaNepietiek register={register} />
+                        <ApgaismojumsSahtaNepietiek register={register} />
                         <ApgaismojumsMasintelpaUnSahtalpaNepietiek
-                            control={control}
+                            register={register}
                         />
                     </Grid>
                     {/* Mašīntelpa - row 2 */}
                     <Grid item xs={12} sm={3}>
-                        <ApmalesApNesosamTrosemNav control={control} />
-                        <ApmalesApAITrosemNav control={control} />
-                        <ApmalesApNesosamUnAITrosemNav control={control} />
-                        <PaklajuPieGalvSledzaNav control={control} />
-                        <PaklajuPieNKUNav control={control} />
-                        <PaklajuPieGalvSledzaUnNKUNav control={control} />
+                        <ApmalesApNesosamTrosemNav register={register} />
+                        <ApmalesApAITrosemNav register={register} />
+                        <ApmalesApNesosamUnAITrosemNav register={register} />
+                        <PaklajuPieGalvSledzaNav register={register} />
+                        <PaklajuPieNKUNav register={register} />
+                        <PaklajuPieGalvSledzaUnNKUNav register={register} />
                     </Grid>
 
                     {/* Mašīntelpa - row 3 */}
 
                     <Grid item xs={12} sm={3}>
-                        <NesosoTrosuNodilums control={control} />
-                        <AprikojumsMasintelpa control={control} />
-                        <PrieksmetiMasintelpa control={control} />
-                        <AprikojumsUnPrieksmetiMasintelpa control={control} />
-                        <AINolietots control={control} />
-                        <AITroseNolietota control={control} />
-                        <AIUnTroseNolietoti control={control} />
+                        <NesosoTrosuNodilums register={register} />
+                        <AprikojumsMasintelpa register={register} />
+                        <PrieksmetiMasintelpa register={register} />
+
+                        <AprikojumsUnPrieksmetiMasintelpa register={register} />
+                        <AINolietots register={register} />
+                        <AITroseNolietota register={register} />
+                        <AIUnTroseNolietoti register={register} />
                     </Grid>
 
                     {/* Mašīntelpa - row 4 */}
 
                     <Grid item xs={12} sm={3}>
-                        <AtsperesBremzuNolietotas control={control} />
-                        <UzlikasBremzuNolietotas control={control} />
-                        <VadskriemelaNodilums control={control} />
-                        <VadskriemelaNevienmerigsNodilums control={control} />
+                        <AtsperesBremzuNolietotas register={register} />
+                        <UzlikasBremzuNolietotas register={register} />
+                        <VadskriemelaNodilums register={register} />
+                        <VadskriemelaNevienmerigsNodilums register={register} />
                     </Grid>
                 </Grid>
                 <div className="bg-slate-200 w-full pl-2 py-1">
@@ -1158,33 +1174,33 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 </div>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={3}>
-                        <NKUAprikojumsNolietots control={control} />
-                        <NKUAizsardzibasAutomatiNolietoti control={control} />
-                        <NKUKontaktoriNolietoti control={control} />
+                        <NKUAprikojumsNolietots register={register} />
+                        <NKUAizsardzibasAutomatiNolietoti register={register} />
+                        <NKUKontaktoriNolietoti register={register} />
                         <NKUAizsardzibasAutomatiUnKontaktoriNolietoti
-                            control={control}
+                            register={register}
                         />
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <NKUAizsardzibasAutomatsVA1Nolietots
-                            control={control}
+                            register={register}
                         />
                         <NKUAizsardzibasAutomatsVA2Nolietots
-                            control={control}
+                            register={register}
                         />
                         <NKUAizsardzibasAutomatsVA3Nolietots
-                            control={control}
+                            register={register}
                         />
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <NKUAizsardzibasAutomatiVA1UnVA2Nolietoti
-                            control={control}
+                            register={register}
                         />
                         <NKUAizsardzibasAutomatiVA1UnVA3Nolietoti
-                            control={control}
+                            register={register}
                         />
                         <NKUAizsardzibasAutomatiVA2UnVA3Nolietoti
-                            control={control}
+                            register={register}
                         />
                     </Grid>
                     <Grid item xs={12} sm={3}></Grid>
@@ -1196,10 +1212,10 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 </div>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={3}>
-                        {/* <RevizijaNedarbojas control={control} />
-                        <RevizijasStopNedarbojas control={control} />
-                        <RevizijasNav control={control} />
-                        <StopJumtaNedarbojas control={control} /> */}
+                        <RevizijaNedarbojas register={register} />
+                        <RevizijasStopNedarbojas register={register} />
+                        <RevizijasNav register={register} />
+                        <StopJumtaNedarbojas register={register} />
                     </Grid>
                 </Grid>
                 <div className="bg-slate-200 w-full pl-2 py-1">
@@ -1227,7 +1243,6 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                         />
                     </Grid>
                     <Grid item xs={12} sm={4}>
-                        {/* notes */}
                         <TextField
                             multiline
                             rows={4}
@@ -1261,6 +1276,141 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                                 },
                             }}
                         />
+                    </Grid>
+                </Grid>
+                <div className="bg-slate-200 w-full pl-2 py-1">
+                    <Typography className="font-bold  text-slate-600 tracking-wider">
+                        Meta Info
+                    </Typography>
+                </div>
+                {/* ZZZ */}
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        {/* notes */}
+                        <TextField
+                            multiline
+                            rows={4}
+                            size="small"
+                            label="Notes"
+                            fullWidth
+                            // autoComplete
+                            helperText={errors.notes?.message}
+                            {...register("notes")}
+                            sx={{
+                                "& .MuiFormHelperText-root": {
+                                    color: "red",
+                                },
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <div className="bg-slate-200 w-full pl-2 py-1">
+                            <Typography className="font-bold  text-slate-600 tracking-wider">
+                                Notes For Protocol
+                            </Typography>
+                        </div>
+                        {/* notes */}
+
+                        {fields.map((field, index) => (
+                            <div
+                                key={field.id}
+                                style={{ marginTop: "5px", display: "flex" }}
+                            >
+                                {/*"important to include key with field's id"*/}
+                                <TextField
+                                    size="small"
+                                    // label=""
+                                    fullWidth
+                                    // autoComplete
+                                    helperText={
+                                        errors.notesTest
+                                            ? errors.notesTest[index]
+                                                ? errors.notesTest[index].value
+                                                      .message
+                                                : null
+                                            : null
+                                    }
+                                    {...register(
+                                        `notesForProtocol.${index}.value`,
+                                        {
+                                            required: {
+                                                value: true,
+                                                message: "Field is required.",
+                                            },
+                                        }
+                                    )}
+                                    sx={{
+                                        marginRight: "5px",
+                                        "& .MuiFormHelperText-root": {
+                                            fontSize: "12px",
+                                            color: "red",
+                                        },
+                                    }}
+                                />
+                                {/* <input {...register(`notesTest.${index}.value`)} /> */}
+                                <Button
+                                    size="small"
+                                    variant="contained"
+                                    color="error"
+                                    onClick={() => remove(index)}
+                                    sx={{ width: "130px", fontWeight: 700 }}
+                                >
+                                    DELETE
+                                </Button>
+                            </div>
+                        ))}
+                        <div style={{ marginTop: "8px" }}>
+                            <Button
+                                size="small"
+                                variant="contained"
+                                color="info"
+                                onClick={() => {
+                                    // append({ name: "hzA" });
+                                    append({ name: "notesForProtocol" });
+                                }}
+                                sx={{
+                                    height: "33px",
+                                    marginRight: "8px",
+                                    " &.MuiButtonBase-root": {
+                                        fontWeight: 700,
+                                    },
+                                }}
+                            >
+                                ADD STRING
+                            </Button>
+                            <Button
+                                size="small"
+                                variant="contained"
+                                color="info"
+                                onClick={() => {
+                                    prepend({ name: "notesForProtocol" });
+                                }}
+                                sx={{
+                                    height: "33px",
+                                    " &.MuiButtonBase-root": {
+                                        fontWeight: 700,
+                                    },
+                                }}
+                            >
+                                ADD STRING TO THE TOP
+                            </Button>
+                        </div>
+
+                        {/* <TextField
+                            multiline
+                            rows={4}
+                            size="small"
+                            label="Notes For Protocol"
+                            fullWidth
+                            // autoComplete
+                            helperText={errors.notes?.message}
+                            {...register("notesForProtokol")}
+                            sx={{
+                                "& .MuiFormHelperText-root": {
+                                    color: "red",
+                                },
+                            }}
+                        /> */}
                     </Grid>
                 </Grid>
                 {/* <div style={{ width: "100%" }}>
@@ -1315,10 +1465,14 @@ export default function Create({ lifts, auth, mechanics, managers, page }) {
                 <DevTool control={control} />
                 <Button
                     type="submit"
-                    size="small"
+                    // size="small"
                     variant="contained"
                     color="success"
-                    className="ml-2 mt-64 h-8"
+                    sx={{
+                        height: "50px",
+                        width: "100px",
+                        marginTop: "2rem!important",
+                    }}
                     // disabled={!formState.isValid}
                 >
                     Create

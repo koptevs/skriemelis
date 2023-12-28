@@ -1,26 +1,21 @@
 import CheckboxWithImage from "@/Shared/CheckboxWithImage";
 import React from "react";
 import zvans from "@/img/zvans.png";
-import { Typography } from "@mui/material";
 
-const ZvansNedarbojas = ({ control }) => {
+const ZvansNedarbojas = ({ register }) => {
     return (
         <CheckboxWithImage
             // className="ml-3.5"
             rawName="3.7 Lifta kabīnē nedarbojas zvans."
             nonCompliancesLevel="1"
             imageSource={zvans}
-            control={control}
+            register={register}
             label={
                 <>
-                    <Typography
-                        component="span"
-                        // variant="h6"
-                        className="font-bold text-red-500"
-                    >
+                    <span style={{ color: "red", fontWeight: 700 }}>
                         ZVANS{" "}
-                    </Typography>
-                    <Typography component="span">nedarbojas.</Typography>
+                    </span>
+                    nedarbojas.
                 </>
             }
         />
