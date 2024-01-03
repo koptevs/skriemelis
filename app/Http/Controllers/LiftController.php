@@ -142,6 +142,7 @@ class LiftController extends Controller
             'installation_year'   => intval($data["installationYear"]),
             'floors_serviced'     => intval($data["floorsServiced"]),
             'address'             => $data["address"],
+            'address_city'     => $data["addressCity"],
             'address_country'     => $data["addressCountry"],
             'address_postal_code' => $data["addressPostalCode"],
             'lift_manager_id'     => $data["liftManager"],

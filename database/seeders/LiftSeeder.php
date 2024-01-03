@@ -21,16 +21,16 @@ class LiftSeeder extends Seeder
             $iela_array               = explode(' ', $lifts['lifts_adrese_iela']);
             $last_word_in_adrese_iela = $iela_array[ count($iela_array) - 1 ];
             if (( $last_word_in_adrese_iela !== 'bulvāris' ) && ( $last_word_in_adrese_iela !== 'bulvaris' ) && ( $last_word_in_adrese_iela !== 'gatve' ) && ( $last_word_in_adrese_iela !== 'prospekts' ) && ( $last_word_in_adrese_iela !== 'aleja' ) && ( $last_word_in_adrese_iela !== 'līnija' ) ) {
-                $iela_or_bulvaris = 'iela';
+                $iela_or_bulvaris = ' iela';
             }
 
 
-            $address = $lifts['lifts_adrese_iela'] . " " . $iela_or_bulvaris;
+            $address = $lifts['lifts_adrese_iela'] .  $iela_or_bulvaris;
             $address = $address . " " . $lifts['lifts_adrese_maja'] ?? null;
             $address = $lifts['lifts_adrese_kapnu_telpa'] ? $address . "-" .  $lifts['lifts_adrese_kapnu_telpa'] : $address;
             $address = $lifts['lifts_adrese_novads'] ? $address . ", ". $lifts['lifts_adrese_novads'] : $address;
             $address = $lifts['lifts_adrese_pagasts'] ? $address . ", ". $lifts['lifts_adrese_pagasts'] : $address;
-            $address = $address . ", " . $lifts['lifts_adrese_pilseta'];
+//            $address = $address . ", " . $lifts['lifts_adrese_pilseta'];
             DB::table('lifts')->insert(
                 [
                     'reg_number' => $lifts['lifts_reg_nr'],
@@ -46,7 +46,8 @@ class LiftSeeder extends Seeder
                     'installation_year' => intval($lifts['lifts_uzstadisanas_gads']),
 //                    'floors_total' => $lifts['stavu_skaits'] ?? null,
                     'floors_serviced' => intval($lifts['lifts_stavu_skaits']) ?? null,
-                    'address_country' => $lifts['lifts_adree_valsts'] ?? 'Latvija',
+                    'address_city' => $lifts['lifts_adrese_pilseta'] ?? 'Rīga',
+                    'address_country' => $lifts['lifts_adrese_valsts'] ?? 'Latvija',
 
                     'address' => $address ,
 

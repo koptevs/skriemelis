@@ -79,7 +79,7 @@ $is_ce = intval($lift_installation_year) >= 2000;
 $lifts_parbaudes_adrese_short = $lifts['address'];
 //$lifts_parbaudes_adrese       = $lifts_adrese_novads ? $lifts_parbaudes_adrese_short . ', ' . $lifts_adrese_pilseta . ', ' . $lifts_adrese_novads . ', ' . $lift_address_postal_code : $lifts_parbaudes_adrese_short . ', ' . $lifts_adrese_pilseta . ', ' . $lift_address_postal_code;
 
-$lifts_parbaudes_adrese = $lifts['address'].', '.$lifts['address_postal_code'];
+$lifts_parbaudes_adrese = $lifts['address'] . ', ' . $lifts['address_city'].', '.$lifts['address_postal_code'];
 
 $formatted_start = date_format(date_create_from_format('Y-m-d', $inspection_date_start), 'd.m.Y');
 $formatted_end = date_format(date_create_from_format('Y-m-d', $inspection_date_end), 'd.m.Y');

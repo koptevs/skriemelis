@@ -208,6 +208,14 @@ class InspectionSeeder extends Seeder
 //                dd($lift_id);
                 DB::table('lifts')->where('id',
                     intval($lift_id))->update(['lift_manager_id' => intval($inspection['parbaude_valditajs'])]);
+                DB::table('lifts')->where('id',
+                    intval($lift_id))->update(['inspection_status' => $inspection['parbaude_neatbilstibas_3'] !== '' ? '3' : ($inspection['parbaude_neatbilstibas_2'] !== '' ? '2' : ($inspection['parbaude_neatbilstibas_1'] !== '' ? '1' : '0'))]);
+                DB::table('lifts')->where('id',
+                    intval($lift_id))->update(['next_inspection_date' => $inspection['parbaude_next_datums'] !== '' ? Carbon::createFromFormat('d.m.Y',
+                    $inspection['parbaude_next_datums']) : null]);
+
+//                next_inspection_date
+
                 DB::table('inspections')->insert(
                     [
                         'protocol_number'      => $inspection['parbaude_nr'],
@@ -250,7 +258,7 @@ class InspectionSeeder extends Seeder
                         'non_compliances_3'  => $inspection['parbaude_neatbilstibas_3'] !== '' ? json_encode(explode("\n",
                             $inspection['parbaude_neatbilstibas_3']),
                             JSON_UNESCAPED_UNICODE) : json_encode([], JSON_UNESCAPED_UNICODE),
-                        'inspection_result' => $inspection['parbaude_neatbilstibas_3'] !== '' ? 3 : ($inspection['parbaude_neatbilstibas_2'] !== '' ? 2 : ($inspection['parbaude_neatbilstibas_1'] !== '' ? 1 : 0)),
+                        'inspection_result'  => $inspection['parbaude_neatbilstibas_3'] !== '' ? 3 : ($inspection['parbaude_neatbilstibas_2'] !== '' ? 2 : ($inspection['parbaude_neatbilstibas_1'] !== '' ? 1 : 0)),
 
 //                    'non_compliances_2'  => json_encode(explode("\n", $inspection['parbaude_neatbilstibas_2']),
 //                        JSON_UNESCAPED_UNICODE),

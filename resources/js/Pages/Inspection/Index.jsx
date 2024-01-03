@@ -50,8 +50,34 @@ const Index = ({ inspections }) => {
                                         },
                                     }}
                                 >
-                                    {inspection.protocol_number}
+                                    {inspection.protocol_number}{" "}
+                                    {/* <span style={}>{inspection.inspection_result}</span> */}
+                                    <div
+                                        style={{
+                                            ...{
+                                                display: "inline-block",
+                                                borderRadius: "10px",
+                                                width: "10px",
+                                                height: "10px",
+                                                marginBottom: "2px",
+                                            },
+                                            ...{
+                                                backgroundColor:
+                                                    inspection.inspection_result ===
+                                                    3
+                                                        ? "red"
+                                                        : inspection.inspection_result ===
+                                                          2
+                                                        ? "orange"
+                                                        : inspection.inspection_result ===
+                                                          1
+                                                        ? "green"
+                                                        : "lime",
+                                            },
+                                        }}
+                                    ></div>
                                 </Typography>
+
                                 <Typography>
                                     {dayjs(inspection.date_start).format(
                                         "DD.MM.YYYY"
