@@ -17,5 +17,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
+require __DIR__.'/lifts.php';
+require __DIR__.'/lift-managers.php';
+require __DIR__.'/inspections.php';
+require __DIR__.'/mechanics.php';
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
