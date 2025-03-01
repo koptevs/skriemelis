@@ -1,43 +1,35 @@
-import React from "react";
+import React from 'react';
 
-import { Head, router, usePage } from "@inertiajs/react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { Head, router, usePage } from '@inertiajs/react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
-import { Button } from "@/components/ui/button";
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Lock } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Lock } from 'lucide-react';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 const formSchema = z.object({
     username: z.string().min(2, {
-        message: "Username must be at least 2 characters.",
+        message: 'Username must be at least 2 characters.',
     }),
     email: z.string().email(),
     password: z.string().min(8, {
-        message: "Password must be at least 8 characters.",
+        message: 'Password must be at least 8 characters.',
     }),
 });
 
 export default function Create() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        mode: "onTouched",
+        mode: 'onTouched',
         defaultValues: {
-            username: "",
-            email: "",
-            password: "",
+            username: '',
+            email: '',
+            password: '',
         },
     });
 
@@ -48,10 +40,10 @@ export default function Create() {
     async function onSubmit(data: z.infer<typeof formSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log("Values: ", data);
+        console.log('Values: ', data);
         // const JSONData = JSON.stringify(values);
-        router.post(route("lifts.store"), data, {
-            errorBag: "createLift",
+        router.post(route('lifts.store'), data, {
+            errorBag: 'createLift',
         });
     }
 
@@ -61,9 +53,7 @@ export default function Create() {
             {inertiaErrors && (
                 <div>
                     <p>Inertia Errors</p>
-                    <p className={"text-sm text-red-600 dark:text-red-400"}>
-                        {JSON.stringify(inertiaErrors)}
-                    </p>
+                    <p className={'text-sm text-red-600 dark:text-red-400'}>{JSON.stringify(inertiaErrors)}</p>
                 </div>
             )}
             {/* helperText={errors.regNumber?.message} */}
@@ -79,10 +69,7 @@ export default function Create() {
                     <div>SKRIEMELIS (lift managers)</div>
                 </div>
                 <Form {...form}>
-                    <form
-                        onSubmit={form.handleSubmit(onSubmit)}
-                        className="space-y-4"
-                    >
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                         <FormField
                             control={form.control}
                             name="username"
@@ -97,9 +84,7 @@ export default function Create() {
                                             className="min-w-[250px] sm:min-w-[400px]"
                                         />
                                     </FormControl>
-                                    <FormDescription>
-                                        {/* Enter your name. */}
-                                    </FormDescription>
+                                    <FormDescription>{/* Enter your name. */}</FormDescription>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -118,9 +103,7 @@ export default function Create() {
                                             className="min-w-[250px] sm:min-w-[400px]"
                                         />
                                     </FormControl>
-                                    <FormDescription>
-                                        {/* Enter your name. */}
-                                    </FormDescription>
+                                    <FormDescription>{/* Enter your name. */}</FormDescription>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -140,15 +123,13 @@ export default function Create() {
                                             className="min-w-[250px] sm:min-w-[400px]"
                                         />
                                     </FormControl>
-                                    <FormDescription>
-                                        {/* Enter your password. */}
-                                    </FormDescription>
+                                    <FormDescription>{/* Enter your password. */}</FormDescription>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
                         <Button type="submit">
-                            {" "}
+                            {' '}
                             {/* disabled={!form.formState.isValid} */}
                             Submit
                         </Button>

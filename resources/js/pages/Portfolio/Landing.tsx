@@ -1,5 +1,5 @@
-import { Head, Link } from "@inertiajs/react";
-import TwCard from "./TwCard";
+import { Head, Link } from '@inertiajs/react';
+import TwCard from './TwCard';
 export default function Landing() {
     return (
         <>
@@ -24,10 +24,7 @@ export default function Landing() {
                     <article className="primary card">
                         <h2>Pro</h2>
                         <div className="price">$99</div>
-                        <p>
-                            For small businesses looking to grow. Our most
-                            popular plan for ambitious organizations.
-                        </p>
+                        <p>For small businesses looking to grow. Our most popular plan for ambitious organizations.</p>
                         <ul>
                             <li>10 projects</li>
                             <li>500gb monthly transfer</li>

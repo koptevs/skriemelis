@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // https://tailwindcss.com/docs/responsive-design
 const TwCard = () => {
     return (
@@ -12,19 +12,13 @@ const TwCard = () => {
                     />
                 </div>
                 <div className="p-8">
-                    <div className="text-sm font-semibold tracking-wide text-indigo-500 uppercase">
-                        Company retreats
-                    </div>
-                    <a
-                        href="#"
-                        className="mt-1 block text-lg leading-tight font-medium text-black hover:underline"
-                    >
+                    <div className="text-sm font-semibold tracking-wide text-indigo-500 uppercase">Company retreats</div>
+                    <a href="#" className="mt-1 block text-lg leading-tight font-medium text-black hover:underline">
                         Incredible accommodation for your team
                     </a>
                     <p className="mt-2 text-gray-500">
-                        Looking to take your team away on a retreat to enjoy
-                        awesome food and take in some sunshine? We have a list
-                        of places to do just that.
+                        Looking to take your team away on a retreat to enjoy awesome food and take in some sunshine? We have a list of places to do
+                        just that.
                     </p>
                 </div>
             </div>
