@@ -13,27 +13,19 @@ const secondPageTableQuarterWidth = secondPageTableWidth / 4;
 
 const secondPageTableColOneWidth = 10;
 const secondPageTableColTwoWidth = 40;
-const secondPageTableColRestWidth =
-    secondPageTableWidth -
-    secondPageTableColOneWidth -
-    secondPageTableColTwoWidth;
+const secondPageTableColRestWidth = secondPageTableWidth - secondPageTableColOneWidth - secondPageTableColTwoWidth;
 const secondPageTableHalfColRestWidth = secondPageTableColRestWidth / 2;
 
 const secondPageTableAdditionalPadding = 15;
-const secondPageTablePaddingLeft =
-    pagePaddingLeft + secondPageTableAdditionalPadding;
+const secondPageTablePaddingLeft = pagePaddingLeft + secondPageTableAdditionalPadding;
 
 const secondPageTable2Col1Width = 7;
 const secondPageTable2Col2Width = 60;
-const secondPageTable2ColRestWidth =
-    (secondPageTableWidth -
-        secondPageTable2Col1Width -
-        secondPageTable2Col2Width) /
-    3;
+const secondPageTable2ColRestWidth = (secondPageTableWidth - secondPageTable2Col1Width - secondPageTable2Col2Width) / 3;
 const secondPageTable2ColRestHalfWidth = secondPageTable2ColRestWidth / 2;
 
 export const sizes = {
-    headerHeight: "18mm",
+    headerHeight: '18mm',
     pagePaddingLeft: `${pagePaddingLeft}mm`,
     pagePaddingRight: `${pagePaddingRight}mm`,
     protocolWidth: `${protocolWidth}mm`,
@@ -60,11 +52,11 @@ export const sizes = {
 };
 
 export const colors = {
-    page2CellBackground: "#ccc0d9",
+    page2CellBackground: '#ccc0d9',
 };
 
 export const borders = {
-    borderThin: "0.1mm solid black",
-    borderNormal: "0.2mm solid black",
-    borderThick: "0.3mm solid black",
+    borderThin: '0.1mm solid black',
+    borderNormal: '0.2mm solid black',
+    borderThick: '0.3mm solid black',
 };

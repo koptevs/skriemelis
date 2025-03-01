@@ -1,7 +1,7 @@
 //@ts-nocheck
-import React, { useMemo } from "react";
-import { Rect, Svg } from "@react-pdf/renderer";
-import { getMatrix } from "qr-code-generator-lib";
+import React, { useMemo } from 'react';
+import { Rect, Svg } from '@react-pdf/renderer';
+import { getMatrix } from 'qr-code-generator-lib';
 interface QRProps {
     url: string;
     level?: keyof typeof EcLevels;
@@ -16,13 +16,7 @@ enum EcLevels {
     Q = 2,
     H = 3,
 }
-const QrCode = ({
-    url = "https://test.local",
-    level = "L",
-    width = 64,
-    foreground = "#000",
-    background = "#fff",
-}: QRProps): JSX.Element => {
+const QrCode = ({ url = 'https://test.local', level = 'L', width = 64, foreground = '#000', background = '#fff' }: QRProps): JSX.Element => {
     // EcLevels seems to not do anything...
     // @ts-expect-error qr-code-generator-lib-misstype
     const matrix = useMemo(() => getMatrix(url, EcLevels[level]), [url, level]);
@@ -40,7 +34,7 @@ const QrCode = ({
                         // due to rounding errors with factor
                         fill={cell ? foreground : background}
                     />
-                ))
+                )),
             )}
         </Svg>
     );

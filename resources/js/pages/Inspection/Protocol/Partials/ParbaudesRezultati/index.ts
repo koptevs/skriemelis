@@ -1,1 +1,1 @@
-export { default } from "./ParbaudesRezultati";
+export { default } from './ParbaudesRezultati';

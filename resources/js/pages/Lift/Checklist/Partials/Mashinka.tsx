@@ -1,6 +1,6 @@
-import { View, Text, Image } from "@react-pdf/renderer";
-import { borders, debug, sharedStyles } from "../variables";
-import { Gap } from "../variables";
+import { View, Text, Image } from '@react-pdf/renderer';
+import { borders, debug, sharedStyles } from '../variables';
+import { Gap } from '../variables';
 
 const Mashinka = () => {
     return (
@@ -12,10 +12,7 @@ const Mashinka = () => {
                         // backgroundColor: "tomato",
                     }}
                 >
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/rules.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/rules.png" />
                 </View>
                 <Gap />
                 <View
@@ -24,11 +21,7 @@ const Mashinka = () => {
                         // backgroundColor: "lime",
                     }}
                 >
-                    <Text
-                        style={{ ...sharedStyles.textSansBold, color: "blue" }}
-                    >
-                        LŪKA
-                    </Text>
+                    <Text style={{ ...sharedStyles.textSansBold, color: 'blue' }}>LŪKA</Text>
                 </View>
                 <View
                     style={{
@@ -36,10 +29,7 @@ const Mashinka = () => {
                         // backgroundColor: "tomato",
                     }}
                 >
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/patveruma_zime.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/patveruma_zime.png" />
                 </View>
                 <Gap />
                 <View
@@ -48,10 +38,7 @@ const Mashinka = () => {
                         // backgroundColor: "tomato",
                     }}
                 >
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/bojats.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/bojats.png" />
                 </View>
                 <View
                     style={{
@@ -65,10 +52,7 @@ const Mashinka = () => {
                         // backgroundColor: "tomato",
                     }}
                 >
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/kovriki.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/kovriki.png" />
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
@@ -91,10 +75,7 @@ const Mashinka = () => {
                         // backgroundColor: "tomato",
                     }}
                 >
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/kovriki.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/kovriki.png" />
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
@@ -117,14 +98,8 @@ const Mashinka = () => {
                         // backgroundColor: "tomato",
                     }}
                 >
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/manjetsi.png"
-                    />
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/skriemelis.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/manjetsi.png" />
+                    <Image style={sharedStyles.image} src="/assets/images/skriemelis.png" />
 
                     <View
                         style={{
@@ -140,14 +115,8 @@ const Mashinka = () => {
                         // backgroundColor: "tomato",
                     }}
                 >
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/manjetsi_os.png"
-                    />
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/os.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/manjetsi_os.png" />
+                    <Image style={sharedStyles.image} src="/assets/images/os.png" />
 
                     <View
                         style={{
@@ -169,10 +138,7 @@ const Mashinka = () => {
                         // backgroundColor: "tomato",
                     }}
                 >
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/os.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/os.png" />
 
                     <View
                         style={{
@@ -187,15 +153,12 @@ const Mashinka = () => {
                 <View
                     style={{
                         ...sharedStyles.col_3,
-                        backgroundColor: "yellow",
-                        justifyContent: "space-around",
+                        backgroundColor: 'yellow',
+                        justifyContent: 'space-around',
                     }}
                 >
                     <Text style={sharedStyles.textSansBold}>EĻĻA</Text>
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/mitrums.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/mitrums.png" />
                 </View>
 
                 <View
@@ -203,9 +166,7 @@ const Mashinka = () => {
                         ...sharedStyles.col_5,
                     }}
                 >
-                    <Text style={sharedStyles.textSansBold}>
-                        REDUKT. NOLIET.
-                    </Text>
+                    <Text style={sharedStyles.textSansBold}>REDUKT. NOLIET.</Text>
                 </View>
                 <Gap size={45} />
                 <View
@@ -214,10 +175,7 @@ const Mashinka = () => {
                         // backgroundColor: "tomato",
                     }}
                 >
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/atsperes.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/atsperes.png" />
 
                     <View
                         style={{
@@ -230,14 +188,11 @@ const Mashinka = () => {
                 <View
                     style={{
                         ...sharedStyles.col_3,
-                        justifyContent: "space-between",
+                        justifyContent: 'space-between',
                         // backgroundColor: "tomato",
                     }}
                 >
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/skriemelis.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/skriemelis.png" />
 
                     <View
                         style={{
@@ -245,26 +200,20 @@ const Mashinka = () => {
                             // backgroundColor: "tomato",
                         }}
                     ></View>
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/skriemelis_nevienmerigs.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/skriemelis_nevienmerigs.png" />
                 </View>
             </View>
             {/* 3rd line */}
 
             <View style={sharedStyles.lineWrapper}>
                 <View style={sharedStyles.col_1}>
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/lamp.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/lamp.png" />
                 </View>
                 <View
                     style={{
                         ...sharedStyles.col_3,
                         // backgroundColor: "lime",
-                        justifyContent: "center",
+                        justifyContent: 'center',
                     }}
                 >
                     <Text
@@ -285,7 +234,7 @@ const Mashinka = () => {
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
-                            color: "red",
+                            color: 'red',
                         }}
                     >
                         MAZ
@@ -297,18 +246,16 @@ const Mashinka = () => {
                     style={{
                         ...sharedStyles.col_12,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-end",
+                        justifyContent: 'flex-end',
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
-                            color: "red",
+                            color: 'red',
                         }}
                     >
-                        APRIKOJUMS
-                        &nbsp;&nbsp;&nbsp;&nbsp;PRIEKŠMETI&nbsp;&nbsp;&nbsp;&nbsp;VECAS
-                        DETAĻAS
+                        APRIKOJUMS &nbsp;&nbsp;&nbsp;&nbsp;PRIEKŠMETI&nbsp;&nbsp;&nbsp;&nbsp;VECAS DETAĻAS
                     </Text>
                 </View>
             </View>
@@ -316,17 +263,14 @@ const Mashinka = () => {
 
             <View style={sharedStyles.lineWrapper}>
                 <View style={sharedStyles.col_1}>
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/rules.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/rules.png" />
                 </View>
 
                 <View
                     style={{
                         ...sharedStyles.col_6,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-start",
+                        justifyContent: 'flex-start',
                     }}
                 >
                     <Text
@@ -339,17 +283,14 @@ const Mashinka = () => {
                     </Text>
                 </View>
                 <View style={sharedStyles.col_1}>
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/rules.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/rules.png" />
                 </View>
 
                 <View
                     style={{
                         ...sharedStyles.col_4,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-start",
+                        justifyContent: 'flex-start',
                     }}
                 >
                     <Text
@@ -366,7 +307,7 @@ const Mashinka = () => {
                     style={{
                         ...sharedStyles.col_10,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-start",
+                        justifyContent: 'flex-start',
                     }}
                 >
                     <Text
@@ -376,11 +317,11 @@ const Mashinka = () => {
                         }}
                     >
                         El. Stacijas Aprikojums
-                    </Text>{" "}
+                    </Text>{' '}
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
-                            color: "red",
+                            color: 'red',
                         }}
                     >
                         NOLIETOTS

@@ -1,29 +1,28 @@
-import { View, Text, Image } from "@react-pdf/renderer";
-import { borders, debug, sharedStyles, sizes } from "../variables";
-import { Gap } from "../variables";
+import { View, Text, Image } from '@react-pdf/renderer';
+import { borders, debug, sharedStyles, sizes } from '../variables';
+import { Gap } from '../variables';
 
 const Footer = ({ floorsServiced }: { floorsServiced: number }) => {
-    const cellWidth =
-        floorsServiced >= 16 ? 6.4 : floorsServiced >= 12 ? 8.5 : 10;
+    const cellWidth = floorsServiced >= 16 ? 6.4 : floorsServiced >= 12 ? 8.5 : 10;
     const cellHeight = 5;
     const checkListWidthRaw = 135;
     const cellWidthMm = `${cellWidth}mm`;
-    const cellHeightMm = "6mm";
+    const cellHeightMm = '6mm';
     const restWidth = checkListWidthRaw - cellWidth * floorsServiced;
     const restWidthMm = `${restWidth}mm`;
-    const headerBg = "#359";
+    const headerBg = '#359';
 
     return (
-        <View style={{ position: "absolute", bottom: "74mm" }}>
+        <View style={{ position: 'absolute', bottom: '74mm' }}>
             <View
                 style={{
-                    display: "flex",
-                    flexDirection: "row",
+                    display: 'flex',
+                    flexDirection: 'row',
                     width: sizes.checkListWidth,
                     // height: cellHeight,
                     // borderBottom: borders.borderThin,
                     // backgroundColor: "coral",
-                    alignItems: "center",
+                    alignItems: 'center',
                 }}
             >
                 {[...Array(floorsServiced)].map((key, index) => (
@@ -33,16 +32,16 @@ const Footer = ({ floorsServiced }: { floorsServiced: number }) => {
                             width: cellWidthMm,
                             height: cellHeightMm,
                             border: borders.borderThin,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             backgroundColor: headerBg,
                         }}
                     >
                         <Text
                             style={{
                                 ...sharedStyles.textBold,
-                                color: "#eee",
-                                fontSize: "3mm",
+                                color: '#eee',
+                                fontSize: '3mm',
                             }}
                         >
                             {index + 1}
@@ -54,16 +53,16 @@ const Footer = ({ floorsServiced }: { floorsServiced: number }) => {
                         width: restWidthMm,
                         height: cellHeightMm,
                         border: borders.borderThin,
-                        justifyContent: "center",
-                        alignItems: "center",
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         backgroundColor: headerBg,
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textBold,
-                            color: "#232323",
-                            fontSize: "3mm",
+                            color: '#232323',
+                            fontSize: '3mm',
                         }}
                     >
                         {/* Rest */}
@@ -75,13 +74,13 @@ const Footer = ({ floorsServiced }: { floorsServiced: number }) => {
             {/* ####################################################################################### */}
             <View
                 style={{
-                    display: "flex",
-                    flexDirection: "row",
+                    display: 'flex',
+                    flexDirection: 'row',
                     width: sizes.checkListWidth,
                     // height: cellHeight,
                     // borderBottom: borders.borderThin,
                     // backgroundColor: "coral",
-                    alignItems: "center",
+                    alignItems: 'center',
                 }}
             >
                 {[...Array(floorsServiced)].map((key, index) => (
@@ -91,15 +90,15 @@ const Footer = ({ floorsServiced }: { floorsServiced: number }) => {
                             width: cellWidthMm,
                             height: cellHeightMm,
                             border: borders.borderThin,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                         }}
                     >
                         <Text
                             style={{
                                 // ...sharedStyles.textSansBold,
-                                color: "#232323",
-                                fontSize: "3mm",
+                                color: '#232323',
+                                fontSize: '3mm',
                             }}
                         >
                             {/* {index + 1} */}
@@ -111,34 +110,34 @@ const Footer = ({ floorsServiced }: { floorsServiced: number }) => {
                         width: restWidthMm,
                         height: cellHeightMm,
                         border: borders.borderThin,
-                        justifyContent: "center",
-                        alignItems: "center",
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         // backgroundColor: "skyblue",
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textBold,
-                            color: "#232323",
-                            fontSize: "3mm",
+                            color: '#232323',
+                            fontSize: '3mm',
                         }}
                     >
                         Pogas
                     </Text>
                 </View>
-            </View>{" "}
+            </View>{' '}
             {/* ####################################################################################### */}
             {/* 3rd line */}
             {/* ####################################################################################### */}
             <View
                 style={{
-                    display: "flex",
-                    flexDirection: "row",
+                    display: 'flex',
+                    flexDirection: 'row',
                     width: sizes.checkListWidth,
                     // height: cellHeight,
                     // borderBottom: borders.borderThin,
                     // backgroundColor: "coral",
-                    alignItems: "center",
+                    alignItems: 'center',
                 }}
             >
                 {[...Array(floorsServiced)].map((key, index) => (
@@ -148,14 +147,14 @@ const Footer = ({ floorsServiced }: { floorsServiced: number }) => {
                             width: cellWidthMm,
                             height: cellHeightMm,
                             border: borders.borderThin,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                         }}
                     >
                         <Image
                             style={{
-                                width: "5mm",
-                                height: "5mm",
+                                width: '5mm',
+                                height: '5mm',
                                 marginTop: 2,
                             }}
                             src="/assets/images/lrt.png"
@@ -167,16 +166,16 @@ const Footer = ({ floorsServiced }: { floorsServiced: number }) => {
                         width: restWidthMm,
                         height: cellHeightMm,
                         border: borders.borderThin,
-                        justifyContent: "center",
-                        alignItems: "center",
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         // backgroundColor: "skyblue",
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textBold,
-                            color: "#232323",
-                            fontSize: "3mm",
+                            color: '#232323',
+                            fontSize: '3mm',
                         }}
                     >
                         &gt;10cm
@@ -188,13 +187,13 @@ const Footer = ({ floorsServiced }: { floorsServiced: number }) => {
             {/* ####################################################################################### */}
             <View
                 style={{
-                    display: "flex",
-                    flexDirection: "row",
+                    display: 'flex',
+                    flexDirection: 'row',
                     width: sizes.checkListWidth,
                     // height: cellHeight,
                     // borderBottom: borders.borderThin,
                     // backgroundColor: "coral",
-                    alignItems: "center",
+                    alignItems: 'center',
                 }}
             >
                 {[...Array(floorsServiced)].map((key, index) => (
@@ -204,14 +203,14 @@ const Footer = ({ floorsServiced }: { floorsServiced: number }) => {
                             width: cellWidthMm,
                             height: cellHeightMm,
                             border: borders.borderThin,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                         }}
                     >
                         <Image
                             style={{
-                                width: "5mm",
-                                height: "5mm",
+                                width: '5mm',
+                                height: '5mm',
                                 marginTop: 2,
                             }}
                             src="/assets/images/lrt.png"
@@ -223,16 +222,16 @@ const Footer = ({ floorsServiced }: { floorsServiced: number }) => {
                         width: restWidthMm,
                         height: cellHeightMm,
                         border: borders.borderThin,
-                        justifyContent: "center",
-                        alignItems: "center",
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         // backgroundColor: "skyblue",
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textBold,
-                            color: "#232323",
-                            fontSize: "3mm",
+                            color: '#232323',
+                            fontSize: '3mm',
                         }}
                     >
                         Demont

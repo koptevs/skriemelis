@@ -1,34 +1,28 @@
-import React from "react";
-import { Page, Text, View, StyleSheet, Font, Image } from "@react-pdf/renderer";
+import React from 'react';
+import { Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
 
-import { sizes, borders } from "../variables";
+import { sizes, borders } from '../variables';
 
-const {
-    secondPageTableWidth,
-    secondPageTableHalfWidth,
-    secondPageTableQuarterWidth,
-    secondPageTableRowHeight,
-    secondPageTableRowHeightX2,
-} = sizes;
+const { secondPageTableWidth, secondPageTableHalfWidth, secondPageTableQuarterWidth, secondPageTableRowHeight, secondPageTableRowHeightX2 } = sizes;
 const { borderNormal } = borders;
 
 Font.register({
-    family: "Arial",
-    src: "/fonts/ArialRegular.ttf",
+    family: 'Arial',
+    src: '/fonts/ArialRegular.ttf',
 });
 Font.register({
-    family: "ArialBold",
-    src: "/fonts/ArialBold.ttf",
+    family: 'ArialBold',
+    src: '/fonts/ArialBold.ttf',
 });
 
 const styles = StyleSheet.create({
     textSans: {
-        fontFamily: "Arial",
-        fontSize: "3.25mm",
+        fontFamily: 'Arial',
+        fontSize: '3.25mm',
     },
     textSansBold: {
-        fontFamily: "ArialBold",
-        fontSize: "3.25mm",
+        fontFamily: 'ArialBold',
+        fontSize: '3.25mm',
     },
 });
 
@@ -37,16 +31,16 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
         <>
             <View
                 style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginTop: "10mm",
-                    marginBottom: "5mm",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginTop: '10mm',
+                    marginBottom: '5mm',
                     // backgroundColor: "lime",
                 }}
             >
-                {" "}
+                {' '}
                 <Text
                     style={{
                         ...styles.textSansBold,
@@ -57,7 +51,7 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                 <Text
                     style={{
                         ...styles.textSans,
-                        marginTop: "1.2mm",
+                        marginTop: '1.2mm',
                     }}
                 >
                     Pielikums pārbaudes protokolam Nr. {protocolNumber}
@@ -66,16 +60,16 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
 
             <View
                 style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
                     // backgroundColor: "lime",
                 }}
             >
                 <View
                     style={{
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                         width: secondPageTableWidth,
                         border: borderNormal,
                         // backgroundColor: "red",
@@ -91,8 +85,8 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                     >
                         <View
                             style={{
-                                display: "flex",
-                                flexDirection: "row",
+                                display: 'flex',
+                                flexDirection: 'row',
                                 width: secondPageTableHalfWidth,
                                 // height: secondPageTableRowHeightX2,
                                 // border: borderNormal,
@@ -102,16 +96,14 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                             <View
                                 style={{
                                     height: secondPageTableRowHeightX2,
-                                    justifyContent: "center",
-                                    alignItems: "center",
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
                                     borderRight: borderNormal,
                                     // backgroundColor: "tomato",
                                     width: secondPageTableQuarterWidth,
                                 }}
                             >
-                                <Text style={styles.textSansBold}>
-                                    Mēriekārta
-                                </Text>
+                                <Text style={styles.textSansBold}>Mēriekārta</Text>
                             </View>
                             <View
                                 style={{
@@ -127,13 +119,13 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                                         borderRight: borderNormal,
                                         // backgroundColor: "teal",
                                         width: secondPageTableQuarterWidth,
-                                        justifyContent: "center",
+                                        justifyContent: 'center',
                                     }}
                                 >
                                     <Text
                                         style={{
                                             ...styles.textSansBold,
-                                            marginLeft: "3mm",
+                                            marginLeft: '3mm',
                                         }}
                                     >
                                         Nosaukums:
@@ -142,7 +134,7 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                                 <View
                                     style={{
                                         height: secondPageTableRowHeight,
-                                        justifyContent: "center",
+                                        justifyContent: 'center',
                                         borderTop: borderNormal,
                                         borderRight: borderNormal,
                                         // backgroundColor: "brown",
@@ -152,7 +144,7 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                                     <Text
                                         style={{
                                             ...styles.textSansBold,
-                                            marginLeft: "3mm",
+                                            marginLeft: '3mm',
                                         }}
                                     >
                                         Ident. Nr.
@@ -167,13 +159,13 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "blue",
-                                justifyContent: "center",
+                                justifyContent: 'center',
                             }}
                         >
                             <Text
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 Mērījumu metodika:
@@ -186,13 +178,13 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                                 // backgroundColor: "green",
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
-                                justifyContent: "center",
+                                justifyContent: 'center',
                             }}
                         >
                             <Text
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 Normatīvs
@@ -205,13 +197,13 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                                 // backgroundColor: "yellow",
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
-                                justifyContent: "center",
+                                justifyContent: 'center',
                             }}
                         >
                             <Text
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 Vizuālā apskate
@@ -235,13 +227,13 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                                 // backgroundColor: "red",
                                 // borderTop: borderNormal,
                                 borderRight: borderNormal,
-                                justifyContent: "center",
+                                justifyContent: 'center',
                             }}
                         >
                             <Text
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 ProInstall 200
@@ -254,13 +246,13 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                                 // backgroundColor: "blue",
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
-                                justifyContent: "center",
+                                justifyContent: 'center',
                             }}
                         >
                             <Text
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 309482
@@ -273,13 +265,13 @@ const SecondPageHeader = ({ protocolNumber }: { protocolNumber: string }) => {
                                 // backgroundColor: "green",
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
-                                justifyContent: "center",
+                                justifyContent: 'center',
                             }}
                         >
                             <Text
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 LRTDEA Nr. 08.43 / 016

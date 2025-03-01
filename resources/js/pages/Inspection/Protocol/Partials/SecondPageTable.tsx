@@ -1,7 +1,7 @@
-import React from "react";
-import { Page, Text, View, StyleSheet, Font, Image } from "@react-pdf/renderer";
+import React from 'react';
+import { Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
 
-import { sizes, borders, colors } from "../variables";
+import { sizes, borders, colors } from '../variables';
 
 const {
     secondPageTableWidth,
@@ -20,22 +20,22 @@ const { borderNormal } = borders;
 const { page2CellBackground } = colors;
 
 Font.register({
-    family: "Arial",
-    src: "/fonts/ArialRegular.ttf",
+    family: 'Arial',
+    src: '/fonts/ArialRegular.ttf',
 });
 Font.register({
-    family: "ArialBold",
-    src: "/fonts/ArialBold.ttf",
+    family: 'ArialBold',
+    src: '/fonts/ArialBold.ttf',
 });
 
 const styles = StyleSheet.create({
     textSans: {
-        fontFamily: "Arial",
-        fontSize: "3.25mm",
+        fontFamily: 'Arial',
+        fontSize: '3.25mm',
     },
     textSansBold: {
-        fontFamily: "ArialBold",
-        fontSize: "3.25mm",
+        fontFamily: 'ArialBold',
+        fontSize: '3.25mm',
     },
 });
 
@@ -43,17 +43,17 @@ const SecondPageTable = () => {
     return (
         <View
             style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
                 marginTop: secondPageTableRowHeight,
                 // backgroundColor: "lime",
             }}
         >
             <View
                 style={{
-                    display: "flex",
-                    flexDirection: "column",
+                    display: 'flex',
+                    flexDirection: 'column',
                     width: secondPageTableWidth,
                     borderTop: borderNormal,
                     borderBottom: borderNormal,
@@ -65,15 +65,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col1Width,
@@ -84,8 +84,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col2Width,
@@ -95,17 +95,17 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Merījumu vieta
                         </Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -115,7 +115,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Izolācijas
@@ -124,8 +124,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -135,7 +135,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Zemējuma
@@ -144,8 +144,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -155,7 +155,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Pārejas
@@ -167,15 +167,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col1Width,
@@ -186,8 +186,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col2Width,
@@ -197,17 +197,17 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             ( līnijas vai iekārtas nosaukums )
                         </Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -217,7 +217,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             pretestība, MΩ
@@ -226,8 +226,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -237,7 +237,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             pretestība, Ω
@@ -246,8 +246,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -257,7 +257,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             pretestība, Ω
@@ -269,15 +269,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col1Width,
@@ -288,8 +288,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col2Width,
@@ -299,15 +299,15 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         ></Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -317,7 +317,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             ( Pārbaudes
@@ -326,8 +326,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -337,15 +337,15 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         ></Text>
                     </View>
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -355,7 +355,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         ></Text>
                     </View>
@@ -365,15 +365,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col1Width,
@@ -384,8 +384,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col2Width,
@@ -395,15 +395,15 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         ></Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -413,7 +413,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             spriegums
@@ -422,8 +422,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -433,15 +433,15 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         ></Text>
                     </View>
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -451,7 +451,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         ></Text>
                     </View>
@@ -461,15 +461,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col1Width,
@@ -480,8 +480,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col2Width,
@@ -491,15 +491,15 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         ></Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -509,7 +509,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             500V )
@@ -518,8 +518,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -529,15 +529,15 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         ></Text>
                     </View>
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2ColRestWidth,
@@ -547,7 +547,7 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         ></Text>
                     </View>
@@ -557,15 +557,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col1Width,
@@ -576,8 +576,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
                             width: secondPageTable2Col2Width,
@@ -587,21 +587,21 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         ></Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -612,7 +612,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 ≥ 1,0
@@ -621,8 +621,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -633,7 +633,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 &lt; 1,0
@@ -642,15 +642,15 @@ const SecondPageTable = () => {
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -661,7 +661,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 ≤ 4,0
@@ -670,8 +670,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -682,7 +682,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 &gt; 4,0
@@ -691,15 +691,15 @@ const SecondPageTable = () => {
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -710,7 +710,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 ≤ 0,1
@@ -719,8 +719,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -731,7 +731,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 &gt; 1,0
@@ -744,15 +744,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -764,8 +764,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -776,23 +776,23 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Barojošais kabelis
                         </Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -803,7 +803,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -812,8 +812,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -824,22 +824,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -850,7 +850,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -859,8 +859,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -871,22 +871,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -897,7 +897,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                     // backgroundColor: page2CellBackground,
                                 }}
                             ></Text>
@@ -905,8 +905,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -917,7 +917,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
@@ -928,15 +928,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -948,8 +948,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -960,23 +960,23 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Lifta elektrodzinējs
                         </Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -987,7 +987,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -996,8 +996,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1008,22 +1008,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1034,7 +1034,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -1043,8 +1043,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1055,22 +1055,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -1081,7 +1081,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                     // backgroundColor: page2CellBackground,
                                 }}
                             ></Text>
@@ -1089,8 +1089,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -1101,7 +1101,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
@@ -1112,15 +1112,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -1132,8 +1132,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -1144,23 +1144,23 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Elektreomagnētiskās bremzes
                         </Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1171,7 +1171,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -1180,8 +1180,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1192,22 +1192,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1218,7 +1218,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -1227,8 +1227,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1239,22 +1239,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -1265,7 +1265,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                     // backgroundColor: page2CellBackground,
                                 }}
                             ></Text>
@@ -1273,8 +1273,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -1285,7 +1285,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
@@ -1296,15 +1296,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -1316,8 +1316,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -1328,23 +1328,23 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Pazeminošais transformators
                         </Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1355,7 +1355,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -1364,8 +1364,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1376,22 +1376,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1402,7 +1402,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -1411,8 +1411,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1423,22 +1423,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -1449,7 +1449,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                     // backgroundColor: page2CellBackground,
                                 }}
                             ></Text>
@@ -1457,8 +1457,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -1469,7 +1469,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
@@ -1480,15 +1480,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -1500,8 +1500,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -1512,23 +1512,23 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Kabīnes durvju elektrodzinējs
                         </Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1539,7 +1539,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -1548,8 +1548,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1560,22 +1560,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1586,7 +1586,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -1595,8 +1595,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1607,22 +1607,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -1633,7 +1633,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                     // backgroundColor: page2CellBackground,
                                 }}
                             ></Text>
@@ -1641,8 +1641,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -1653,7 +1653,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
@@ -1664,15 +1664,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -1684,8 +1684,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -1696,23 +1696,23 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Galaslēdžu kabelis
                         </Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1723,7 +1723,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -1732,8 +1732,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1744,22 +1744,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1770,7 +1770,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -1779,8 +1779,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1791,22 +1791,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -1817,7 +1817,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                     // backgroundColor: page2CellBackground,
                                 }}
                             ></Text>
@@ -1825,8 +1825,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -1837,7 +1837,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
@@ -1848,15 +1848,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -1868,8 +1868,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -1880,23 +1880,23 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Apgaismojuma ķēde
                         </Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1907,7 +1907,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -1916,8 +1916,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1928,22 +1928,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1954,7 +1954,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -1963,8 +1963,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -1975,22 +1975,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -2001,7 +2001,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                     // backgroundColor: page2CellBackground,
                                 }}
                             ></Text>
@@ -2009,8 +2009,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -2021,7 +2021,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
@@ -2032,15 +2032,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -2052,8 +2052,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -2064,23 +2064,23 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         >
                             Metālkonstrukcijas
                         </Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -2091,15 +2091,15 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 backgroundColor: page2CellBackground,
@@ -2110,22 +2110,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -2136,7 +2136,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             >
                                 X
@@ -2145,8 +2145,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -2157,22 +2157,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: page2CellBackground,
@@ -2183,7 +2183,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                     // backgroundColor: page2CellBackground,
                                 }}
                             ></Text>
@@ -2191,8 +2191,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: page2CellBackground,
@@ -2203,7 +2203,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
@@ -2214,15 +2214,15 @@ const SecondPageTable = () => {
                 <View
                     style={{
                         width: secondPageTableWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                     }}
                 >
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "center",
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -2234,8 +2234,8 @@ const SecondPageTable = () => {
                     <View
                         style={{
                             height: secondPageTableRowHeight,
-                            justifyContent: "center",
-                            alignItems: "flex-start",
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
                             borderTop: borderNormal,
                             borderRight: borderNormal,
                             // backgroundColor: "tomato",
@@ -2246,21 +2246,21 @@ const SecondPageTable = () => {
                             wrap={true}
                             style={{
                                 ...styles.textSans,
-                                marginLeft: "3mm",
+                                marginLeft: '3mm',
                             }}
                         ></Text>
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: page2CellBackground,
@@ -2271,15 +2271,15 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -2290,22 +2290,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "center",
+                                justifyContent: 'center',
+                                alignItems: 'center',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -2316,15 +2316,15 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSansBold,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: "tomato",
@@ -2335,22 +2335,22 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>
                     </View>
                     <View
                         style={{
-                            display: "flex",
-                            flexDirection: "row",
+                            display: 'flex',
+                            flexDirection: 'row',
                         }}
                     >
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: page2CellBackground,
@@ -2361,7 +2361,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                     // backgroundColor: page2CellBackground,
                                 }}
                             ></Text>
@@ -2369,8 +2369,8 @@ const SecondPageTable = () => {
                         <View
                             style={{
                                 height: secondPageTableRowHeight,
-                                justifyContent: "center",
-                                alignItems: "flex-start",
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
                                 borderTop: borderNormal,
                                 borderRight: borderNormal,
                                 // backgroundColor: page2CellBackground,
@@ -2381,7 +2381,7 @@ const SecondPageTable = () => {
                                 wrap={true}
                                 style={{
                                     ...styles.textSans,
-                                    marginLeft: "3mm",
+                                    marginLeft: '3mm',
                                 }}
                             ></Text>
                         </View>

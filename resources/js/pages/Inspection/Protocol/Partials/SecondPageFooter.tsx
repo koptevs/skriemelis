@@ -1,8 +1,8 @@
-import React from "react";
-import dayjs from "dayjs";
-import { Page, Text, View, StyleSheet, Font, Image } from "@react-pdf/renderer";
+import React from 'react';
+import dayjs from 'dayjs';
+import { Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
 
-import { sizes, borders } from "../variables";
+import { sizes, borders } from '../variables';
 
 const {
     secondPageTableWidth,
@@ -15,45 +15,39 @@ const {
 const { borderNormal } = borders;
 
 Font.register({
-    family: "Arial",
-    src: "/fonts/ArialRegular.ttf",
+    family: 'Arial',
+    src: '/fonts/ArialRegular.ttf',
 });
 Font.register({
-    family: "ArialBold",
-    src: "/fonts/ArialBold.ttf",
+    family: 'ArialBold',
+    src: '/fonts/ArialBold.ttf',
 });
 
 const styles = StyleSheet.create({
     textSans: {
-        fontFamily: "Arial",
-        fontSize: "3.25mm",
+        fontFamily: 'Arial',
+        fontSize: '3.25mm',
     },
     textSansBold: {
-        fontFamily: "ArialBold",
-        fontSize: "3.25mm",
+        fontFamily: 'ArialBold',
+        fontSize: '3.25mm',
     },
 });
 
-const SecondPageFooter = ({
-    dateStart,
-    dateEnd,
-}: {
-    dateStart: string;
-    dateEnd: string;
-}) => {
+const SecondPageFooter = ({ dateStart, dateEnd }: { dateStart: string; dateEnd: string }) => {
     return (
         <>
             <View
                 style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "flex-start",
-                    alignItems: "flex-start",
-                    marginTop: "15mm",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-start',
+                    alignItems: 'flex-start',
+                    marginTop: '15mm',
                     // backgroundColor: "lime",
                 }}
             >
-                {" "}
+                {' '}
                 <Text
                     style={{
                         ...styles.textSansBold,
@@ -63,10 +57,10 @@ const SecondPageFooter = ({
                 </Text>
                 <View
                     style={{
-                        marginTop: "2mm",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "flex-end",
+                        marginTop: '2mm',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
                     }}
                 >
                     <Text
@@ -78,8 +72,8 @@ const SecondPageFooter = ({
                     </Text>
                     <Image
                         style={{
-                            width: "5.5mm",
-                            height: "5mm",
+                            width: '5.5mm',
+                            height: '5mm',
                             marginTop: -1.5,
                             marginRight: 2,
                             marginLeft: 7,
@@ -89,13 +83,13 @@ const SecondPageFooter = ({
                 </View>
                 <View
                     style={{
-                        marginTop: "5mm",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "flex-end",
+                        marginTop: '5mm',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
                     }}
                 >
-                    <View style={{ width: "37mm" }}>
+                    <View style={{ width: '37mm' }}>
                         <Text
                             style={{
                                 ...styles.textSans,
@@ -104,7 +98,7 @@ const SecondPageFooter = ({
                             Izolācijas pretestība
                         </Text>
                     </View>
-                    <View style={{ width: "10mm" }}>
+                    <View style={{ width: '10mm' }}>
                         <Text
                             style={{
                                 ...styles.textSansBold,
@@ -113,23 +107,23 @@ const SecondPageFooter = ({
                             atbilst
                         </Text>
                     </View>
-                    <View style={{ width: "9mm" }}>
+                    <View style={{ width: '9mm' }}>
                         <Image
                             style={{
-                                width: "5.5mm",
-                                height: "5mm",
+                                width: '5.5mm',
+                                height: '5mm',
                                 marginTop: -3,
                                 marginRight: 2,
                                 marginLeft: 5,
                             }}
                             src="/assets/images/checkbox.png"
                         />
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            width: "16mm",
-                            justifyContent: "center",
-                            alignItems: "flex-end",
+                            width: '16mm',
+                            justifyContent: 'center',
+                            alignItems: 'flex-end',
                         }}
                     >
                         <Text
@@ -140,11 +134,11 @@ const SecondPageFooter = ({
                             neatbilst
                         </Text>
                     </View>
-                    <View style={{ width: "10mm" }}>
+                    <View style={{ width: '10mm' }}>
                         <Image
                             style={{
-                                width: "5.5mm",
-                                height: "5mm",
+                                width: '5.5mm',
+                                height: '5mm',
                                 marginTop: -3,
                                 marginRight: 2,
                                 marginLeft: 5,
@@ -155,7 +149,7 @@ const SecondPageFooter = ({
                     <Text
                         style={{
                             ...styles.textSans,
-                            marginLeft: "1mm",
+                            marginLeft: '1mm',
                         }}
                     >
                         normai,
@@ -163,13 +157,13 @@ const SecondPageFooter = ({
                 </View>
                 <View
                     style={{
-                        marginTop: "3mm",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "flex-end",
+                        marginTop: '3mm',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
                     }}
                 >
-                    <View style={{ width: "37mm" }}>
+                    <View style={{ width: '37mm' }}>
                         <Text
                             style={{
                                 ...styles.textSans,
@@ -178,7 +172,7 @@ const SecondPageFooter = ({
                             Zemējuma pretestība
                         </Text>
                     </View>
-                    <View style={{ width: "10mm" }}>
+                    <View style={{ width: '10mm' }}>
                         <Text
                             style={{
                                 ...styles.textSansBold,
@@ -187,23 +181,23 @@ const SecondPageFooter = ({
                             atbilst
                         </Text>
                     </View>
-                    <View style={{ width: "9mm" }}>
+                    <View style={{ width: '9mm' }}>
                         <Image
                             style={{
-                                width: "5.5mm",
-                                height: "5mm",
+                                width: '5.5mm',
+                                height: '5mm',
                                 marginTop: -3,
                                 marginRight: 2,
                                 marginLeft: 5,
                             }}
                             src="/assets/images/checkbox.png"
                         />
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            width: "16mm",
-                            justifyContent: "center",
-                            alignItems: "flex-end",
+                            width: '16mm',
+                            justifyContent: 'center',
+                            alignItems: 'flex-end',
                         }}
                     >
                         <Text
@@ -214,11 +208,11 @@ const SecondPageFooter = ({
                             neatbilst
                         </Text>
                     </View>
-                    <View style={{ width: "10mm" }}>
+                    <View style={{ width: '10mm' }}>
                         <Image
                             style={{
-                                width: "5.5mm",
-                                height: "5mm",
+                                width: '5.5mm',
+                                height: '5mm',
                                 marginTop: -3,
                                 marginRight: 2,
                                 marginLeft: 5,
@@ -229,7 +223,7 @@ const SecondPageFooter = ({
                     <Text
                         style={{
                             ...styles.textSans,
-                            marginLeft: "1mm",
+                            marginLeft: '1mm',
                         }}
                     >
                         normai,
@@ -237,13 +231,13 @@ const SecondPageFooter = ({
                 </View>
                 <View
                     style={{
-                        marginTop: "3mm",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "flex-end",
+                        marginTop: '3mm',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
                     }}
                 >
-                    <View style={{ width: "37mm" }}>
+                    <View style={{ width: '37mm' }}>
                         <Text
                             style={{
                                 ...styles.textSans,
@@ -252,7 +246,7 @@ const SecondPageFooter = ({
                             Parejas pretestība
                         </Text>
                     </View>
-                    <View style={{ width: "10mm" }}>
+                    <View style={{ width: '10mm' }}>
                         <Text
                             style={{
                                 ...styles.textSansBold,
@@ -261,23 +255,23 @@ const SecondPageFooter = ({
                             atbilst
                         </Text>
                     </View>
-                    <View style={{ width: "9mm" }}>
+                    <View style={{ width: '9mm' }}>
                         <Image
                             style={{
-                                width: "5.5mm",
-                                height: "5mm",
+                                width: '5.5mm',
+                                height: '5mm',
                                 marginTop: -3,
                                 marginRight: 2,
                                 marginLeft: 5,
                             }}
                             src="/assets/images/checkbox.png"
                         />
-                    </View>{" "}
+                    </View>{' '}
                     <View
                         style={{
-                            width: "16mm",
-                            justifyContent: "center",
-                            alignItems: "flex-end",
+                            width: '16mm',
+                            justifyContent: 'center',
+                            alignItems: 'flex-end',
                         }}
                     >
                         <Text
@@ -288,11 +282,11 @@ const SecondPageFooter = ({
                             neatbilst
                         </Text>
                     </View>
-                    <View style={{ width: "10mm" }}>
+                    <View style={{ width: '10mm' }}>
                         <Image
                             style={{
-                                width: "5.5mm",
-                                height: "5mm",
+                                width: '5.5mm',
+                                height: '5mm',
                                 marginTop: -3,
                                 marginRight: 2,
                                 marginLeft: 5,
@@ -303,7 +297,7 @@ const SecondPageFooter = ({
                     <Text
                         style={{
                             ...styles.textSans,
-                            marginLeft: "1mm",
+                            marginLeft: '1mm',
                         }}
                     >
                         normai.
@@ -313,12 +307,10 @@ const SecondPageFooter = ({
                     style={{
                         width: protocolWidth,
                         // backgroundColor: "tomato",
-                        marginTop: "6mm",
+                        marginTop: '6mm',
                     }}
                 >
-                    <Text style={styles.textSansBold}>
-                        Neatbilstību apraksti (papildus norādījumi ):
-                    </Text>
+                    <Text style={styles.textSansBold}>Neatbilstību apraksti (papildus norādījumi ):</Text>
                 </View>
                 <View
                     style={{
@@ -346,31 +338,31 @@ const SecondPageFooter = ({
                 ></View>
                 <View
                     style={{
-                        marginTop: "6mm",
+                        marginTop: '6mm',
                         width: protocolWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                         // backgroundColor: "tomato",
                     }}
                 >
                     <View
                         style={{
-                            width: "35mm",
+                            width: '35mm',
                         }}
                     >
                         <Text style={styles.textSansBold}>Eksperts</Text>
                     </View>
                     <View
                         style={{
-                            width: "35mm",
+                            width: '35mm',
                             borderBottom: borderNormal,
-                            alignItems: "center",
+                            alignItems: 'center',
                         }}
                     >
                         <Text
                             style={{
                                 ...styles.textSansBold,
-                                marginTop: "-1mm",
+                                marginTop: '-1mm',
                             }}
                         >
                             Igors Koptevs
@@ -379,38 +371,36 @@ const SecondPageFooter = ({
                 </View>
                 <View
                     style={{
-                        marginTop: "6mm",
+                        marginTop: '6mm',
                         width: protocolWidth,
-                        display: "flex",
-                        flexDirection: "row",
+                        display: 'flex',
+                        flexDirection: 'row',
                         // backgroundColor: "tomato",
                     }}
                 >
                     <View
                         style={{
-                            width: "35mm",
+                            width: '35mm',
                         }}
                     >
-                        <Text style={styles.textSansBold}>
-                            Pārbaudes datums
-                        </Text>
+                        <Text style={styles.textSansBold}>Pārbaudes datums</Text>
                     </View>
                     <View
                         style={{
-                            width: "35mm",
+                            width: '35mm',
                             borderBottom: borderNormal,
-                            alignItems: "center",
+                            alignItems: 'center',
                         }}
                     >
                         <Text
                             style={{
                                 ...styles.textSansBold,
-                                marginTop: "-1mm",
+                                marginTop: '-1mm',
                             }}
                         >
                             {dayjs(dateStart).diff(dayjs(dateEnd)) === 0
-                                ? dayjs(dateStart).format("DD.MM.YYYY")
-                                : `${dayjs(dateStart).format("DD")} - ${dayjs(dateEnd).format("DD.MM.YYYY")}`}
+                                ? dayjs(dateStart).format('DD.MM.YYYY')
+                                : `${dayjs(dateStart).format('DD')} - ${dayjs(dateEnd).format('DD.MM.YYYY')}`}
                         </Text>
                     </View>
                 </View>
@@ -418,21 +408,20 @@ const SecondPageFooter = ({
             <View
                 style={{
                     width: protocolWidth,
-                    position: "absolute",
-                    bottom: "10mm",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    position: 'absolute',
+                    bottom: '10mm',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                 }}
             >
                 <Text
                     style={{
                         ...styles.textSans,
-                        marginTop: "-1mm",
+                        marginTop: '-1mm',
                     }}
                 >
-                    Protokols parakstīts ar drošu elektronisko parakstu un satur
-                    laika zīmogu.
+                    Protokols parakstīts ar drošu elektronisko parakstu un satur laika zīmogu.
                 </Text>
             </View>
         </>

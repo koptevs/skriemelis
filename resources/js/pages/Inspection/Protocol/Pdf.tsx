@@ -1,60 +1,42 @@
-import React from "react";
-import type { Lift } from "@/types";
-import {
-    PDFViewer,
-    Page,
-    Text,
-    View,
-    Document,
-    StyleSheet,
-    Font,
-} from "@react-pdf/renderer";
-import PdfHeader from "./Partials/PdfHeader";
-import PdfProtokolsNr from "./Partials/PdfProtokolsNr";
-import Rekviziti from "./Partials/Rekviziti";
-import RegistracijasNumurs from "./Partials/RegistracijasNumurs";
-import ParbaudesVeids from "./Partials/ParbaudesVeids";
-import Normativi from "./Partials/Normativi";
-import ParbaudesRezultati from "./Partials/ParbaudesRezultati";
-import ZinasParLiftu from "./Partials/ZinasParLiftu";
-import LiftaTips from "./Partials/LiftaTips";
-import Celtspeja from "./Partials/Celtspeja";
-import Vertejumi from "./Partials/Vertejumi";
-import Novertejums from "./Partials/Novertejums";
-import NeatbilstibuApraksti from "./Partials/NeatbilstibuApraksti";
-import Sledziens from "./Partials/Sledziens";
-import NakosaParbaude from "./Partials/NakosaParbaude";
-import IekartaMarketa from "./Partials/IekartaMarketa";
-import ArParbaudesRezult from "./Partials/ArParbaudesRezult";
-import Footer from "./Partials/Footer";
-import SecondPageHeader from "./Partials/SecondPageHeader";
-import { sizes } from "./variables";
-import SecondPageTable from "./Partials/SecondPageTable";
-import SecondPageFooter from "./Partials/SecondPageFooter";
+import React from 'react';
+import type { Lift } from '@/types';
+import { PDFViewer, Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import PdfHeader from './Partials/PdfHeader';
+import PdfProtokolsNr from './Partials/PdfProtokolsNr';
+import Rekviziti from './Partials/Rekviziti';
+import RegistracijasNumurs from './Partials/RegistracijasNumurs';
+import ParbaudesVeids from './Partials/ParbaudesVeids';
+import Normativi from './Partials/Normativi';
+import ParbaudesRezultati from './Partials/ParbaudesRezultati';
+import ZinasParLiftu from './Partials/ZinasParLiftu';
+import LiftaTips from './Partials/LiftaTips';
+import Celtspeja from './Partials/Celtspeja';
+import Vertejumi from './Partials/Vertejumi';
+import Novertejums from './Partials/Novertejums';
+import NeatbilstibuApraksti from './Partials/NeatbilstibuApraksti';
+import Sledziens from './Partials/Sledziens';
+import NakosaParbaude from './Partials/NakosaParbaude';
+import IekartaMarketa from './Partials/IekartaMarketa';
+import ArParbaudesRezult from './Partials/ArParbaudesRezult';
+import Footer from './Partials/Footer';
+import SecondPageHeader from './Partials/SecondPageHeader';
+import { sizes } from './variables';
+import SecondPageTable from './Partials/SecondPageTable';
+import SecondPageFooter from './Partials/SecondPageFooter';
 
 const { pagePaddingLeft, pagePaddingRight } = sizes;
 // Create styles
 const styles = StyleSheet.create({
     page: {
-        paddingTop: "10mm",
-        paddingBottom: "10mm",
+        paddingTop: '10mm',
+        paddingBottom: '10mm',
         paddingRight: pagePaddingRight,
         paddingLeft: pagePaddingLeft,
     },
 });
 
 // Create Document Component
-export default function ({
-    inspection,
-    lift,
-    lift_manager,
-    mechanic,
-}: {
-    inspection: any;
-    lift: Lift[];
-    lift_manager: any;
-    mechanic: any;
-}) {
+export default function ({ inspection, lift, lift_manager, mechanic }: { inspection: any; lift: Lift[]; lift_manager: any; mechanic: any }) {
     const { reg_number: regNr, factory_number: factoryNr } = lift[0];
     const {
         protocol_number: protocolNumber,
@@ -80,7 +62,7 @@ export default function ({
     } = inspection;
 
     return (
-        <PDFViewer style={{ width: "100%", height: "100vh" }}>
+        <PDFViewer style={{ width: '100%', height: '100vh' }}>
             <Document>
                 <Page size="A4" style={styles.page}>
                     <SecondPageHeader protocolNumber={protocolNumber} />
@@ -109,10 +91,7 @@ export default function ({
                     <Sledziens />
                     <NakosaParbaude dateStart={dateStart} dateEnd={dateEnd} />
                     <IekartaMarketa />
-                    <ArParbaudesRezult
-                        dateStart={dateStart}
-                        dateEnd={dateEnd}
-                    />
+                    <ArParbaudesRezult dateStart={dateStart} dateEnd={dateEnd} />
                     <Footer />
                 </Page>
             </Document>

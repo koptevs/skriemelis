@@ -1,5 +1,5 @@
-import { View, StyleSheet } from "@react-pdf/renderer";
-import { sizes as sz, debug } from "../variables";
+import { View, StyleSheet } from '@react-pdf/renderer';
+import { sizes as sz, debug } from '../variables';
 
 const styles = StyleSheet.create({
     zazhim: {

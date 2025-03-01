@@ -1,57 +1,57 @@
-import React from "react";
-import { Page, Text, View, StyleSheet, Font, Image } from "@react-pdf/renderer";
-import { sizes, borders } from "../variables";
+import React from 'react';
+import { Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
+import { sizes, borders } from '../variables';
 
 const { headerHeight } = sizes;
 const { borderNormal } = borders;
 
 Font.register({
-    family: "Arial",
-    src: "/fonts/ArialRegular.ttf",
+    family: 'Arial',
+    src: '/fonts/ArialRegular.ttf',
 });
 Font.register({
-    family: "ArialBold",
-    src: "/fonts/ArialBold.ttf",
+    family: 'ArialBold',
+    src: '/fonts/ArialBold.ttf',
 });
 
 const styles = StyleSheet.create({
     wrapper: {
         // backgroundColor: "#00ff0030",
-        display: "flex",
-        flexDirection: "row",
-        paddingTop: "1mm",
+        display: 'flex',
+        flexDirection: 'row',
+        paddingTop: '1mm',
     },
     firstCell: {
         // backgroundColor: "#ff000030",
-        width: "30mm",
+        width: '30mm',
         // border: borderNormal,
-        alignItems: "flex-start",
+        alignItems: 'flex-start',
     },
     cell: {
         // backgroundColor: "#ff000030",
         // flexGrow: 1,
         // border: borderNormal,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        paddingLeft: "15mm",
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingLeft: '15mm',
     },
     textFirstCol: {
-        fontFamily: "ArialBold",
-        fontSize: "3.25mm",
-        textAlign: "center",
+        fontFamily: 'ArialBold',
+        fontSize: '3.25mm',
+        textAlign: 'center',
     },
     text: {
-        fontFamily: "Arial",
-        fontSize: "3.25mm",
-        textAlign: "center",
+        fontFamily: 'Arial',
+        fontSize: '3.25mm',
+        textAlign: 'center',
     },
     emptyBox: {
-        width: "5mm",
+        width: '5mm',
         border: borderNormal,
-        fontFamily: "ArialBold",
-        fontSize: "3.25mm",
-        textAlign: "center",
-        marginLeft: "2mm",
+        fontFamily: 'ArialBold',
+        fontSize: '3.25mm',
+        textAlign: 'center',
+        marginLeft: '2mm',
     },
 });
 

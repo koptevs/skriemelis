@@ -1,6 +1,6 @@
-import { View, Text, Image } from "@react-pdf/renderer";
-import { borders, debug, sharedStyles } from "../variables";
-import { Gap } from "../variables";
+import { View, Text, Image } from '@react-pdf/renderer';
+import { borders, debug, sharedStyles } from '../variables';
+import { Gap } from '../variables';
 
 const Kabine = ({ isCE }: { isCE: boolean }) => {
     return (
@@ -12,10 +12,7 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                         // backgroundColor: "tomato",
                     }}
                 >
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/zvans.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/zvans.png" />
 
                     <View style={sharedStyles.box}></View>
                 </View>
@@ -26,11 +23,7 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                         // backgroundColor: "lime",
                     }}
                 >
-                    <Text
-                        style={{ ...sharedStyles.textSansBold, color: "red" }}
-                    >
-                        STOP
-                    </Text>
+                    <Text style={{ ...sharedStyles.textSansBold, color: 'red' }}>STOP</Text>
                     <View style={sharedStyles.box}></View>
                 </View>
                 <View
@@ -39,11 +32,7 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                         // backgroundColor: "lime",
                     }}
                 >
-                    <Text
-                        style={{ ...sharedStyles.textSansBold, color: "green" }}
-                    >
-                        &lt; R &gt;
-                    </Text>
+                    <Text style={{ ...sharedStyles.textSansBold, color: 'green' }}>&lt; R &gt;</Text>
                     <View style={sharedStyles.box}></View>
                 </View>
                 {/* <View
@@ -55,13 +44,13 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                     style={{
                         ...sharedStyles.col_3,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-end",
+                        justifyContent: 'flex-end',
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
-                            color: "red",
+                            color: 'red',
                         }}
                     >
                         DAS&gt;10mm
@@ -81,7 +70,7 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                         <Text
                             style={{
                                 ...sharedStyles.textSansBold,
-                                color: "red",
+                                color: 'red',
                             }}
                         >
                             D
@@ -97,7 +86,7 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                         <Text
                             style={{
                                 ...sharedStyles.textSansBold,
-                                color: "red",
+                                color: 'red',
                             }}
                         >
                             D
@@ -108,7 +97,7 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                     style={{
                         ...sharedStyles.col_5,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-end",
+                        justifyContent: 'flex-end',
                     }}
                 >
                     <Text
@@ -129,11 +118,8 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                         // backgroundColor: "lime",
                     }}
                 >
-                    {" "}
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/paveles.png"
-                    />
+                    {' '}
+                    <Image style={sharedStyles.image} src="/assets/images/paveles.png" />
                 </View>
                 <View style={sharedStyles.box}></View>
                 <Gap />
@@ -145,11 +131,8 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                         // backgroundColor: "lime",
                     }}
                 >
-                    {" "}
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/grida.png"
-                    />
+                    {' '}
+                    <Image style={sharedStyles.image} src="/assets/images/grida.png" />
                 </View>
                 <View style={sharedStyles.box}></View>
                 <Gap />
@@ -159,11 +142,8 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                         // backgroundColor: "lime",
                     }}
                 >
-                    {" "}
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/griesti.png"
-                    />
+                    {' '}
+                    <Image style={sharedStyles.image} src="/assets/images/griesti.png" />
                 </View>
                 <View style={sharedStyles.box}></View>
                 <Gap />
@@ -173,11 +153,8 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                         // backgroundColor: "lime",
                     }}
                 >
-                    {" "}
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/apdare.png"
-                    />
+                    {' '}
+                    <Image style={sharedStyles.image} src="/assets/images/apdare.png" />
                 </View>
                 <View style={sharedStyles.box}></View>
                 <Gap />
@@ -186,7 +163,7 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                 <View
                     style={{
                         ...sharedStyles.col_2,
-                        justifyContent: "flex-end",
+                        justifyContent: 'flex-end',
                     }}
                 >
                     <Text style={sharedStyles.textSansBold}>Kab.Durv</Text>
@@ -208,7 +185,7 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                     style={{
                         ...sharedStyles.col_7,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-end",
+                        justifyContent: 'flex-end',
                     }}
                 >
                     <Text
@@ -225,23 +202,20 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
 
             <View style={sharedStyles.lineWrapper}>
                 <View style={sharedStyles.col_1}>
-                    {" "}
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/lamp.png"
-                    />
+                    {' '}
+                    <Image style={sharedStyles.image} src="/assets/images/lamp.png" />
                 </View>
                 <View
                     style={{
                         ...sharedStyles.col_3,
                         // backgroundColor: "lime",
-                        justifyContent: "center",
+                        justifyContent: 'center',
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
-                            color: "red",
+                            color: 'red',
                         }}
                     >
                         &gt;= 100lx
@@ -264,11 +238,8 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                 <Gap />
                 <Gap />
                 <View style={sharedStyles.col_1}>
-                    {" "}
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/lamp_avarijas.png"
-                    />
+                    {' '}
+                    <Image style={sharedStyles.image} src="/assets/images/lamp_avarijas.png" />
                 </View>
                 <View
                     style={{
@@ -279,7 +250,7 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
-                            color: "red",
+                            color: 'red',
                         }}
                     >
                         &gt;= 5lx
@@ -302,14 +273,14 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                     style={{
                         ...sharedStyles.col_3,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-end",
+                        justifyContent: 'flex-end',
                     }}
                 ></View>
                 <View
                     style={{
                         ...sharedStyles.col_11,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-end",
+                        justifyContent: 'flex-end',
                     }}
                 >
                     <Text
@@ -326,23 +297,20 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
 
             <View style={sharedStyles.lineWrapper}>
                 <View style={sharedStyles.col_1}>
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/sakari.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/sakari.png" />
                 </View>
 
                 <View
                     style={{
                         ...sharedStyles.col_4,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-start",
+                        justifyContent: 'flex-start',
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textBold,
-                            color: "red",
+                            color: 'red',
                         }}
                     >
                         Slikti dzirdams
@@ -350,16 +318,13 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                 </View>
 
                 <View style={sharedStyles.col_1}>
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/zvans_yellow.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/zvans_yellow.png" />
                 </View>
                 <View
                     style={{
                         ...sharedStyles.col_5,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-start",
+                        justifyContent: 'flex-start',
                     }}
                 >
                     <Text
@@ -368,22 +333,18 @@ const Kabine = ({ isCE }: { isCE: boolean }) => {
                             // color: "red",
                         }}
                     >
-                        deg &nbsp;--&gt;&nbsp;{" "}
-                        <Text style={{ color: "blue" }}>AUDIO</Text>
+                        deg &nbsp;--&gt;&nbsp; <Text style={{ color: 'blue' }}>AUDIO</Text>
                         &nbsp;&nbsp;--&gt;
                     </Text>
                 </View>
                 <View style={sharedStyles.col_1}>
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/sakari_zalie.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/sakari_zalie.png" />
                 </View>
                 <View
                     style={{
                         ...sharedStyles.col_9,
                         // backgroundColor: "lime",
-                        justifyContent: "flex-end",
+                        justifyContent: 'flex-end',
                     }}
                 >
                     <Text

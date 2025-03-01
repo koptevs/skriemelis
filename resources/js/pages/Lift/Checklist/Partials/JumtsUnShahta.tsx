@@ -1,6 +1,6 @@
-import { View, Text, Image } from "@react-pdf/renderer";
-import { borders, debug, sharedStyles } from "../variables";
-import { Gap } from "../variables";
+import { View, Text, Image } from '@react-pdf/renderer';
+import { borders, debug, sharedStyles } from '../variables';
+import { Gap } from '../variables';
 
 const JumtsUnShahta = ({ isCE }: { isCE: boolean }) => {
     return (
@@ -12,29 +12,19 @@ const JumtsUnShahta = ({ isCE }: { isCE: boolean }) => {
                         // backgroundColor: "lime",
                     }}
                 >
-                    <Text
-                        style={{ ...sharedStyles.textSansBold, color: "red" }}
-                    >
-                        STOP
-                    </Text>
+                    <Text style={{ ...sharedStyles.textSansBold, color: 'red' }}>STOP</Text>
                     <View style={sharedStyles.box}></View>
                 </View>
                 <View style={sharedStyles.col_1}>
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/sakari.png"
-                    />
+                    <Image style={sharedStyles.image} src="/assets/images/sakari.png" />
                 </View>
                 <View
                     style={{
                         ...sharedStyles.col_2,
-                        justifyContent: "flex-end",
+                        justifyContent: 'flex-end',
                     }}
                 >
-                    <Image
-                        style={{ ...sharedStyles.image, marginLeft: 7 }}
-                        src="/assets/images/patveruma_zime.png"
-                    />
+                    <Image style={{ ...sharedStyles.image, marginLeft: 7 }} src="/assets/images/patveruma_zime.png" />
                 </View>
                 {/* <Gap size={77} /> */}
                 <Gap size={28} />
@@ -42,27 +32,24 @@ const JumtsUnShahta = ({ isCE }: { isCE: boolean }) => {
                     style={{
                         ...sharedStyles.col_4,
                         // backgroundColor: "lime",
-                        justifyContent: "center",
+                        justifyContent: 'center',
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
-                            justifyContent: "flex-end",
+                            justifyContent: 'flex-end',
                             // color: "red",
                         }}
                     >
                         Трос
                     </Text>
-                    <Image
-                        style={{ ...sharedStyles.image, marginLeft: 0 }}
-                        src="/assets/images/skriemelis.png"
-                    />
+                    <Image style={{ ...sharedStyles.image, marginLeft: 0 }} src="/assets/images/skriemelis.png" />
                     <View
                         style={{
                             ...sharedStyles.box,
-                            width: "5mm",
-                            marginLeft: "2mm",
+                            width: '5mm',
+                            marginLeft: '2mm',
 
                             // backgroundColor: "tomato",
                         }}
@@ -73,23 +60,20 @@ const JumtsUnShahta = ({ isCE }: { isCE: boolean }) => {
                     style={{
                         ...sharedStyles.col_5,
                         // backgroundColor: "lime",
-                        justifyContent: "center",
+                        justifyContent: 'center',
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
-                            justifyContent: "flex-end",
+                            justifyContent: 'flex-end',
                             // color: "red",
                         }}
                     >
                         Kabīne
                     </Text>
 
-                    <Image
-                        style={{ ...sharedStyles.image, marginLeft: 7 }}
-                        src="/assets/images/brivkustiba.png"
-                    />
+                    <Image style={{ ...sharedStyles.image, marginLeft: 7 }} src="/assets/images/brivkustiba.png" />
 
                     <Text
                         style={{
@@ -105,23 +89,20 @@ const JumtsUnShahta = ({ isCE }: { isCE: boolean }) => {
 
             <View style={sharedStyles.lineWrapper}>
                 <View style={sharedStyles.col_1}>
-                    {" "}
-                    <Image
-                        style={sharedStyles.image}
-                        src="/assets/images/lamp.png"
-                    />
+                    {' '}
+                    <Image style={sharedStyles.image} src="/assets/images/lamp.png" />
                 </View>
                 <View
                     style={{
                         ...sharedStyles.col_5,
                         // backgroundColor: "lime",
-                        justifyContent: "center",
+                        justifyContent: 'center',
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
-                            color: "red",
+                            color: 'red',
                         }}
                     >
                         &gt;= 50lx
@@ -139,7 +120,7 @@ const JumtsUnShahta = ({ isCE }: { isCE: boolean }) => {
                 <View
                     style={{
                         ...sharedStyles.box,
-                        width: "5mm",
+                        width: '5mm',
 
                         // backgroundColor: "tomato",
                     }}
@@ -149,27 +130,24 @@ const JumtsUnShahta = ({ isCE }: { isCE: boolean }) => {
                     style={{
                         ...sharedStyles.col_4,
                         // backgroundColor: "lime",
-                        justifyContent: "center",
+                        justifyContent: 'center',
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
-                            justifyContent: "flex-end",
+                            justifyContent: 'flex-end',
                             // color: "red",
                         }}
                     >
                         Трос
                     </Text>
-                    <Image
-                        style={{ ...sharedStyles.image, marginLeft: 0 }}
-                        src="/assets/images/os.png"
-                    />
+                    <Image style={{ ...sharedStyles.image, marginLeft: 0 }} src="/assets/images/os.png" />
                     <View
                         style={{
                             ...sharedStyles.box,
-                            width: "5mm",
-                            marginLeft: "2mm",
+                            width: '5mm',
+                            marginLeft: '2mm',
 
                             // backgroundColor: "tomato",
                         }}
@@ -180,35 +158,29 @@ const JumtsUnShahta = ({ isCE }: { isCE: boolean }) => {
                     style={{
                         ...sharedStyles.col_2,
                         // backgroundColor: "lime",
-                        justifyContent: "center",
+                        justifyContent: 'center',
                     }}
                 >
-                    <Image
-                        style={{ ...sharedStyles.image, marginLeft: 7 }}
-                        src="/assets/images/atsperes.png"
-                    />
+                    <Image style={{ ...sharedStyles.image, marginLeft: 7 }} src="/assets/images/atsperes.png" />
                 </View>
                 <View
                     style={{
                         ...sharedStyles.col_5,
                         // backgroundColor: "lime",
-                        justifyContent: "center",
+                        justifyContent: 'center',
                     }}
                 >
                     <Text
                         style={{
                             ...sharedStyles.textSansBold,
-                            justifyContent: "flex-end",
+                            justifyContent: 'flex-end',
                             // color: "red",
                         }}
                     >
                         Pretsvars
                     </Text>
 
-                    <Image
-                        style={{ ...sharedStyles.image, marginLeft: 7 }}
-                        src="/assets/images/brivkustiba.png"
-                    />
+                    <Image style={{ ...sharedStyles.image, marginLeft: 7 }} src="/assets/images/brivkustiba.png" />
 
                     <Text
                         style={{
