@@ -1,7 +1,7 @@
-import { PageProps } from "@/types";
-import * as React from "react";
-import { Head } from "@inertiajs/react";
-import { TopNavbar } from "@/components/TopNavbar";
+import { PageProps } from '@/types';
+import * as React from 'react';
+import { Head } from '@inertiajs/react';
+import { TopNavbar } from '@/components/TopNavbar';
 
 export default function Home({ auth }: PageProps) {
     console.log(auth);

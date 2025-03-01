@@ -1,37 +1,24 @@
-import { InertiaLinkProps, Link } from "@inertiajs/react";
-import { Slot } from "@radix-ui/react-slot";
-import { cn } from "@/lib/utils";
-import { SheetClose } from "@/components/ui/sheet";
-import {
-    Home,
-    Beer,
-    Calendar,
-    SquareArrowUp,
-    Users,
-    PowerOff,
-} from "lucide-react";
+import { InertiaLinkProps, Link } from '@inertiajs/react';
+import { Slot } from '@radix-ui/react-slot';
+import { cn } from '@/lib/utils';
+import { SheetClose } from '@/components/ui/sheet';
+import { Home, Beer, Calendar, SquareArrowUp, Users, PowerOff } from 'lucide-react';
 
-type Icons =
-    | "home"
-    | "beer"
-    | "calendar"
-    | "squareArrowUp"
-    | "users"
-    | "powerOff";
+type Icons = 'home' | 'beer' | 'calendar' | 'squareArrowUp' | 'users' | 'powerOff';
 
 const getIconFromName = (iconName: Icons) => {
     switch (iconName) {
-        case "home":
+        case 'home':
             return <Home />;
-        case "beer":
+        case 'beer':
             return <Beer />;
-        case "calendar":
+        case 'calendar':
             return <Home />;
-        case "squareArrowUp":
+        case 'squareArrowUp':
             return <SquareArrowUp />;
-        case "users":
+        case 'users':
             return <Users />;
-        case "powerOff":
+        case 'powerOff':
             return <PowerOff />;
         default:
             return <Beer />;
@@ -40,7 +27,7 @@ const getIconFromName = (iconName: Icons) => {
 
 export default function MobileNavLink({
     active = false,
-    className = "",
+    className = '',
     children,
     iconName,
     ...props
@@ -51,23 +38,23 @@ export default function MobileNavLink({
             <Link
                 {...props}
                 className={cn(
-                    "flex w-full items-center justify-start gap-3 px-6 py-3",
+                    'flex w-full items-center justify-start gap-3 px-6 py-3',
                     {
-                        "bg-slate-300/30": active,
+                        'bg-slate-300/30': active,
                     },
-                    className
+                    className,
                 )}
             >
                 <Slot
-                    className={cn("text-slate-500", {
-                        "text-slate-800": active,
+                    className={cn('text-slate-500', {
+                        'text-slate-800': active,
                     })}
                 >
                     {icon}
                 </Slot>
                 <span
-                    className={cn("", {
-                        "font-bold": active,
+                    className={cn('', {
+                        'font-bold': active,
                     })}
                 >
                     {children}
