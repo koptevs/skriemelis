@@ -1,12 +1,22 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\WorkOS\Http\Middleware\ValidateSessionWithWorkOS;
 
 Route::get('/', function () {
-    return Inertia::render('welcome');
+    return Inertia::render('Home');
 })->name('home');
+
+Route::get('/portfolio/landing', function () {
+    return Inertia::render('Portfolio/Landing', [
+        'canLogin'       => Route::has('login'),
+        'canRegister'    => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion'     => PHP_VERSION,
+    ]);
+ });
 
 Route::middleware([
     'auth',

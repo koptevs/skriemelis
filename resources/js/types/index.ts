@@ -1,5 +1,10 @@
 import { LucideIcon } from 'lucide-react';
 
+export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
+    auth: {
+        user: User;
+    };
+};
 export interface Auth {
     user: User;
 }
