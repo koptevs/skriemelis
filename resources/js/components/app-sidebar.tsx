@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, UserRoundCog, BookUp2 } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -16,19 +16,24 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Lifts',
         url: '/lifts',
-        icon: Folder,
+        icon: BookUp2,
+    },
+    {
+        title: 'Mechanics',
+        url: '/mechanics',
+        icon: UserRoundCog,
     },
 ];
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        url: 'https://github.com/laravel/react-starter-kit',
+        title: 'BIR',
+        url: 'https://bir.lv/',
         icon: Folder,
     },
     {
-        title: 'Documentation',
-        url: 'https://laravel.com/docs/starter-kits',
+        title: 'MK noteikumi Nr. 679',
+        url: 'https://likumi.lv/ta/id/318839-liftu-un-vertikalo-celejplatformu-drosibas-un-tehniskas-uzraudzibas-noteikumi',
         icon: BookOpen,
     },
 ];
@@ -40,7 +45,7 @@ export function AppSidebar() {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <Link href="/dashboard" prefetch>
+                            <Link href={route('home')} prefetch>
                                 <AppLogo />
                             </Link>
                         </SidebarMenuButton>
