@@ -57,7 +57,7 @@ export default function TopNavbar({ auth }: PageProps) {
                 {/* <div className="flex items-center">LOGO</div> */}
                 <Link href="/" className="flex min-w-max items-center justify-center gap-2">
                     <img src="/assets/images/site-logo.png" alt="Site Logo" width={20} height={20} />
-                    <div className="py-2 font-bold">SKRIEMELIS!</div>
+                    <div className="py-2 font-bold">SKRIEMELIS</div>
                     {/*TODO replace logo with SVG*/}
                     {/*<svg*/}
                     {/*    className="size-5 sm:size-6"*/}

@@ -29,10 +29,7 @@ export default function MobileNav() {
                         <div>
                             <Link href="/" className="flex items-center justify-center gap-2">
                                 <img src="/assets/images/site-logo.png" alt="Site Logo" width={20} height={20} />
-                                <div className="py-2 font-bold">
-                                    NEXT-
-                                    <span className="text-orange-600">TUV</span>
-                                </div>
+                                <div className="py-2 font-bold">Skriemelis</div>
                             </Link>
                             {user ? (
                                 <div className="flex flex-col">
