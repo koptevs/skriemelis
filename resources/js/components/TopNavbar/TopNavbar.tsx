@@ -14,6 +14,8 @@ import {
 import MobileNav from '@/components/TopNavbar/MobileNav';
 // import { ModeToggle } from "@/components/TopNavbar/ModeToggle";
 import { PageProps } from '@/types';
+import AppearanceToggleTab from '../appearance-tabs';
+import { ModeToggle } from './ModeToggle';
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -55,7 +57,7 @@ export default function TopNavbar({ auth }: PageProps) {
                 {/* <div className="flex items-center">LOGO</div> */}
                 <Link href="/" className="flex min-w-max items-center justify-center gap-2">
                     <img src="/assets/images/site-logo.png" alt="Site Logo" width={20} height={20} />
-                    <div className="py-2 font-bold">SKRIEMELIS</div>
+                    <div className="py-2 font-bold">SKRIEMELIS!</div>
                     {/*TODO replace logo with SVG*/}
                     {/*<svg*/}
                     {/*    className="size-5 sm:size-6"*/}
@@ -134,7 +136,8 @@ export default function TopNavbar({ auth }: PageProps) {
                         </NavigationMenuItem>
                     </NavigationMenuList>
                     {/*<div className="ml-8"></div>*/}
-                    {/* <ModeToggle /> */}
+                    <ModeToggle />
+                    {/* <AppearanceToggleTab /> */}
                     <nav className="-mx-3 ml-2 flex flex-1 justify-end">
                         {auth.user ? null : (
                             <>
