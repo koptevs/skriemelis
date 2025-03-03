@@ -1,8 +1,8 @@
 import React from 'react';
 import { Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
 import { sizes, borders } from '../../variables';
-import ColumnHeader from './ColumnHeader';
-import ColumnString from './ColumnString';
+import ColumnHeader from './column-header';
+import ColumnString from './column-string';
 
 const { headerHeight } = sizes;
 const { borderNormal } = borders;

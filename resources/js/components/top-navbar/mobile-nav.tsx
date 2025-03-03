@@ -5,9 +5,9 @@ import { Menu } from 'lucide-react';
 import { Button } from '../ui/button';
 
 import { Link, usePage } from '@inertiajs/react';
-import NavContent from './NavContent';
-import { ModeToggle } from '@/components/TopNavbar/ModeToggle';
-import ResponsiveNavLink from '../ResponsiveNavLink';
+import NavContent from './nav-content';
+import { ModeToggle } from '@/components/top-navbar/mode-toggle';
+import ResponsiveNavLink from '../responsive-nav-link';
 
 export default function MobileNav() {
     const user = usePage().props.auth.user;

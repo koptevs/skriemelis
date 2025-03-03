@@ -11,11 +11,11 @@ import {
     navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 // import MobileNav from "@/components/TopNavbar/MobileNav";
-import MobileNav from '@/components/TopNavbar/MobileNav';
+import MobileNav from '@/components/top-navbar/mobile-nav';
 // import { ModeToggle } from "@/components/TopNavbar/ModeToggle";
 import { PageProps } from '@/types';
 import AppearanceToggleTab from '../appearance-tabs';
-import { ModeToggle } from './ModeToggle';
+import { ModeToggle } from './mode-toggle';
 
 const components: { title: string; href: string; description: string }[] = [
     {

@@ -6,11 +6,11 @@ use Inertia\Inertia;
 use Laravel\WorkOS\Http\Middleware\ValidateSessionWithWorkOS;
 
 Route::get('/', function () {
-    return Inertia::render('Home');
+    return Inertia::render('home');
 })->name('home');
 
 Route::get('/portfolio/landing', function () {
-    return Inertia::render('Portfolio/Landing', [
+    return Inertia::render('portfolio/landing', [
         'canLogin'       => Route::has('login'),
         'canRegister'    => Route::has('register'),
         'laravelVersion' => Application::VERSION,

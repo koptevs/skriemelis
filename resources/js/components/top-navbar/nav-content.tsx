@@ -5,12 +5,13 @@ import { Slot } from '@radix-ui/react-slot';
 import { SheetClose } from '@/components/ui/sheet';
 import { Home, Beer, Calendar, SquareArrowUp, Users, PowerOff } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import MobileNavLink from './MobileNavLink';
+import { type SharedData } from '@/types';
+import MobileNavLink from './mobile-nav-link';
 
 export default function NavContent() {
     // const pathname = usePathname();
     const { url, component } = usePage();
-    const user = usePage().props.auth.user;
+    const { auth } = usePage<SharedData>().props;
 
     const navLinks: {
         icon: React.ReactNode;
@@ -74,7 +75,7 @@ export default function NavContent() {
                 Mechanics
             </MobileNavLink>
 
-            {user ? (
+            {auth.user ? (
                 <>
                     <MobileNavLink
                         href={route('logout')}

@@ -54,7 +54,7 @@ class LiftController extends Controller
 
 
         return Inertia::render(
-            'Lift/Index', [
+            'lift/index', [
             'lifts'   => $lifts,
             'filters' => Request::only(['search', 'street']),
         ],
@@ -69,7 +69,7 @@ class LiftController extends Controller
         $liftManagers = LiftManager::pluck('name', 'id');
 
         return Inertia::render(
-            'Lift/Create', ['liftManagers' => $liftManagers]
+            'lift/create', ['liftManagers' => $liftManagers]
         );
     }
 
@@ -124,7 +124,7 @@ class LiftController extends Controller
         //        dd($lift_with_inspections);
 
         return Inertia::render(
-            'Lift/Show', [
+            'lift/show', [
                 'lift' => $lift_with_inspections,
             ]
         );
@@ -138,7 +138,7 @@ class LiftController extends Controller
         $liftManagers = LiftManager::pluck('name', 'id');
 
         return Inertia::render(
-            'Lift/Edit', ['lift' => $lift, 'liftManagers' => $liftManagers]
+            'lift/edit', ['lift' => $lift, 'liftManagers' => $liftManagers]
         );
     }
 
@@ -159,7 +159,7 @@ class LiftController extends Controller
         $liftManagers = LiftManager::pluck('name', 'id');
 
         return Inertia::render(
-            'Lift/Checklist/Pdf', ['lift' => $lift_with_inspections]
+            'lift/checklist/pdf', ['lift' => $lift_with_inspections]
         );
     }
 

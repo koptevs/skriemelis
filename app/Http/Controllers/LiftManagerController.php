@@ -21,7 +21,7 @@ class LiftManagerController extends Controller
         //        dd($liftManagers);
 
         return Inertia::render(
-            'LiftManager/Index', [
+            'lift-manager/index', [
             'liftManagers' => $liftManagers,
         ],
         );
@@ -33,7 +33,7 @@ class LiftManagerController extends Controller
     public function create()
     {
         return Inertia::render(
-            'LiftManager/Create'
+            'lift-manager/create'
         );
     }
 
@@ -75,7 +75,7 @@ class LiftManagerController extends Controller
         //        dd(LiftManager::find($liftManager->id)->lifts);
         //        dd($liftManager->lifts()->get());
         return Inertia::render(
-            'LiftManager/Show', [
+            'lift-manager/show', [
                 'liftManager' => $liftManager,
                 'lifts'       => $liftManager->lifts()->get(),
             ]
@@ -88,7 +88,7 @@ class LiftManagerController extends Controller
     public function edit(LiftManager $liftManager)
     {
         return Inertia::render(
-            'LiftManager/Edit', ['liftManager' => $liftManager]
+            'lift-manager/edit', ['liftManager' => $liftManager]
         );
     }
 

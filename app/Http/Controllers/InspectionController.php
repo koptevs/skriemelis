@@ -23,7 +23,7 @@ class InspectionController extends Controller
     public function index()
     {
         return Inertia::render(
-            'Inspection/Index', [
+            'inspection/index', [
                 'inspections' => Inspection::with('lift')->get(),
             ]
         );
@@ -41,7 +41,7 @@ class InspectionController extends Controller
         $managers  = LiftManager::select('id', 'name')->get()->toArray();
 
         return Inertia::render(
-            'Inspection/Create',
+            'inspection/create',
             [
                 'lifts'     => $lifts,
                 'mechanics' => $mechanics,
@@ -96,7 +96,7 @@ class InspectionController extends Controller
         //            true));
 
         return Inertia::render(
-            'Inspection/Show', [
+            'inspection/show', [
                 'inspection' => $inspection,
                 'lift'       => Lift::find($inspection->lift_id),
             ]
@@ -117,7 +117,7 @@ class InspectionController extends Controller
         $first_participant = json_decode($inspection['participants']) ? Mechanic::find(json_decode($inspection['participants'])[0]) : '';
 
         return Inertia::render(
-            'Inspection/Edit', [
+            'inspection/edit', [
                 'inspection'         => $inspection,
                 'currentLift'        => $inspection->lift()->get(),
                 'currentLiftManager' => LiftManager::find($inspection['lift_manager']),
@@ -139,7 +139,7 @@ class InspectionController extends Controller
         //        dd($inspection);
         return Inertia::render(
 
-            'Inspection/Protocol/Pdf',
+            'inspection/protocol/pdf',
             [
                 'inspection'   => $inspection,
                 'lift'         => $inspection->lift()->get(),

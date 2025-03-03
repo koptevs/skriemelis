@@ -1,5 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
-import TwCard from './TwCard';
+import TwCard from './tw-card';
 export default function Landing() {
     return (
         <>

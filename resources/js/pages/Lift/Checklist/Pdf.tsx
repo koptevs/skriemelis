@@ -6,17 +6,17 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 
 import { Download } from 'lucide-react';
 import { Gap, sharedStyles } from './variables';
-import Zazhim from './Partials/Zazhim';
-import Header from './Partials/Header';
+import Zazhim from './partials/zazhim';
+import Header from './partials/header';
 
 import type { LiftWithInspections } from '@/types';
 import { sizes, borders, debug } from './variables';
-import Bedre from './Partials/Bedre';
-import Kabine from './Partials/Kabine';
-import SectionHeader from './Partials/SectionHeader';
-import Mashinka from './Partials/Mashinka';
-import JumtsUnShahta from './Partials/JumtsUnShahta';
-import Footer from './Partials/Footer';
+import Bedre from './partials/bedre';
+import Kabine from './partials/kabine';
+import SectionHeader from './partials/section-header';
+import Mashinka from './partials/mashinka';
+import JumtsUnShahta from './partials/jumts-un-shahta';
+import Footer from './partials/footer';
 import { Button } from '@/components/ui/button';
 
 const { zazhimHeight, checkListPaddingX, checkListWidth, col_1, col_2, col_4 } = sizes;

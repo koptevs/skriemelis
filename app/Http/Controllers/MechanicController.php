@@ -16,7 +16,7 @@ class MechanicController extends Controller
     public function index()
     {
         return Inertia::render(
-            'Mechanic/Index', ['mechanics' => Mechanic::all()]
+            'mechanic/index', ['mechanics' => Mechanic::all()]
         );
     }
 
@@ -26,7 +26,7 @@ class MechanicController extends Controller
     public function create()
     {
         return Inertia::render(
-            'Mechanic/Create'
+            'mechanic/create'
         );
     }
 
@@ -48,7 +48,7 @@ class MechanicController extends Controller
     public function show(Mechanic $mechanic)
     {
         return Inertia::render(
-            'Mechanic/Show', [
+            'mechanic/show', [
             'mechanic' => $mechanic,
         ],
         );
@@ -60,7 +60,7 @@ class MechanicController extends Controller
     public function edit(Mechanic $mechanic)
     {
         return Inertia::render(
-            'Mechanic/Edit', [
+            'mechanic/edit', [
                 'mechanic' => $mechanic,
             ]
         );

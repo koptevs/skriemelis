@@ -3,7 +3,7 @@ import React from 'react';
 import { Page, Text, View, StyleSheet, Font, Image, Rect, Svg, Polygon, Path } from '@react-pdf/renderer';
 
 import { sizes, borders, debug } from '../variables';
-import QrCode from './QrCode';
+import QrCode from './qr-code';
 
 const { headerHeight, checkListWidth } = sizes;
 const { borderNormal, borderThin, borderThick } = borders;
