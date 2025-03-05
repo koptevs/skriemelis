@@ -48,8 +48,8 @@ export interface Lift {
     lift_manager_id: string;
     reg_number: string;
     bir_url: string;
-    type: string;
-    category: string;
+    type: 'elektriskais' | 'hidrauliskais';
+    category: '1' | '2' | '3' | 'CE';
     factory_number: string;
     model: string;
     speed: string;
@@ -70,61 +70,85 @@ export interface Lift {
     next_inspection_date: string;
     created_at: string;
     updated_at: string;
+}
+
+export interface ParsedLift {
+    manager: string;
+    regNumber: string;
+    birUrl: string;
+    type: string;
+    category: string;
+    factoryNumber: string;
+    model: string;
+    speed: string;
+    load: string;
+    manufacturer: string;
+    installer: string;
+    installationYear: string;
+    floorsServiced: string;
+    addressCountry: string;
+    addressCity: string;
+    address: string;
+    addressPostalCode: string;
+    googleCoordinates: string;
+    buildingSeries: string;
+    notes: string;
+    inspectionStatus: string;
+    entryCode: string;
+    nextInspectionDate: string;
 }
 
 export interface Inspection {
     id: number;
     protocol_number: string;
-    lift_id: string;
-    inspection_type: string;
-    inspection_next_type: string;
-    expert: string;
-    lift_manager: string;
-    date_start: string;
-    date_end: string;
-    date_next: string;
-    date_next_normal: string;
-    label: string;
-    bir_number: string;
-    inspection_result: string;
-    participants: string;
-    non_compliances_0: string;
-    non_compliances_1: string;
-    non_compliances_2: string;
-    non_compliances_3: string;
-    extra_check_reason: string;
-    not_checked_forced: string;
-    notes: string;
-    notes_for_protokol: string;
+    lift_id: string | null;
+    inspection_result: string | null;
+    inspection_type: 'Pirmreizējā' | 'Kārtējā' | 'Ārpuskārtas' | 'Atkārtotā' | null;
+    inspection_next_type: 'Pirmreizējā' | 'Kārtējā' | 'Ārpuskārtas' | 'Atkārtotā' | null;
+    expert: string | null;
+    lift_manager: string | null;
+    date_start: string | null;
+    date_end: string | null;
+    date_next: string | null;
+    date_next_normal: string | null;
+    label: string | null;
+    bir_number: string | null;
+    participants: string | null;
+    non_compliances_0: string | null;
+    non_compliances_1: string | null;
+    non_compliances_2: string | null;
+    non_compliances_3: string | null;
+    extra_check_reason: string | null;
+    not_checked_forced: string | null;
+    notes: string | null;
+    notes_for_protokol: string | null;
 }
-
-export interface LiftWithInspections {
-    id: number;
-    lift_manager_id: string;
-    reg_number: string;
-    bir_url: string;
+export interface ParsedInspection {
+    id: string;
+    protocolNumber: string;
+    liftId: string | null;
+    result: string;
     type: string;
-    category: string;
-    factory_number: string;
-    model: string;
-    speed: string;
-    load: string;
-    manufacturer: string;
-    installer: string;
-    installation_year: string;
-    floors_serviced: string;
-    address_country: string;
-    address_city: string;
-    address: string;
-    address_postal_code: string;
-    google_coordinates: string;
-    building_series: string;
+    nextType: string;
+    expert: string;
+    manager: string;
+    dateStart: string;
+    dateEnd: string;
+    dateNext: string;
+    dateNextNormal: string;
+    label: string;
+    birNumber: string;
+    participants: string[];
+    nonCompliances0: string[];
+    nonCompliances1: string[];
+    nonCompliances2: string[];
+    nonCompliances3: string[];
+    extraCheckReason: string[];
+    notCheckedForced: string[];
     notes: string;
-    inspection_status: string;
-    entry_code: string;
-    next_inspection_date: string;
-    created_at: string;
-    updated_at: string;
+    notesForProtokol: string;
+}
+export interface LiftWithInspections extends Lift {
     inspections: Inspection[];
 }
 export interface Mechanic {
