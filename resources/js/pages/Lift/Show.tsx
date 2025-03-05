@@ -105,6 +105,7 @@ const Show = ({ lift }: { lift: LiftWithInspections }) => {
                 <br />
                 <a
                     // className="mt-2 inline-block rounded bg-purple-600 px-2 py-1 font-semibold text-white" href={parsedLift.birUrl} target="_blank">
+                    href={parsedLift.birUrl}
                     className="mr-2 inline-block rounded-sm bg-purple-600 px-2 py-0.5 font-semibold text-gray-200 no-underline hover:text-gray-900 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500 dark:text-gray-400 dark:hover:text-white"
                 >
                     {' '}
