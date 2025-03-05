@@ -21,10 +21,10 @@ return new class extends Migration
 //            $table->enum('lift_type', ['elektriskais', 'hidrauliskais']);
             $table->enum('category', ['1', '2', '3', 'CE']);
 //            $table->enum('lift_category', ['1', '2', '3', 'CE']);
-            $table->string('factory_number', 32);
+            $table->string('factory_number', 32)->nullable();
             $table->string('model', 64)->nullable();
             $table->decimal('speed', 8, 2)->nullable();
-            $table->smallInteger('load')->unsigned();
+            $table->smallInteger('load')->unsigned()->nullable();
             $table->string('manufacturer', 128)->nullable();
             $table->string('installer', 128)->nullable();
             $table->smallInteger('installation_year')->unsigned();
