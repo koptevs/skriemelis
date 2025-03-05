@@ -1,147 +1,140 @@
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 import dayjs from 'dayjs';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Show = ({ lift }: { lift: any }) => {
-    const { reg_number, address, installation_year, factory_number, load, speed, inspections, entry_code, bir_url } = lift;
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const inspectionsSortedByDate = inspections.sort((a: any, b: any) => {
-        return dayjs(b.date_start).unix() - dayjs(a.date_start).unix();
-    });
-
-    const recentInspection = inspectionsSortedByDate[0];
-
-    // console.log(inspectionsSortedByDate);
+import { Head } from '@inertiajs/react';
+import type { BreadcrumbItem, LiftWithInspections } from '@/types';
+import { parseLiftWithInspections } from '@/lib/utils';
+import AppLayout from '@/layouts/app-layout';
+const Show = ({ lift }: { lift: LiftWithInspections }) => {
+    const [parsedLift, allInspectionsNewestFirst, recentInspection] = parseLiftWithInspections(lift);
+    const shortAddress = parsedLift.address
+        .replace(/bulvāris/i, 'b.')
+        .replace(/prospects/i, 'pr.')
+        .replace(/gatve/i, 'g.')
+        .replace(/Annas Meierovica/i, 'A.M.')
+        .replace(/Annas Brigaderes/i, 'A. Brigaderes')
+        .replace(/ iela/i, '');
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: 'Lifts',
+            href: '/lifts',
+        },
+        {
+            title: `${shortAddress}`,
+            href: '/lifts',
+        },
+    ];
 
     return (
-        <div className="mx-auto mt-4 max-w-7xl px-4 sm:px-6 lg:px-8">
-            {reg_number}
-            <br />
-            Address: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{address}</span>
-            <br />
-            Year: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{installation_year} g.</span>
-            <br />
-            Factory number: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{factory_number}</span>
-            <br />
-            Load: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{load} kg.</span>
-            <br />
-            Speed: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{speed} m/s</span>
-            <br />
-            Code: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{entry_code}</span>
-            <br />
-            {/*#################################################*/}
-            {recentInspection && (
-                <>
-                    <h5>Last Inspection Results</h5>
-
-                    <Link href={route('inspections.show', recentInspection.id)}>
-                        <h6>{recentInspection.protocol_number}</h6>
-                    </Link>
-
-                    <p>
-                        Insp. start - <span style={{ fontWeight: 600 }}>{dayjs(recentInspection.date_start).format('DD.MM.YYYY')}</span>
-                    </p>
-                    <p>
-                        Insp. Next - <span style={{ fontWeight: 600 }}>{dayjs(recentInspection.date_next).format('DD.MM.YYYY')}</span>
-                    </p>
-                    <p>
-                        Insp. Next Type - <span style={{ fontWeight: 600 }}>{recentInspection.inspection_next_type}</span>{' '}
-                    </p>
-                    <a className="mt-2 inline-block rounded bg-purple-600 px-2 py-1 font-semibold text-white" href={bir_url} target="_blank">
-                        BIR
-                    </a>
-
-                    {/*{recentInspection.non_compliances_1.length > 4 && (*/}
-                    {/*    <>*/}
-                    {/*        <p style={{ fontWeight: 600 }}>*/}
-                    {/*            Neatbilsības 1:{" "}*/}
-                    {/*        </p>*/}
-                    {/*        <div style={{ fontSize: "11px", width: "100%" }}>*/}
-                    {/*            /!* {recentInspection.non_compliances_1.replace(*/}
-                    {/*        /(\r\n|\r|\n)/g,*/}
-                    {/*        "<br>"*/}
-                    {/*    )} *!/*/}
-                    {/*            {Object.entries(*/}
-                    {/*                JSON.parse(*/}
-                    {/*                    recentInspection.non_compliances_1*/}
-                    {/*                )*/}
-                    {/*            ).map(([index, value]) => (*/}
-                    {/*                <p key={index}>{value}</p>*/}
-                    {/*            ))}*/}
-                    {/*        </div>*/}
-                    {/*    </>*/}
-                    {/*)}*/}
-
-                    {/*{recentInspection.non_compliances_2.length > 4 && (*/}
-                    {/*    <>*/}
-                    {/*        <p style={{ fontWeight: 600 }}>*/}
-                    {/*            Neatbilsības 2:{" "}*/}
-                    {/*        </p>*/}
-                    {/*        <div style={{ fontSize: "11px", width: "100%" }}>*/}
-                    {/*            /!* {recentInspection.non_compliances_1.replace(*/}
-                    {/*        /(\r\n|\r|\n)/g,*/}
-                    {/*        "<br>"*/}
-                    {/*    )} *!/*/}
-                    {/*            {Object.entries(*/}
-                    {/*                JSON.parse(*/}
-                    {/*                    recentInspection.non_compliances_2*/}
-                    {/*                )*/}
-                    {/*            ).map(([index, value]) => (*/}
-                    {/*                <p key={index}>{value}</p>*/}
-                    {/*            ))}*/}
-                    {/*        </div>*/}
-                    {/*    </>*/}
-                    {/*)}*/}
-
-                    {/*{recentInspection.non_compliances_3.length > 4 && (*/}
-                    {/*    <>*/}
-                    {/*        <p style={{ fontWeight: 600 }}>*/}
-                    {/*            Neatbilsības 3:{" "}*/}
-                    {/*        </p>*/}
-                    {/*        <div style={{ fontSize: "11px", width: "100%" }}>*/}
-                    {/*            /!* {recentInspection.non_compliances_1.replace(*/}
-                    {/*        /(\r\n|\r|\n)/g,*/}
-                    {/*        "<br>"*/}
-                    {/*    )} *!/*/}
-                    {/*            {Object.entries(*/}
-                    {/*                JSON.parse(*/}
-                    {/*                    recentInspection.non_compliances_3*/}
-                    {/*                )*/}
-                    {/*            ).map(([index, value]) => (*/}
-                    {/*                <p key={index}>{value}</p>*/}
-                    {/*            ))}*/}
-                    {/*        </div>*/}
-                    {/*    </>*/}
-                    {/*)}*/}
-                </>
-            )}
-            {/*    ########################################*/}
-            <Link
-                href={route('lifts.edit', lift.id)}
-                className="mr-2 inline-block rounded-sm bg-emerald-800 px-2 py-0.5 font-semibold text-gray-200 no-underline hover:text-gray-900 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500 dark:text-gray-400 dark:hover:text-white"
-            >
-                Edit
-            </Link>
-            <Link
-                href={route('lifts.checklist', lift.id)}
-                className="mr-2 inline-block rounded-sm bg-fuchsia-800 px-2 py-0.5 font-semibold text-gray-200 no-underline hover:text-gray-900 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500 dark:text-gray-400 dark:hover:text-white"
-            >
-                PL
-            </Link>
-            {/*<Button*/}
-            {/*    variant="link"*/}
-            {/*    size="small"*/}
-            {/*    onClick={() =>*/}
-            {/*        router.delete(`/lifts/${lift.id}`, {*/}
-            {/*            onBefore: () =>*/}
-            {/*                confirm("Чем лифт тебе мешает? Точно удалить?"),*/}
-            {/*        })*/}
-            {/*    }*/}
-            {/*>*/}
-            {/*    Delete*/}
-            {/*</Button>*/}
-        </div>
+        <AppLayout breadcrumbs={breadcrumbs}>
+            <Head title="Show lift" />
+            <div className="px-4 sm:px-6 lg:px-8">
+                <br />
+                <h1 style={{ fontSize: '18px', fontWeight: 'bold' }}>{parsedLift.regNumber}</h1>
+                Code: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{parsedLift.entryCode}</span>
+                <br />
+                {/* Address: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{parsedLift.address}</span> */}
+                Address: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{shortAddress}</span>
+                <br />
+                Year: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{parsedLift.installationYear} g.</span>
+                <br />
+                Factory number: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{parsedLift.factoryNumber}</span>
+                <br />
+                Load: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{parsedLift.load} kg.</span>
+                <br />
+                Speed: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{parsedLift.speed} m/s</span>
+                <br />
+                Floors: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{parsedLift.floorsServiced}</span>
+                <br />
+                <br />
+                {/* <pre>{JSON.stringify(parsedLift, null, 2)}</pre> */}
+                {recentInspection && (
+                    <>
+                        <h5 className="mb-2" style={{ fontWeight: 600 }}>
+                            Last Inspection Results
+                        </h5>
+                        <Link href={route('inspections.show', recentInspection.id)}>
+                            <h6 style={{ fontWeight: 600 }}>{recentInspection.protocolNumber}</h6>
+                        </Link>
+                        <p>
+                            Insp. start - <span style={{ fontWeight: 600 }}>{recentInspection.dateStart}</span>
+                        </p>
+                        <p>
+                            Insp. Next - <span style={{ fontWeight: 600 }}>{recentInspection.dateNext}</span>
+                        </p>
+                        <p>
+                            Insp. Next Type - <span style={{ fontWeight: 600 }}>{recentInspection.nextType}</span>{' '}
+                        </p>
+                    </>
+                )}
+                {recentInspection.nonCompliances1.length > 0 && (
+                    <>
+                        <p style={{ fontWeight: 600 }}>Neatbilsības 1: </p>
+                        <ul style={{ fontSize: '14px', width: '100%' }}>
+                            {recentInspection.nonCompliances1.map((value, index) => (
+                                <li className="ml-2" key={index}>
+                                    {value}
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                )}
+                {recentInspection.nonCompliances2.length > 0 && (
+                    <>
+                        <p style={{ fontWeight: 600 }}>Neatbilsības 2: </p>
+                        <ul style={{ fontSize: '14px', width: '100%' }}>
+                            {recentInspection.nonCompliances2.map((value, index) => (
+                                <li className="ml-2" key={index}>
+                                    {value}
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                )}
+                {recentInspection.nonCompliances3.length > 0 && (
+                    <>
+                        <p style={{ fontWeight: 600 }}>Neatbilsības 3: </p>
+                        <ul style={{ fontSize: '14px', width: '100%' }}>
+                            {recentInspection.nonCompliances3.map((value, index) => (
+                                <li className="ml-2" key={index}>
+                                    {value}
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                )}
+                <br />
+                <a
+                    // className="mt-2 inline-block rounded bg-purple-600 px-2 py-1 font-semibold text-white" href={parsedLift.birUrl} target="_blank">
+                    className="mr-2 inline-block rounded-sm bg-purple-600 px-2 py-0.5 font-semibold text-gray-200 no-underline hover:text-gray-900 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500 dark:text-gray-400 dark:hover:text-white"
+                >
+                    {' '}
+                    BIR
+                </a>
+                <Link
+                    href={route('lifts.edit', lift.id)}
+                    className="mr-2 inline-block rounded-sm bg-emerald-800 px-2 py-0.5 font-semibold text-gray-200 no-underline hover:text-gray-900 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500 dark:text-gray-400 dark:hover:text-white"
+                >
+                    Edit
+                </Link>
+                <Link
+                    href={route('lifts.checklist', lift.id)}
+                    className="mr-2 inline-block rounded-sm bg-fuchsia-800 px-2 py-0.5 font-semibold text-gray-200 no-underline hover:text-gray-900 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500 dark:text-gray-400 dark:hover:text-white"
+                >
+                    PL
+                </Link>
+                <div className="mt-4"></div>
+                {/* <Link
+                    className="inline-block rounded bg-red-600 px-4 py-2 text-xl font-bold text-white"
+                    onClick={() =>
+                        router.delete(`/lifts/${lift.id}`, {
+                            onBefore: () => confirm('Чем лифт тебе мешает? Точно удалить?'),
+                        })
+                    }
+                >
+                    Delete
+                </Link> */}
+            </div>
+        </AppLayout>
     );
 };
 

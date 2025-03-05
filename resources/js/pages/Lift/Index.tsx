@@ -12,7 +12,6 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Index = ({ lifts, filters }: { lifts: any; filters: any }): React.ReactNode => {
-    console.log(lifts);
     // console.log(filters);{search: "string", street: "string"}
     return (
         // <AuthenticatedLayout header={<h2 className="text-xl leading-tight font-semibold text-gray-800 dark:text-gray-200">Lifti</h2>}>
