@@ -45,19 +45,19 @@ export interface User {
 }
 export interface Lift {
     id: number;
-    lift_manager_id: string;
+    lift_manager_id: number;
     reg_number: string;
     bir_url: string;
     type: 'elektriskais' | 'hidrauliskais';
     category: '1' | '2' | '3' | 'CE';
     factory_number: string;
     model: string;
-    speed: string;
-    load: string;
+    speed: number;
+    load: number;
     manufacturer: string;
     installer: string;
-    installation_year: string;
-    floors_serviced: string;
+    installation_year: number;
+    floors_serviced: number;
     address_country: string;
     address_city: string;
     address: string;
