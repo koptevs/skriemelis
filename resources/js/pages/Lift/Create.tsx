@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import dayjs from 'dayjs';
-import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
+import { router, usePage } from '@inertiajs/react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import dayjs from 'dayjs';
+import { toast } from 'sonner';
+import AppLayout from '@/layouts/app-layout';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -9,12 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 // import { toast } from '@/hooks/use-toast';
-import { toast } from 'sonner';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { router, usePage } from '@inertiajs/react';
 import { Check, ChevronsUpDown } from 'lucide-react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
@@ -85,11 +85,12 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
             notes: '',
         },
     });
-
+    console.log(form);
     const { register, control, handleSubmit, formState } = form;
     const { errors } = formState;
     const { errors: inertiaErrors } = usePage().props;
 
+    // const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (data) => { //book
     async function onSubmit(data: z.infer<typeof formSchema>) {
         toast(
             `Lift ${data.regNumber} has been created`,
