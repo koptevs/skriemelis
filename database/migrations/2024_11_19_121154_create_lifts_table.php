@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('lifts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('lift_manager_id')->nullable();
             $table->string('reg_number', 32)->unique();
-            $table->string('bir_url', 256)->nullable();
+            $table->foreignId('lift_manager_id')->nullable();
             $table->enum('type', ['elektriskais', 'hidrauliskais']);
             $table->enum('category', ['1', '2', '3', 'CE']);
             $table->string('factory_number', 32)->nullable();
@@ -26,16 +25,18 @@ return new class extends Migration
             $table->string('installer', 128)->nullable();
             $table->smallInteger('installation_year')->unsigned(); // -32768...32767  unsigned -> 0...65535  (2 bytes)
             $table->tinyInteger('floors_serviced')->unsigned()->nullable();  // -128...127  unsigned -> 0...255 (1 byte)
-            $table->string('address_country', 64);
-            $table->string('address_city', 64);
             $table->string('address', 256);
+            $table->string('address_city', 64);
+            $table->string('address_country', 64);
             $table->string('address_postal_code', 8);
-            $table->string('google_coordinates', 128)->nullable();
             $table->string('building_series', 16)->nullable();
-            $table->text('notes')->nullable();
-            $table->enum('inspection_status', ['X', '0', '1', '2', '3'])->default('X');
+            $table->string('bir_url', 256)->nullable();
+            $table->string('google_coordinates', 128)->nullable();
             $table->string('entry_code', 128)->nullable();
+            $table->enum('inspection_status', ['X', '0', '1', '2', '3'])->default('X');
             $table->date('next_inspection_date')->nullable();
+            $table->text('notes')->nullable();
+            $table->smallInteger('created_by')->unsigned(); // -32768...32767  unsigned -> 0...65535  (2 bytes)
             $table->timestamps();
         });
     }

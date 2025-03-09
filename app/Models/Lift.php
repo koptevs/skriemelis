@@ -3,6 +3,8 @@
 namespace App\Models;
 
 //use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Lift extends Model
@@ -12,6 +14,14 @@ class Lift extends Model
     protected $table = 'lifts';
 
     protected $guarded = false;
+
+    protected function nextInspectionDate(): Attribute
+    {
+        return Attribute::make(
+//            get: fn (string $value) => ucfirst($value),
+            set: fn (string $value) => Carbon::parse($value),
+        );
+    }
 
     public function lift_manager(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

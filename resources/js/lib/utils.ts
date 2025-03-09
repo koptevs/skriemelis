@@ -1,4 +1,4 @@
-import { LiftWithInspections, ParsedInspection, ParsedLift } from '@/types';
+import { Lift, LiftWithInspections, ParsedInspection, ParsedLift } from '@/types';
 import { type ClassValue, clsx } from 'clsx';
 import dayjs from 'dayjs';
 import { twMerge } from 'tailwind-merge';
@@ -7,6 +7,35 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
+export function parseLift(lift: Lift): ParsedLift {
+    const parsedLift: ParsedLift = {
+        manager: lift.lift_manager_id,
+        regNumber: lift.reg_number,
+        birUrl: lift.bir_url,
+        type: lift.type,
+        category: lift.category,
+        factoryNumber: lift.factory_number,
+        model: lift.model,
+        speed: lift.speed,
+        load: lift.load,
+        manufacturer: lift.manufacturer,
+        installer: lift.installer,
+        instYear: lift.installation_year,
+        floorsServiced: lift.floors_serviced,
+        addressCountry: lift.address_country,
+        addressCity: lift.address_city,
+        address: lift.address,
+        addressPostalCode: lift.address_postal_code,
+        googleCoordinates: lift.google_coordinates,
+        buildingSeries: lift.building_series,
+        notes: lift.notes,
+        inspectionStatus: lift.inspection_status,
+        entryCode: lift.entry_code,
+        nextInspectionDate: dayjs(lift.next_inspection_date).format('DD.MM.YYYY'),
+    };
+
+    return parsedLift;
+}
 export function parseLiftWithInspections(
     liftWithInspections: LiftWithInspections,
 ): [parsedLift: ParsedLift, allInspectionsNewestFirst: ParsedInspection[], recentInspection: ParsedInspection] {
@@ -22,7 +51,7 @@ export function parseLiftWithInspections(
         load: liftWithInspections.load,
         manufacturer: liftWithInspections.manufacturer,
         installer: liftWithInspections.installer,
-        installationYear: liftWithInspections.installation_year,
+        instYear: liftWithInspections.installation_year,
         floorsServiced: liftWithInspections.floors_serviced,
         addressCountry: liftWithInspections.address_country,
         addressCity: liftWithInspections.address_city,

@@ -1,5 +1,4 @@
 import { Link, router } from '@inertiajs/react';
-import dayjs from 'dayjs';
 import { Head } from '@inertiajs/react';
 import type { BreadcrumbItem, LiftWithInspections } from '@/types';
 import { parseLiftWithInspections } from '@/lib/utils';
@@ -23,7 +22,6 @@ const Show = ({ lift }: { lift: LiftWithInspections }) => {
             href: '/lifts',
         },
     ];
-
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Show lift" />
@@ -45,6 +43,7 @@ const Show = ({ lift }: { lift: LiftWithInspections }) => {
                 <br />
                 Floors: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{parsedLift.floorsServiced}</span>
                 <br />
+                Next inspection: <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{parsedLift.nextInspectionDate}</span>
                 <br />
                 {/* <pre>{JSON.stringify(parsedLift, null, 2)}</pre> */}
                 {recentInspection && (
@@ -66,7 +65,7 @@ const Show = ({ lift }: { lift: LiftWithInspections }) => {
                         </p>
                     </>
                 )}
-                {recentInspection.nonCompliances1.length > 0 && (
+                {recentInspection?.nonCompliances1.length > 0 && (
                     <>
                         <p style={{ fontWeight: 600 }}>Neatbilsības 1: </p>
                         <ul style={{ fontSize: '14px', width: '100%' }}>
@@ -78,7 +77,7 @@ const Show = ({ lift }: { lift: LiftWithInspections }) => {
                         </ul>
                     </>
                 )}
-                {recentInspection.nonCompliances2.length > 0 && (
+                {recentInspection?.nonCompliances2.length > 0 && (
                     <>
                         <p style={{ fontWeight: 600 }}>Neatbilsības 2: </p>
                         <ul style={{ fontSize: '14px', width: '100%' }}>
@@ -90,7 +89,7 @@ const Show = ({ lift }: { lift: LiftWithInspections }) => {
                         </ul>
                     </>
                 )}
-                {recentInspection.nonCompliances3.length > 0 && (
+                {recentInspection?.nonCompliances3.length > 0 && (
                     <>
                         <p style={{ fontWeight: 600 }}>Neatbilsības 3: </p>
                         <ul style={{ fontSize: '14px', width: '100%' }}>
@@ -122,6 +121,12 @@ const Show = ({ lift }: { lift: LiftWithInspections }) => {
                     className="mr-2 inline-block rounded-sm bg-fuchsia-800 px-2 py-0.5 font-semibold text-gray-200 no-underline hover:text-gray-900 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500 dark:text-gray-400 dark:hover:text-white"
                 >
                     PL
+                </Link>
+                <Link
+                    href={route('lifts.edit', lift.id)}
+                    className="mr-2 inline-block rounded-sm bg-red-800 px-2 py-0.5 font-semibold text-gray-200 no-underline hover:text-gray-900 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500 dark:text-gray-400 dark:hover:text-white"
+                >
+                    Edit
                 </Link>
                 <div className="mt-4"></div>
                 {/* <Link

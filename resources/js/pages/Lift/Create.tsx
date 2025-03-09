@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { type BreadcrumbItem } from '@/types';
-import { router, usePage } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { z } from 'zod';
+import { DevTool } from '@hookform/devtools';
+import { string, z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dayjs from 'dayjs';
+import { format } from 'date-fns';
 import { toast } from 'sonner';
 import AppLayout from '@/layouts/app-layout';
 import { Button } from '@/components/ui/button';
@@ -13,49 +15,58 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Calendar } from '@/components/ui/calendar';
 // import { toast } from '@/hooks/use-toast';
-import { Check, ChevronsUpDown } from 'lucide-react';
+import { Check, ChevronsUpDown, CalendarIcon } from 'lucide-react';
 
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import React from 'react';
 
-const formSchema = z.object({
-    regNumber: z.string().regex(new RegExp(/^[0-9][C,c][L,l][0-9][0-9][0-9][0-9][0-9][0-9]$/), {
-        message: 'regNumber is required and must look like 5CL223322',
-    }),
-    factoryNumber: z.string(),
-    type: z.enum(['elektriskais', 'hidrauliskais'], {
-        message: "Can be of value 'elektriskais' or 'hidrauliskais'",
-    }),
-    category: z.enum(['CE', '1', '2', '3'], {
-        message: "Can be of value 'CE', '1', '2', '3'",
-    }),
-    model: z.string(),
-    speed: z.string(),
-    load: z.string(),
-    manufacturer: z.string(),
-    installer: z.string(),
-    installationYear: z.string(),
-    floorsServiced: z.string(),
-    address: z.string(),
-    addressCity: z.string(),
-    addressCountry: z.string(),
-    addressPostalCode: z.string(),
-    liftManager: z.string().min(1, {
-        message: 'Field is required блин!',
-    }),
-    googleCoordinates: z.string(),
-    birUrl: z.string(),
-    buildingSeries: z.string(),
-    inspectionStatus: z.string(),
-    entryCode: z.string(),
-    nextInspectionDate: z.string(),
-    notes: z.string(),
-});
-
 export default function Create({ liftManagers }: { liftManagers: { name: string; id: string }[] }) {
+    const [date, setDate] = React.useState<Date | undefined>(new Date());
     const [openSelectManager, setOpenSelectManager] = React.useState(false);
+
+    const formSchema = z.object({
+        regNumber: z.string().regex(new RegExp(/^[0-9][C,c][L,l][0-9][0-9][0-9][0-9][0-9][0-9]$/), {
+            message: 'regNumber is required and must look like 5CL223322',
+        }),
+        liftManager: z.coerce.number().min(1, {
+            message: 'Field is required блин!',
+        }),
+        type: z.enum(['elektriskais', 'hidrauliskais'], {
+            message: "Can be of value 'elektriskais' or 'hidrauliskais'",
+        }),
+        category: z.enum(['CE', '1', '2', '3'], {
+            message: "Can be of value 'CE', '1', '2', '3'",
+        }),
+        factoryNumber: z.string(),
+        model: z.string(),
+        speed: z.coerce
+            .number({
+                message: 'Введите число, запятую замените на точку.',
+            })
+            .max(2),
+        load: z.coerce.number(),
+        manufacturer: z.string(),
+        installer: z.string(),
+        instYear: z.coerce.number().min(1930).max(2025),
+        floorsServiced: z.coerce.number(),
+        address: z.string(),
+        addressCity: z.string(),
+        addressCountry: z.string(),
+        addressPostalCode: z.string(),
+        buildingSeries: z.string(),
+        birUrl: z.string(),
+        googleCoordinates: z.string(),
+        entryCode: z.string(),
+        inspectionStatus: z.enum(['X', '0', '1', '2', '3'], {
+            message: "Can be of value 'X', '0', '1', '2', '3'",
+        }),
+        nextInspectionDate: z.date(),
+        notes: z.string(),
+    });
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         mode: 'onTouched',
@@ -65,33 +76,33 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
             type: `elektriskais`,
             category: 'CE', //
             model: '',
-            speed: '',
-            load: '',
+            speed: 1.0,
+            load: 320,
             manufacturer: '',
             installer: '',
-            installationYear: '',
-            floorsServiced: '',
-            address: '',
+            instYear: 2025,
+            floorsServiced: 8,
+            address: 'Varavīksnes gatve 14',
             addressCity: 'Rīga',
             addressCountry: 'Latvija',
             addressPostalCode: 'LV-1000',
-            liftManager: '',
+            liftManager: 0,
             googleCoordinates: '',
             birUrl: '',
             buildingSeries: '',
-            inspectionStatus: '',
+            inspectionStatus: 'X',
             entryCode: '',
-            nextInspectionDate: '',
+            nextInspectionDate: new Date(),
             notes: '',
         },
     });
-    console.log(form);
     const { register, control, handleSubmit, formState } = form;
     const { errors } = formState;
     const { errors: inertiaErrors } = usePage().props;
 
     // const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (data) => { //book
     async function onSubmit(data: z.infer<typeof formSchema>) {
+        // data.nextInspectionDate = dayjs(data.nextInspectionDate).format('YYYY-MM-DD');
         toast(
             `Lift ${data.regNumber} has been created`,
             {
@@ -180,9 +191,10 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                 name="regNumber"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Reg. number</FormLabel>
+                                        <FormLabel className="text-[12px]">Reg. number</FormLabel>
                                         <FormControl>
                                             <Input
+                                                // style={{ fontSize: '12px' }}
                                                 // placeholder="shadcn"
                                                 {...field}
                                                 autoComplete="regNumber"
@@ -194,28 +206,107 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                     </FormItem>
                                 )}
                             />
-                            {/* Form field: factoryNumber */}
+                            {/* Form field: liftManager */}
                             <FormField
                                 control={form.control}
-                                name="factoryNumber"
+                                name="liftManager"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Factory Number</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                // placeholder="May be empty"
-                                                {...field}
-                                                autoComplete="factoryNumber"
-                                                // className="min-w-[250px] sm:min-w-[400px]"
-                                            />
-                                        </FormControl>
-                                        <FormDescription>{/* Enter your name. */}</FormDescription>
+                                        <FormLabel>
+                                            Lift Manager
+                                            {/* Lift Manager{JSON.stringify(field)} */}
+                                        </FormLabel>
+                                        {/* ############################################### */}
+                                        <Popover open={openSelectManager} onOpenChange={setOpenSelectManager}>
+                                            {/* openSelectManager */}
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
+                                                    >
+                                                        {field.value
+                                                            ? serviceCompanies.find((serviceCompany) => serviceCompany.id === field.value)?.label
+                                                            : 'Select Lift Manager'}
+                                                        <ChevronsUpDown className="opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent>
+                                                {/* <PopoverContent className="w-[200px] p-0"> */}
+                                                <Command>
+                                                    <CommandInput placeholder="Search framework..." className="h-9" />
+                                                    <CommandList>
+                                                        <CommandEmpty>No Lift Manager found.</CommandEmpty>
+                                                        <CommandGroup>
+                                                            {serviceCompanies.map((serviceCompany) => (
+                                                                <CommandItem
+                                                                    value={serviceCompany.label}
+                                                                    key={serviceCompany.id}
+                                                                    onSelect={() => {
+                                                                        form.setValue('liftManager', serviceCompany.id);
+                                                                        setOpenSelectManager(false);
+                                                                    }}
+                                                                >
+                                                                    {serviceCompany.label}
+                                                                    <Check
+                                                                        className={cn(
+                                                                            'ml-auto',
+                                                                            serviceCompany.id === field.value ? 'opacity-100' : 'opacity-0',
+                                                                        )}
+                                                                    />
+                                                                </CommandItem>
+                                                            ))}
+                                                        </CommandGroup>
+                                                    </CommandList>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
+                                        {/* ############################################### */}
+                                        {/* <Select
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                        >
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Lift manager" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                {serviceCompanies.map(
+                                                    function (serviceCompany) {
+                                                        return (
+                                                            <SelectItem
+                                                                key={
+                                                                    serviceCompany.id
+                                                                }
+                                                                value={
+                                                                    serviceCompany.id
+                                                                }
+                                                            >
+                                                                {
+                                                                    serviceCompany.label
+                                                                }
+                                                            </SelectItem>
+                                                        );
+                                                    }
+                                                )}
+                                            </SelectContent>
+                                        </Select> */}
+                                        {/* ######################################### */}
+                                        <FormDescription>
+                                            {/* You can manage email addresses in your{" "} */}
+                                            {/* <Link href="/examples/forms">
+                                            email settings
+                                        </Link>
+                                        . */}
+                                        </FormDescription>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
                             {/* Form field: type */}
-
                             <FormField
                                 control={form.control}
                                 name="type"
@@ -271,6 +362,26 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                         </Link>
                                         . */}
                                         </FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            {/* Form field: factoryNumber */}
+                            <FormField
+                                control={form.control}
+                                name="factoryNumber"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Factory Number</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                // placeholder="May be empty"
+                                                {...field}
+                                                autoComplete="factoryNumber"
+                                                // className="min-w-[250px] sm:min-w-[400px]"
+                                            />
+                                        </FormControl>
+                                        <FormDescription>{/* Enter your name. */}</FormDescription>
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -375,10 +486,10 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                     </FormItem>
                                 )}
                             />
-                            {/* Form field: installationYear */}
+                            {/* Form field: instYear */}
                             <FormField
                                 control={form.control}
-                                name="installationYear"
+                                name="instYear"
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Lift installation year</FormLabel>
@@ -386,7 +497,7 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                             <Input
                                                 // placeholder="shadcn"
                                                 {...field}
-                                                autoComplete="installationYear"
+                                                autoComplete="instYear"
                                                 // className="min-w-[250px] sm:min-w-[400px]"
                                             />
                                         </FormControl>
@@ -495,125 +606,22 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                     </FormItem>
                                 )}
                             />
-                            {/* Form field: manager */}
+                            {/* Form field: buildingSeries */}
                             <FormField
                                 control={form.control}
-                                name="liftManager"
+                                name="buildingSeries"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>
-                                            Lift Manager
-                                            {/* Lift Manager{JSON.stringify(field)} */}
-                                        </FormLabel>
-                                        {/* ############################################### */}
-                                        <Popover open={openSelectManager} onOpenChange={setOpenSelectManager}>
-                                            {/* openSelectManager */}
-                                            <PopoverTrigger asChild>
-                                                <FormControl>
-                                                    <Button
-                                                        variant="outline"
-                                                        role="combobox"
-                                                        className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
-                                                    >
-                                                        {field.value
-                                                            ? serviceCompanies.find((serviceCompany) => serviceCompany.id === field.value)?.label
-                                                            : 'Select Lift Manager'}
-                                                        <ChevronsUpDown className="opacity-50" />
-                                                    </Button>
-                                                </FormControl>
-                                            </PopoverTrigger>
-                                            <PopoverContent>
-                                                {/* <PopoverContent className="w-[200px] p-0"> */}
-                                                <Command>
-                                                    <CommandInput placeholder="Search framework..." className="h-9" />
-                                                    <CommandList>
-                                                        <CommandEmpty>No Lift Manager found.</CommandEmpty>
-                                                        <CommandGroup>
-                                                            {serviceCompanies.map((serviceCompany) => (
-                                                                <CommandItem
-                                                                    value={serviceCompany.label}
-                                                                    key={serviceCompany.id}
-                                                                    onSelect={() => {
-                                                                        form.setValue('liftManager', serviceCompany.id);
-                                                                        setOpenSelectManager(false);
-                                                                    }}
-                                                                >
-                                                                    {serviceCompany.label}
-                                                                    <Check
-                                                                        className={cn(
-                                                                            'ml-auto',
-                                                                            serviceCompany.id === field.value ? 'opacity-100' : 'opacity-0',
-                                                                        )}
-                                                                    />
-                                                                </CommandItem>
-                                                            ))}
-                                                        </CommandGroup>
-                                                    </CommandList>
-                                                </Command>
-                                            </PopoverContent>
-                                        </Popover>
-                                        {/* ############################################### */}
-                                        {/* <Select
-                                            onValueChange={field.onChange}
-                                            defaultValue={field.value}
-                                        >
-                                            <FormControl>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Lift manager" />
-                                                </SelectTrigger>
-                                            </FormControl>
-                                            <SelectContent>
-                                                {serviceCompanies.map(
-                                                    function (serviceCompany) {
-                                                        return (
-                                                            <SelectItem
-                                                                key={
-                                                                    serviceCompany.id
-                                                                }
-                                                                value={
-                                                                    serviceCompany.id
-                                                                }
-                                                            >
-                                                                {
-                                                                    serviceCompany.label
-                                                                }
-                                                            </SelectItem>
-                                                        );
-                                                    }
-                                                )}
-                                            </SelectContent>
-                                        </Select> */}
-                                        {/* ######################################### */}
-                                        <FormDescription>
-                                            {/* You can manage email addresses in your{" "} */}
-                                            {/* <Link href="/examples/forms">
-                                            email settings
-                                        </Link>
-                                        . */}
-                                        </FormDescription>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                            {/* ############################## */}
-
-                            {/* Form field: latitude */}
-                            <FormField
-                                control={form.control}
-                                name="googleCoordinates"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Lift googleCoordinates</FormLabel>
+                                        <FormLabel>Lift buildingSeries</FormLabel>
                                         <FormControl>
                                             <Input
                                                 // placeholder="shadcn"
                                                 {...field}
-                                                autoComplete="googleCoordinates"
+                                                autoComplete="buildingSeries"
                                                 // className="min-w-[250px] sm:min-w-[400px]"
                                             />
                                         </FormControl>
-                                        <FormDescription>{/* Enter BIR reg. nr. */}</FormDescription>
+                                        <FormDescription>{/* Enter buildingSeries. */}</FormDescription>
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -638,18 +646,18 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                     </FormItem>
                                 )}
                             />
-                            {/* Form field: buildingSeries */}
+                            {/* Form field: googleCoordinates */}
                             <FormField
                                 control={form.control}
-                                name="buildingSeries"
+                                name="googleCoordinates"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Lift buildingSeries</FormLabel>
+                                        <FormLabel>Google Coordinates</FormLabel>
                                         <FormControl>
                                             <Input
                                                 // placeholder="shadcn"
                                                 {...field}
-                                                autoComplete="buildingSeries"
+                                                autoComplete="googleCoordinates"
                                                 // className="min-w-[250px] sm:min-w-[400px]"
                                             />
                                         </FormControl>
@@ -658,26 +666,7 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                     </FormItem>
                                 )}
                             />
-                            {/* Form field: inspectionStatus */}
-                            <FormField
-                                control={form.control}
-                                name="inspectionStatus"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Lift inspectionStatus</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                // placeholder="shadcn"
-                                                {...field}
-                                                autoComplete="inspectionStatus"
-                                                // className="min-w-[250px] sm:min-w-[400px]"
-                                            />
-                                        </FormControl>
-                                        <FormDescription>{/* Enter BIR reg. nr. */}</FormDescription>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+
                             {/* Form field: entryCode */}
                             <FormField
                                 control={form.control}
@@ -698,26 +687,80 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                     </FormItem>
                                 )}
                             />
+
+                            {/* Form field: inspectionStatus */}
+                            <FormField
+                                control={form.control}
+                                name="inspectionStatus"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Lift inspection status</FormLabel>
+                                        <Select onValueChange={field.onChange} defaultValue={'CE'}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Lift inspection status" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value={'X'}>{'X'}</SelectItem>
+                                                <SelectItem value={'0'}>{'0'}</SelectItem>
+                                                <SelectItem value={'1'}>{'1'}</SelectItem>
+                                                <SelectItem value={'2'}>{'2'}</SelectItem>
+                                                <SelectItem value={'3'}>{'3'}</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormDescription>
+                                            {/* You can manage email addresses in your{" "} */}
+                                            {/* <Link href="/examples/forms">email settings</Link>. */}
+                                        </FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            {/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */}
                             {/* Form field: nextInspectionDate */}
                             <FormField
                                 control={form.control}
                                 name="nextInspectionDate"
                                 render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Lift nextInspectionDate</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                // placeholder="shadcn"
-                                                {...field}
-                                                autoComplete="nextInspectionDate"
-                                                // className="min-w-[250px] sm:min-w-[400px]"
-                                            />
-                                        </FormControl>
-                                        <FormDescription>{/* Enter BIR reg. nr. */}</FormDescription>
+                                    <FormItem className="flex flex-col">
+                                        <FormLabel>Next Inspection</FormLabel>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant={'outline'}
+                                                        className={cn(
+                                                            'w-[240px] pl-3 text-left font-normal',
+                                                            !field.value && 'text-muted-foreground',
+                                                        )}
+                                                    >
+                                                        {/* {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>} */}
+                                                        {field.value ? dayjs(field.value).format('DD.MM.YYYY') : <span>Pick a date</span>}
+                                                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-auto p-0" align="start">
+                                                <Calendar
+                                                    // fixedWeeks
+                                                    // showOutsideDays
+                                                    captionLayout="label"
+                                                    mode="single"
+                                                    selected={field.value}
+                                                    onSelect={field.onChange}
+                                                    // disabled={(date) => date > new Date() || date < new Date('1900-01-01')}
+                                                    initialFocus
+                                                />
+                                            </PopoverContent>
+                                        </Popover>
+                                        {/* <FormDescription>Your date of birth is used to calculate your age.</FormDescription> */}
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
+
+                            {/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */}
                         </div>
                         {/* Form field: notes */}
                         <FormField
@@ -740,6 +783,7 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                             Submit
                         </Button>
                     </form>
+                    <DevTool control={control} />
                 </Form>
             </div>
         </AppLayout>

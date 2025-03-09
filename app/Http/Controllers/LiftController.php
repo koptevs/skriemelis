@@ -78,34 +78,43 @@ class LiftController extends Controller
      */
     public function store(StoreLiftRequest $request)
     {
-        $data            = $request->validated();
-        $data['user_id'] = auth()->id();
+        $data = $request->validated();
+//dd($data);
 
-        /* old
         $lift = [
-            'reg_number'          => $data["regNumber"],
-            'factory_number'      => $data["factoryNumber"],
-            'lift_type'           => $data["liftType"],
-            'lift_category'       => $data["liftCategory"],
-            'model'               => $data["model"],
-            'speed'               => $data["speed"],
-            'load'                => intval($data["load"]),
-            'manufacturer'        => $data["manufacturer"],
-            'installer'           => $data["installer"],
-            'installation_year'   => intval($data["installationYear"]),
-            'floors_serviced'     => intval($data["floorsServiced"]),
-            'address'             => $data["address"],
-            'address_city'        => $data["addressCity"],
-            'address_country'     => $data["addressCountry"],
-            'address_postal_code' => $data["addressPostalCode"],
-            'lift_manager_id'     => $data["liftManager"],
-            'notes'               => $data["notes"],
+            'reg_number'           => $data["regNumber"],
+            'lift_manager_id'      => $data["liftManager"],
+            'type'                 => $data["type"],
+            'category'             => $data["category"],
+            'factory_number'       => $data["factoryNumber"],
+            'model'                => $data["model"],
+            'speed'                => $data["speed"],
+            'load'                 => intval($data["load"]),
+            'manufacturer'         => $data["manufacturer"],
+            'installer'            => $data["installer"],
+            'installation_year'    => intval($data["instYear"]),
+            'floors_serviced'      => intval($data["floorsServiced"]),
+            'address'              => $data["address"],
+            'address_city'         => $data["addressCity"],
+            'address_country'      => $data["addressCountry"],
+            'address_postal_code'  => $data["addressPostalCode"],
+            'building_series'      => $data["buildingSeries"],
+            'bir_url'              => $data["birUrl"],
+            'google_coordinates'   => $data["googleCoordinates"],
+            'entry_code'           => $data["entryCode"],
+            'inspection_status'    => $data["inspectionStatus"],
+            'next_inspection_date' => $data["nextInspectionDate"],
+            'notes'                => $data["notes"],
         ];
-        Lift::create($lift);
-        */
 
-        Lift::create($data);
-         dd($request->all());
+
+        $lift['created_by'] = auth()->id();
+
+        Lift::create($lift);
+
+
+        //        Lift::create($data);
+        //         dd($request->all());
         //
         // TODO redirect after lift creation
         /* old
@@ -142,18 +151,16 @@ class LiftController extends Controller
         );
     }
 
-// checklist
+    // checklist
 
-   /**
+    /**
      * Show the form for editing the specified resource.
      */
     public function checklist(Lift $lift)
     {
-
-
         $lift_with_inspections = Lift::with('inspections')->find($lift->id);
-            //    dd($lift_with_inspections->inspections);
-            //    dd($lift_with_inspections);
+        //    dd($lift_with_inspections->inspections);
+        //    dd($lift_with_inspections);
 
 
         $liftManagers = LiftManager::pluck('name', 'id');
@@ -169,8 +176,36 @@ class LiftController extends Controller
      */
     public function update(UpdateLiftRequest $request, Lift $lift)
     {
-        /* old
                  $data = $request->validated();
+//        dd($data);
+
+        $newLiftData = [
+            'reg_number'           => $data["regNumber"],
+            'lift_manager_id'      => $data["liftManager"],
+            'type'                 => $data["type"],
+            'category'             => $data["category"],
+            'factory_number'       => $data["factoryNumber"],
+            'model'                => $data["model"],
+            'speed'                => $data["speed"],
+            'load'                 => intval($data["load"]),
+            'manufacturer'         => $data["manufacturer"],
+            'installer'            => $data["installer"],
+            'installation_year'    => intval($data["instYear"]),
+            'floors_serviced'      => intval($data["floorsServiced"]),
+            'address'              => $data["address"],
+            'address_city'         => $data["addressCity"],
+            'address_country'      => $data["addressCountry"],
+            'address_postal_code'  => $data["addressPostalCode"],
+            'building_series'      => $data["buildingSeries"],
+            'bir_url'              => $data["birUrl"],
+            'google_coordinates'   => $data["googleCoordinates"],
+            'entry_code'           => $data["entryCode"],
+            'inspection_status'    => $data["inspectionStatus"],
+            'next_inspection_date' => $data["nextInspectionDate"],
+            'notes'                => $data["notes"],
+        ];
+
+        /* old
 
         $newLiftData = [
             'reg_number'          => $data["regNumber"],
@@ -193,10 +228,10 @@ class LiftController extends Controller
         ];
 //        dd($newLiftData);
 
-        $lift->update($newLiftData);
 
-        return to_route('lifts.index');
          */
+        $lift->update($newLiftData);
+        return to_route('lifts.show', $lift->id);
     }
 
     /**

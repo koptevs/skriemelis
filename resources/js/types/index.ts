@@ -65,7 +65,7 @@ export interface Lift {
     google_coordinates: string;
     building_series: string;
     notes: string;
-    inspection_status: string;
+    inspection_status: 'X' | '0' | '1' | '2' | '3';
     entry_code: string;
     next_inspection_date: string;
     created_at: string;
@@ -73,19 +73,19 @@ export interface Lift {
 }
 
 export interface ParsedLift {
-    manager: string;
+    manager: number;
     regNumber: string;
     birUrl: string;
-    type: string;
-    category: string;
+    type: 'elektriskais' | 'hidrauliskais';
+    category: '1' | '2' | '3' | 'CE';
     factoryNumber: string;
     model: string;
-    speed: string;
-    load: string;
+    speed: number;
+    load: number;
     manufacturer: string;
     installer: string;
-    installationYear: string;
-    floorsServiced: string;
+    instYear: number;
+    floorsServiced: number;
     addressCountry: string;
     addressCity: string;
     address: string;
@@ -93,7 +93,7 @@ export interface ParsedLift {
     googleCoordinates: string;
     buildingSeries: string;
     notes: string;
-    inspectionStatus: string;
+    inspectionStatus: 'X' | '0' | '1' | '2' | '3';
     entryCode: string;
     nextInspectionDate: string;
 }

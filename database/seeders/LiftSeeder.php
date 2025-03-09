@@ -69,6 +69,7 @@ class LiftSeeder extends Seeder
                     //                    'lift_manager_id' => comes from inspection seeder
                     'entry_code'          => $lifts['lifts_code'] ?? null,
                     'building_series'     => $lifts['lifts_adrese_majas_serija'] ?? null,
+                    'created_by' => '2'
 
 
                 ]
