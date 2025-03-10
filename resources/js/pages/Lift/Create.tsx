@@ -146,6 +146,8 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
         });
     }
 
+    // Object.entries(liftManagers).forEach(([key,value]) => { console.log(key, value) }}   // Just example code
+
     const serviceCompanies = Object.entries(liftManagers).map(function (entry) {
         return {
             id: entry[0],
