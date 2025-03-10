@@ -42,7 +42,7 @@ export default function Edit({ liftManagers, lift }: { liftManagers: { name: str
         category: z.enum(['CE', '1', '2', '3'], {
             message: "Can be of value 'CE', '1', '2', '3'",
         }),
-        factoryNumber: z.string(),
+        factoryNumber: z.string().nullish(),
         model: z.string().nullish(),
         speed: z.coerce
             .number({
@@ -59,8 +59,8 @@ export default function Edit({ liftManagers, lift }: { liftManagers: { name: str
         addressCountry: z.string(),
         addressPostalCode: z.string(),
         buildingSeries: z.string().nullish(),
-        birUrl: z.string(),
-        googleCoordinates: z.string(),
+        birUrl: z.string().nullish(),
+        googleCoordinates: z.string().nullish(),
         entryCode: z.string().nullish(),
         inspectionStatus: z.enum(['X', '0', '1', '2', '3'], {
             message: "Can be of value 'X', '0', '1', '2', '3'",
