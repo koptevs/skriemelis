@@ -229,7 +229,8 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                                         className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
                                                     >
                                                         {field.value
-                                                            ? serviceCompanies.find((serviceCompany) => serviceCompany.id === field.value)?.label
+                                                            ? serviceCompanies.find((serviceCompany) => parseInt(serviceCompany.id) === field.value)
+                                                                  ?.label
                                                             : 'Select Lift Manager'}
                                                         <ChevronsUpDown className="opacity-50" />
                                                     </Button>
@@ -247,7 +248,7 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                                                     value={serviceCompany.label}
                                                                     key={serviceCompany.id}
                                                                     onSelect={() => {
-                                                                        form.setValue('liftManager', serviceCompany.id);
+                                                                        form.setValue('liftManager', parseInt(serviceCompany.id));
                                                                         setOpenSelectManager(false);
                                                                     }}
                                                                 >
@@ -255,7 +256,7 @@ export default function Create({ liftManagers }: { liftManagers: { name: string;
                                                                     <Check
                                                                         className={cn(
                                                                             'ml-auto',
-                                                                            serviceCompany.id === field.value ? 'opacity-100' : 'opacity-0',
+                                                                            parseInt(serviceCompany.id) === field.value ? 'opacity-100' : 'opacity-0',
                                                                         )}
                                                                     />
                                                                 </CommandItem>
